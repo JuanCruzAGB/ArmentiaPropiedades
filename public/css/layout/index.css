@@ -11,15 +11,12 @@ body{
     --color-dos: #A9C1C1;
     --color-tres: #E8F0F3;
     --color-cuatro: #1C1F22;
+    min-height: 100vh;
     background-color: var(--color-tres);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: var(--color-cuatro);
 }
 
-header{
-
-}
-
 main{
-    display: flex;
+    min-height: 100vh;
 }

@@ -17,13 +17,20 @@
 @endsection
 
 @section('main')
-    <section class="header">
+    <section class="header col-12 mb-2">
         <img src="{{asset('img/resources/logo.png')}}" alt="Armentia Propiedades Logo">
     </section>
-    <section class='main'>
+    <section class='main col-12 mt-2'>
         <p>PROXIMAMENTE</p>
         <div class="social-media">
-
+            <ul>
+                <li>
+                    <a href="http://" target="_blank" rel="noopener noreferrer">
+                        <i></i>
+                        <span></span>
+                    </a>
+                </li>
+            </ul>
         </div>
     </section>
 @endsection
