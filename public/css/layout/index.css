@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+body{
+    --color-uno: #B91C24;
+    --color-uno-alternativo: #ED1B24;
+    --color-dos: #A9C1C1;
+    --color-tres: #E8F0F3;
+    --color-cuatro: #1C1F22;
+    background-color: var(--color-tres);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: var(--color-cuatro);
+}
+
+header{
+
+}
+
+main{
+    display: flex;
+}
