@@ -6,10 +6,11 @@
 }
 
 body{
-    --color-uno: #B91C24;
-    --color-uno-alternativo: #ED1B24;
-    --color-dos: #A9C1C1;
-    --color-tres: #E8F0F3;
+    --color-uno: #c11b34;
+    --color-uno-alternativo: #db0c19;
+    --color-dos: #a39b99;
+    --color-dos-alternativo: #ccc4bf;
+    --color-tres: #faf4f0;
     --color-cuatro: #1C1F22;
     min-height: 100vh;
     background-color: var(--color-tres);

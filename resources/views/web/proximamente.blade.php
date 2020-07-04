@@ -21,13 +21,19 @@
         <img src="{{asset('img/resources/logo.png')}}" alt="Armentia Propiedades Logo">
     </section>
     <section class='main col-12 mt-2'>
-        <p>PROXIMAMENTE</p>
+        <p>Proximamente</p>
         <div class="social-media">
             <ul>
                 <li>
-                    <a href="http://" target="_blank" rel="noopener noreferrer">
-                        <i></i>
-                        <span></span>
+                    <a href="https://www.facebook.com/ArmentiaPropiedades/" target="_blank">
+                        <i class="social-icon mr-2 fab fa-facebook-square"></i>
+                        <span>/<span class="initial">A</span>rmentia<span class="initial">P</span>ropiedades</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.instagram.com/armentiapropiedades/" target="_blank">
+                        <i class="social-icon mr-2 fab fa-instagram"></i>
+                        <span>@armentiapropiedades</span>
                     </a>
                 </li>
             </ul>

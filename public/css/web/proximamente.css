@@ -11,3 +11,40 @@ main{
 .main{
     text-align: center;
 }
+
+p{
+    font-family: 'Work Sans';
+    text-transform: uppercase;
+}
+
+.social-media ul{
+    display: flex;
+    margin-bottom: 0;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.social-media a{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: var(--color-uno-alternativo);
+    transition: 500ms;
+    font-weight: bold;
+    font-family: 'Work Sans';
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.social-media a .initial{
+    font-size: 1.5rem;
+}
+
+.social-media a:hover{
+    color: var(--color-uno);
+}
+
+.social-icon{
+    font-size: 1.5rem;
+    color: var(--color-dos-alternativo);
+}
