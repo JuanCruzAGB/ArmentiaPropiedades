@@ -24,6 +24,10 @@ p{
     align-items: center;
 }
 
+.social-media ul li{
+    flex-basis: 100%;
+}
+
 .social-media a{
     display: flex;
     justify-content: space-around;
@@ -47,4 +51,21 @@ p{
 .social-icon{
     font-size: 1.5rem;
     color: var(--color-dos-alternativo);
+}
+
+/* MD */
+@media(min-width: 768px){
+    .social-media ul li{
+        flex-basis: 50%;
+    }
+}
+
+/* LG */
+@media(min-width: 1024px){
+    /**/
+}
+
+/* XL */
+@media(min-width: 1200px){
+    /**/
 }
