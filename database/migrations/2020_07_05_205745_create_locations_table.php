@@ -3,20 +3,17 @@
     use Illuminate\Database\Schema\Blueprint;
     use Illuminate\Support\Facades\Schema;
 
-    class CreateUsersTable extends Migration{
+    class CreateLocationsTable extends Migration{
         /**
          * Run the migrations.
          *
          * @return void
          */
         public function up(){
-            Schema::create('users', function (Blueprint $table) {
-                $table->int('id_user');
+            Schema::create('locations', function (Blueprint $table) {
+                $table->bigIncrements('id_location');
                 $table->string('name');
-                $table->string('email')->unique();
-                $table->string('password');
                 $table->string('slug');
-                $table->rememberToken();
                 $table->timestamps();
             });
         }
@@ -27,6 +24,6 @@
          * @return void
          */
         public function down(){
-            Schema::dropIfExists('users');
+            Schema::dropIfExists('locations');
         }
     }

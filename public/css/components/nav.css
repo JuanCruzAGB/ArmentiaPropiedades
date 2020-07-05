@@ -1,0 +1,8 @@
+.nav-menu{
+    --color-one: var(--color-uno); /* * Title */
+    --color-two: var(--color-dos); /* * Buttons */
+    --color-two-alternative: var(--color-dos-alternativo); /* * Active buttons */
+    --color-three: var(--color-dos); /* * Sidebar buttons */
+    --color-three-alternative: var(--color-dos-alternativo); /* * Active buttons */
+    --color-four: var(--color-tres); /* * Background */
+}

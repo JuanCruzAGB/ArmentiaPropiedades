@@ -3,20 +3,18 @@
     use Illuminate\Database\Schema\Blueprint;
     use Illuminate\Support\Facades\Schema;
 
-    class CreateUsersTable extends Migration{
+    class CreateCateroriesTable extends Migration{
         /**
          * Run the migrations.
          *
          * @return void
          */
         public function up(){
-            Schema::create('users', function (Blueprint $table) {
-                $table->int('id_user');
+            Schema::create('caterories', function (Blueprint $table) {
+                $table->bigIncrements('id_category');
                 $table->string('name');
-                $table->string('email')->unique();
-                $table->string('password');
+                $table->unsignedInteger('id_parent')->nullable();
                 $table->string('slug');
-                $table->rememberToken();
                 $table->timestamps();
             });
         }
@@ -27,6 +25,6 @@
          * @return void
          */
         public function down(){
-            Schema::dropIfExists('users');
+            Schema::dropIfExists('caterories');
         }
     }

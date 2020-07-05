@@ -3,20 +3,22 @@
     use Illuminate\Database\Schema\Blueprint;
     use Illuminate\Support\Facades\Schema;
 
-    class CreateUsersTable extends Migration{
+    class CreatePropertiesTable extends Migration{
         /**
          * Run the migrations.
          *
          * @return void
          */
         public function up(){
-            Schema::create('users', function (Blueprint $table) {
-                $table->int('id_user');
+            Schema::create('properties', function (Blueprint $table) {
+                $table->bigIncrements('id_property');
                 $table->string('name');
-                $table->string('email')->unique();
-                $table->string('password');
+                $table->text('description');
+                $table->string('folder');
+                $table->string('price');
+                $table->json('categories');
+                $table->unsignedInteger('id_location');
                 $table->string('slug');
-                $table->rememberToken();
                 $table->timestamps();
             });
         }
@@ -27,6 +29,6 @@
          * @return void
          */
         public function down(){
-            Schema::dropIfExists('users');
+            Schema::dropIfExists('properties');
         }
     }

@@ -20,17 +20,17 @@
         <title>@yield('title')</title>
     </head>
     <body>
-        <header>
-            @yield('nav')
+        <header class="header">
+            @yield('header')
         </header>
                 
-        <main class="container-fluid">
+        <main class="main container-fluid">
             <div class="row">
                 @yield('main')
             </div>
         </main>
 
-        <footer> 
+        <footer class="footer"> 
             @yield('footer')
         </footer>
 

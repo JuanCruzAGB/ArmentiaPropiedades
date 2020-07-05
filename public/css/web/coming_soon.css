@@ -1,14 +1,14 @@
-main{
+.main{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.header{
+.main header{
     text-align: center;
 }
 
-.main{
+.main main{
     text-align: center;
 }
 
