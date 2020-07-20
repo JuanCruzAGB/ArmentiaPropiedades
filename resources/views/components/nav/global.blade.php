@@ -4,7 +4,13 @@
             <i class="sidebar-icon fas fa-bars"></i>
         </a>
         
-        <a href="/" class="nav-title">
+        <a href="/" class="nav-title logo">
+            <picture>
+                <source srcset="{{asset('img/resources/logo_medio.png')}}"
+                    media="(min-width: 768px)"/>
+                <img src="{{asset('img/resources/logo_chico.png')}}" 
+                    alt="Armentia Propiedades Logo"/>
+            </picture>
             <h1>Armentia Propiedades</h1>
         </a>
         

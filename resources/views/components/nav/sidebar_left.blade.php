@@ -1,6 +1,7 @@
 <div class="sidebar left closed push-body">
     <div class="sidebar-header">
-        <div class="sidebar-title">
+        <div class="sidebar-title logo">
+            <img src="{{asset('img/resources/logo_chico.png')}}" alt="Armentia Propiedades Logo"/>
             <h2>Menu</h2>
         </div>
         <a href="#" class="sidebar-btn close-btn left">

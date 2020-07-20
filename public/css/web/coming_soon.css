@@ -63,7 +63,9 @@ p{
 
 /* LG */
 @media(min-width: 1024px){
-    /**/
+    .main > .row{
+        width: 50%;
+    }
 }
 
 /* XL */

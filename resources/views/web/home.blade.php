@@ -18,7 +18,25 @@
 @endsection
 
 @section('main')
-    <!-- -->
+    <section id="banner" class="banner col-12">
+        <aside class="banner-img"></aside>
+        <div class="banner-body row">
+            <header class="banner-title col-12 mb-3">
+                <h2 class="MontereyFLF mb-0">¿Qué buscas?</h2>
+            </header>
+            <main class="banner-content col-12">
+                <p class="Work-Sans mb-0 text-center">En los negocios no se consigue lo que se merece, se consigue lo que se negocia</p>
+            </main>
+        </div>
+    </section>
+    <section id="recommended" class="recommended col-12">
+        <div class="row">
+            <main class="col-12 py-5">
+                @component('components.property.list')
+                @endcomponent
+            </main>
+        </div>
+    </section>
 @endsection
 
 @section('footer')

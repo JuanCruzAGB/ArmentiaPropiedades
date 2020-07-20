@@ -1,12 +1,20 @@
+/* * External components */
 @import '../components/footer.css';
 @import '../components/nav.css';
 @import '../components/whatsapp.css';
+
+/* ? Repositorie components */
+@import '../components/animations.css';
+@import '../components/banner.css';
+@import '../components/property/list.css';
+@import '../components/property/info.css';
 
 *{
     margin: 0;
     padding: 0;
     list-style: none;
     box-sizing: border-box;
+    transition: 300ms;
 }
 
 body{
@@ -26,8 +34,87 @@ body{
     min-height: 100vh;
 }
 
+.MontereyFLF{
+    font-family: MontereyFLF;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.Work-Sans{
+    font-family: "Work Sans";
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+
+.Work-Sans::first-letter{
+    font-size: 1.5rem;
+}
+
 .no-text{
     font-size: 0;
+}
+
+.color-uno{
+    color: var(--color-uno);
+}
+
+.color-dos{
+    color: var(--color-dos);
+}
+
+.btn-uno{
+    position: relative;
+    background-color: var(--color-uno);
+    color: var(--color-tres);
+    border-radius: .25rem;
+    width: auto;
+}
+
+.btn-uno:hover{
+    background-color: var(--color-uno-alternativo);
+    color: var(--color-tres);
+}
+
+.btn-dos-transparent{
+    --color-one: var(--color-dos-alternativo);
+    --color-two: var(--color-dos);
+    position: relative;
+    color: var(--color-tres);
+    border-radius: .25rem;
+    width: auto;
+    border: 1px solid transparent;
+    font-weight: bold;
+    z-index: 3;
+}
+
+.btn-dos-transparent:hover{
+    border: 1px solid var(--color-dos-alternativo);
+    background-color: var(--color-dos-alternativo);
+    color: var(--color-cuatro);
+    animation: pulse 2s infinite;
+}
+
+.btn-cuatro{
+    position: relative;
+    background-color: var(--color-cuatro);
+    color: var(--color-tres);
+    border-radius: .25rem;
+    width: auto;
+}
+
+.btn-cuatro:hover{
+    background-color: var(--color-uno-alternativo);
+    color: var(--color-tres);
+}
+
+.btn-cuatro:hover .icon,
+.btn-uno:hover .icon{
+    transform: translateX(-25%);
+}
+
+::selection{
+    background-color: var(--color-uno);
+    color: var(--color-tres);
 }
 
 /* MD */

@@ -1,3 +1,6 @@
 [submodule ".\\public\\submodules\\NavMenuJS"]
 	path = .\\public\\submodules\\NavMenuJS
 	url = https://github.com/JuanCruzAGB/NavMenuJS.git
+[submodule ".\\public\\submodules\\FlotingButton"]
+	path = .\\public\\submodules\\FlotingButton
+	url = https://github.com/JuanCruzAGB/FlotingButton.git

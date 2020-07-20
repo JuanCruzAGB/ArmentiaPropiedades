@@ -6,3 +6,18 @@
     --color-three-alternative: var(--color-dos-alternativo); /* * Active buttons */
     --color-four: var(--color-tres); /* * Background */
 }
+
+/* MD */
+@media(min-width: 768px){
+    /**/
+}
+
+/* LG */
+@media(min-width: 1024px){
+    /**/
+}
+
+/* XL */
+@media(min-width: 1200px){
+    /**/
+}
