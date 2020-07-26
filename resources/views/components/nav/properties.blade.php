@@ -1,4 +1,4 @@
-<nav id="nav-1" class="nav-menu">
+<nav id="nav-1" data-current="propiedades" class="nav-menu">
     <div class="nav-row">
         <a href="#" class="sidebar-btn open-btn left">
             <i class="sidebar-icon fas fa-bars"></i>
@@ -12,6 +12,10 @@
                     alt="Armentia Propiedades Logo"/>
             </picture>
             <h1>Armentia Propiedades</h1>
+        </a>
+        
+        <a href="#" class="sidebar-btn open-btn right">
+            <i class="sidebar-icon fas fa-filter"></i>
         </a>
     </div>
 
@@ -43,5 +47,7 @@
     </div>
 
     @component('components.nav.sidebar_left')
+    @endcomponent
+    @component('components.nav.sidebar_right')
     @endcomponent
 </nav>

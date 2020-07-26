@@ -1,3 +1,10 @@
+/* * External components */
+
+/* ? Repositorie components */
+@import '../components/banner.css';
+@import '../components/property/list.css';
+@import '../components/property/info.css';
+
 .main{
     min-height: 0;
 }

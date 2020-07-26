@@ -1,13 +1,12 @@
-.cards{
-    width: auto;
-    flex-wrap: nowrap;
-    overflow: auto;
-}
-
 .property{
     box-shadow: none;
     padding: 0;
     background-color: transparent;
+}
+
+.property:not(.no-wrap){
+    margin: auto;
+    margin-bottom: 1rem;
 }
 
 .property .card-body{
@@ -17,11 +16,11 @@
     overflow: hidden;
 }
 
-.cards .property:first-child .card-body{
+.cards.no-wrap .property:first-child .card-body{
     margin-left: 1rem;
 }
 
-.cards .property:last-child .card-body{
+.cards.no-wrap .property:last-child .card-body{
     margin-right: 1rem;
 }
 

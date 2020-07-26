@@ -14,7 +14,11 @@
 
 /* LG */
 @media(min-width: 1024px){
-    /**/
+    .nav-menu .nav-link.active,
+    .nav-menu .nav-link:hover{
+        background-color: var(--color-uno);
+        color: var(--color-tres);
+    }
 }
 
 /* XL */

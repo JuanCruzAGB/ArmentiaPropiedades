@@ -7,19 +7,19 @@
             <form action="#">
                 <div class="row px-xl-5">
                     <div class="input-group col-12 mb-3 p-0">
-                        <label for="name" class="input-name">Nombre y Apellido</label>
+                        <label for="name" class="input-name Work-Sans"><span class="first-letter">N</span>ombre y <span class="first-letter">A</span>pellido</label>
                         <input class="input-field" type="text" name="name" id="name">
                     </div>
                     <div class="input-group col-12 mb-3 p-0">
-                        <label for="email" class="input-name">Correo <span class="color-uno">*</span></label>
+                        <label for="email" class="input-name Work-Sans"><span class="first-letter">C</span>orreo <span class="color-uno">*</span></label>
                         <input class="input-field" type="text" name="email" id="email">
                     </div>
                     <div class="input-group col-12 mb-3 p-0">
-                        <label for="phone" class="input-name">Teléfono <span class="color-uno">*</span></label>
+                        <label for="phone" class="input-name Work-Sans"><span class="first-letter">T</span>eléfono <span class="color-uno">*</span></label>
                         <input class="input-field" type="text" name="phone" id="phone">
                     </div>
                     <div class="input-group col-12 mb-3 p-0">
-                        <label for="message" class="input-name">Mensaje</label>
+                        <label for="message" class="input-name Work-Sans"><span class="first-letter">M</span>ensaje</label>
                         <textarea class="input-field" name="message" id="message" cols="30" rows="10"></textarea>
                     </div>
                 </div>

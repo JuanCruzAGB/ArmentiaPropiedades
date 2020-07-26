@@ -5,9 +5,6 @@
 
 /* ? Repositorie components */
 @import '../components/animations.css';
-@import '../components/banner.css';
-@import '../components/property/list.css';
-@import '../components/property/info.css';
 
 *{
     margin: 0;
@@ -46,7 +43,7 @@ body{
     font-size: 1rem;
 }
 
-.Work-Sans::first-letter{
+.Work-Sans .first-letter{
     font-size: 1.5rem;
 }
 
@@ -110,6 +107,19 @@ body{
 .btn-cuatro:hover .icon,
 .btn-uno:hover .icon{
     transform: translateX(-25%);
+}
+
+.input-group .input-field{
+    background: white;
+    border: 1px solid var(--color-cuatro);
+    color: var(--color-cuatro);
+    padding: calc(.5rem + 1px) 1rem;
+    resize: none;
+}
+
+.input-group .input-field:focus{
+    border-width: 2px;
+    padding: .5rem 1rem;
 }
 
 ::selection{

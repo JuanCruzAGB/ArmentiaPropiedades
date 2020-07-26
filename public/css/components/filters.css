@@ -1,0 +1,29 @@
+.filters{
+    display: none;
+    background-color: var(--color-uno);
+}
+
+.filter-menu{
+    display: flex;
+}
+
+.filter-menu li{
+    display: flex;
+}
+
+/* MD */
+@media(min-width: 768px){
+    /**/
+}
+
+/* LG */
+@media(min-width: 1024px){
+    .filters{
+        display: block;
+    }
+}
+
+/* XL */
+@media(min-width: 1200px){
+    /**/
+}
