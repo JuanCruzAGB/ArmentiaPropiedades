@@ -1,0 +1,23 @@
+.dropdown-js{
+    --color-one: var(--color-tres); /* * Title */
+    --color-one-alternative: var(--color-dos); /* * Title hover */
+    --color-two: var(--color-tres); /* * Buttons */
+    --color-two-alternative: var(--color-dos); /* * Buttons hover */
+    --color-three: var(--color-uno); /* * Background */
+    --color-three-alternative: var(--color-uno-alternativo); /* * Background hover */
+}
+
+/* MD */
+@media(min-width: 768px){
+    /**/
+}
+
+/* LG */
+@media(min-width: 1024px){
+    /**/
+}
+
+/* XL */
+@media(min-width: 1200px){
+    /**/
+}

@@ -32,6 +32,19 @@
     <section id="recommended" class="recommended col-12">
         <div class="row">
             <main class="col-12 py-5">
+                <header class="title col-12 mb-3">
+                    <h3 class="MontereyFLF mb-0 mt-4">Mar del Plata</h3>
+                </header>
+                @component('components.property.list')
+                @endcomponent
+                <header class="title col-12 mb-3">
+                    <h3 class="MontereyFLF mb-0 mt-4">Necochea</h3>
+                </header>
+                @component('components.property.list')
+                @endcomponent
+                <header class="title col-12 mb-3">
+                    <h3 class="MontereyFLF mb-0">San Cayetano</h3>
+                </header>
                 @component('components.property.list')
                 @endcomponent
             </main>

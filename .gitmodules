@@ -4,3 +4,6 @@
 [submodule ".\\public\\submodules\\FlotingButton"]
 	path = .\\public\\submodules\\FlotingButton
 	url = https://github.com/JuanCruzAGB/FlotingButton.git
+[submodule "public/submodules/DropdownJS"]
+	path = public/submodules/DropdownJS
+	url = https://github.com/JuanCruzAGB/DropdownJS.git

@@ -1,6 +1,7 @@
 /* * External components */
 @import '../components/footer.css';
 @import '../components/nav.css';
+@import '../components/dropdown.css';
 @import '../components/whatsapp.css';
 
 /* ? Repositorie components */
@@ -120,6 +121,10 @@ body{
 .input-group .input-field:focus{
     border-width: 2px;
     padding: .5rem 1rem;
+}
+
+.title{
+    border-bottom: 1px solid var(--color-dos);
 }
 
 ::selection{

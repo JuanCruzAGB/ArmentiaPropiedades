@@ -20,43 +20,43 @@
 @section('main')
     <section id="filters" class="filters col-12">
         <ul class="filter-menu m-0">
-            <li class="dropdown closed">
-                <span class="filter-text p-3">
+            <li data-name="tipo-de-propiedad" class="dropdown-js closed mr-3">
+                <a href="/propiedades?tipo_de_propiedad=null" class="dropdown-title filter-text p-3">
                     Tipo de Propiedad
                     <button class="dropdown-btn">
                         <i class="dropdown-icon fas fa-sort-down"></i>
                     </button>
-                </span>
-                <ul class="dropdown-menu">
-                    <li class="m-0">
-                        <button class="filter-button dropdown-link">
+                </a>
+                <ul class="dropdown-menu mt-0">
+                    <li data-name="departamento" class="m-0">
+                        <a href="/propiedades?tipo_de_propiedad=departamento" class="dropdown-link filter-button dropdown-link">
                             <span class="link-text">Departamento</span>
-                        </button>
+                        </a>
                     </li>
-                    <li class="m-0">
-                        <button class="filter-button dropdown-link">
+                    <li data-name="terreno" class="m-0">
+                        <a href="/propiedades?tipo_de_propiedad=terreno" class="dropdown-link filter-button dropdown-link">
                             <span class="link-text">Terreno</span>
-                        </button>
+                        </a>
                     </li>
                 </ul>
             </li>
-            <li class="dropdown closed">
-                <span class="filter-text p-3">
+            <li data-name="ciudad" class="dropdown-js closed mr-3">
+                <a href="/propiedades?ciudad=null" class="dropdown-title filter-text p-3">
                     Ciudades
                     <button class="dropdown-btn">
                         <i class="dropdown-icon fas fa-sort-down"></i>
                     </button>
-                </span>
-                <ul class="dropdown-menu">
-                    <li class="m-0">
-                        <button class="filter-button dropdown-link">
+                </a>
+                <ul class="dropdown-menu mt-0">
+                    <li data-name="necochea" class="m-0">
+                        <a href="/propiedades?ciudad=necochea" class="dropdown-link filter-button dropdown-link">
                             <span class="link-text">Necochea</span>
-                        </button-user>
+                        </a>
                     </li>
-                    <li class="m-0">
-                        <button class="filter-button dropdown-link">
+                    <li data-name="san-cayetano" class="m-0">
+                        <a href="/propiedades?ciudad=san-cayetano" class="dropdown-link filter-button dropdown-link">
                             <span class="link-text">San Cayetano</span>
-                        </button>
+                        </a>
                     </li>
                 </ul>
             </li>
