@@ -11,8 +11,9 @@
         <link href="{{ asset('css/mdb/mdb.min.css') }}" rel="stylesheet">
 
         <!-- External Repositories CSS -->
-        <link href="{{ asset('submodules/NavmenuJS/css/styles.css') }}" rel="stylesheet">
         <link href="{{ asset('submodules/DropdownJS/css/styles.css') }}" rel="stylesheet">
+        <link href="{{ asset('submodules/SidebarJS/css/styles.css') }}" rel="stylesheet">
+        <link href="{{ asset('submodules/NavmenuJS/css/styles.css') }}" rel="stylesheet">
 
         <!-- ArmentiaPropiedades Repositorie CSS -->
         <link href="{{ asset('css/layout/index.css') }}" rel="stylesheet">

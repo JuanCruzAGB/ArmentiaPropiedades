@@ -1,10 +1,23 @@
-.nav-menu{
-    --color-one: var(--color-uno); /* * Title */
+.nav-menu,
+.sidebar{
+    --color-one: var(--color-uno); /* * Titles */
     --color-two: var(--color-dos); /* * Buttons */
-    --color-two-alternative: var(--color-dos-alternativo); /* * Active buttons */
-    --color-three: var(--color-dos); /* * Sidebar buttons */
-    --color-three-alternative: var(--color-dos-alternativo); /* * Active buttons */
-    --color-four: var(--color-tres); /* * Background */
+    --color-two-alternative: var(--color-dos-alternativo); /* * Buttons efects */
+    --color-three: var(--color-tres); /* * Background */
+    --color-four: var(--color-dos); /* * Borders efects */
+    --color-five: var(--color-uno); /* * Icons */
+    --color-five-alternative: var(--color-uno-alternarivo); /* * Icons efects */
+}
+
+.sidebar .sidebar-header{
+    background-color: var(--color-tres);
+    border: none;
+}
+
+.sidebar .dropdown{
+    --color-two: var(--color-dos); /* * Buttons */
+    --color-two-alternative: var(--color-dos-alternativo); /* * Buttons efects */
+    --color-three: transparent; /* * Background */
 }
 
 /* MD */
@@ -14,10 +27,21 @@
 
 /* LG */
 @media(min-width: 1024px){
+    .nav-menu .nav-link,
+    .nav-menu .nav-link{
+        display: inline-block;
+        height: 100%;
+    }
+
     .nav-menu .nav-link.active,
     .nav-menu .nav-link:hover{
         background-color: var(--color-uno);
         color: var(--color-tres);
+    }
+
+    .sidebar .dropdown{
+        --color-three: var(--color-tres); /* * Background */
+        --color-three-alternative: var(--color-uno); /* * Background efects */
     }
 }
 

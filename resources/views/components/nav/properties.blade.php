@@ -1,6 +1,6 @@
 <nav id="nav-1" data-current="propiedades" class="nav-menu">
     <div class="nav-row">
-        <a href="#" class="sidebar-btn open-btn left">
+        <a href="#" class="sidebar-button open-btn left">
             <i class="sidebar-icon fas fa-bars"></i>
         </a>
         
@@ -14,13 +14,13 @@
             <h1>Armentia Propiedades</h1>
         </a>
         
-        <a href="#" class="sidebar-btn open-btn right">
+        <a href="#" class="sidebar-button open-btn right">
             <i class="sidebar-icon fas fa-filter"></i>
         </a>
     </div>
 
     <div class="nav-row">
-        <ul class="menu-list">
+        <ul class="nav-menu-list">
             <li><a href="/" class="nav-link">
                 Inicio
             </a></li>
@@ -30,11 +30,11 @@
             <li class="dropdown closed">
                 <a href="/panel" class="nav-link">
                     Panel
-                    <button class="dropdown-btn">
+                    <button class="dropdown-button">
                         <i class="dropdown-icon fas fa-sort-down"></i>
                     </button>
                 </a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu-list">
                     <li class="m-0"><a href="/panel#users" class="dropdown-link"><i class="link-icon fas fa-chevron-right"></i>Users</a></li>
                     <li class="m-0"><a href="/panel#new-user" class="dropdown-link"><i class="link-icon fas fa-chevron-right"></i>New User</a></li>
                 </ul>

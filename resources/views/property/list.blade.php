@@ -23,18 +23,18 @@
             <li data-name="tipo-de-propiedad" class="dropdown-js closed mr-3">
                 <a href="/propiedades?tipo_de_propiedad=null" class="dropdown-title filter-text p-3">
                     Tipo de Propiedad
-                    <button class="dropdown-btn">
+                    <button class="dropdown-button">
                         <i class="dropdown-icon fas fa-sort-down"></i>
                     </button>
                 </a>
-                <ul class="dropdown-menu mt-0">
+                <ul class="dropdown-menu-list mt-0">
                     <li data-name="departamento" class="m-0">
-                        <a href="/propiedades?tipo_de_propiedad=departamento" class="dropdown-link filter-button dropdown-link">
+                        <a href="/propiedades?tipo_de_propiedad=departamento" class="dropdown-link filter-button">
                             <span class="link-text">Departamento</span>
                         </a>
                     </li>
                     <li data-name="terreno" class="m-0">
-                        <a href="/propiedades?tipo_de_propiedad=terreno" class="dropdown-link filter-button dropdown-link">
+                        <a href="/propiedades?tipo_de_propiedad=terreno" class="dropdown-link filter-button">
                             <span class="link-text">Terreno</span>
                         </a>
                     </li>
@@ -43,18 +43,18 @@
             <li data-name="ciudad" class="dropdown-js closed mr-3">
                 <a href="/propiedades?ciudad=null" class="dropdown-title filter-text p-3">
                     Ciudades
-                    <button class="dropdown-btn">
+                    <button class="dropdown-button">
                         <i class="dropdown-icon fas fa-sort-down"></i>
                     </button>
                 </a>
-                <ul class="dropdown-menu mt-0">
+                <ul class="dropdown-menu-list mt-0">
                     <li data-name="necochea" class="m-0">
-                        <a href="/propiedades?ciudad=necochea" class="dropdown-link filter-button dropdown-link">
+                        <a href="/propiedades?ciudad=necochea" class="dropdown-link filter-button">
                             <span class="link-text">Necochea</span>
                         </a>
                     </li>
                     <li data-name="san-cayetano" class="m-0">
-                        <a href="/propiedades?ciudad=san-cayetano" class="dropdown-link filter-button dropdown-link">
+                        <a href="/propiedades?ciudad=san-cayetano" class="dropdown-link filter-button">
                             <span class="link-text">San Cayetano</span>
                         </a>
                     </li>
