@@ -16,6 +16,7 @@
     background-color: var(--color-uno);
     color: var(--color-tres);
 }
+.btn.btn-uno.active,
 .btn.btn-uno:hover {
     background-color: var(--color-uno-alternativo);
     color: var(--color-tres);
@@ -25,6 +26,7 @@
     background-color: transparent;
     color: var(--color-uno);
 }
+.btn.btn-uno-transparent.active,
 .btn.btn-uno-transparent:hover {
     background-color: var(--color-uno);
     color: var(--color-tres);

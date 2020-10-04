@@ -1,11 +1,14 @@
 /* ? Local components */
-@import '../components/button.css';
-@import '../components/background.css';
-@import '../components/text.css';
 @import '../components/animation.css';
+@import '../components/background.css';
+@import '../components/banner.css';
+@import '../components/button.css';
+@import '../components/footer.css';
+@import '../components/text.css';
 
 /* ? External components */
-@import '../components/footer.css';
+@import '../components/filter.css';
+@import '../components/floating.css';
 @import '../components/nav.css';
 
 *{

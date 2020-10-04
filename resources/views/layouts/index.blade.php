@@ -25,6 +25,9 @@
     </head>
     <body>
         @yield('body')
+        
+        @component('components.floating.whatsapp')
+        @endcomponent
 
         <!-- Material Design Bootstrap & JQuery -->
         <script src={{ asset('js/mdb/jquery.min.js') }}></script>

@@ -1,9 +1,8 @@
-/* ? Repositorie components */
-@import '../components/property/list.css';
-@import '../components/property/info.css';
-
-.main{
-    min-height: 0;
+.floating-menu .floating-button.whatsapp{
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    font-size: 2rem;
 }
 
 /* * MD */

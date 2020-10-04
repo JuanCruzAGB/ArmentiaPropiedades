@@ -5,6 +5,7 @@
     min-height: 50vmin;
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 
 .banner .banner-img{
@@ -17,6 +18,11 @@
     background: var(--background-img) no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
+    transition: 500ms;
+}
+
+a.banner:hover .banner-img{
+    transform: scale(1.05);
 }
 
 .banner .banner-body{
