@@ -32,7 +32,7 @@
          * @return [*]
          */
         public function panel(){
-            return view('web.panel.index', [
+            return view('web.panel', [
                 // ? Return variables.
             ]);
         }

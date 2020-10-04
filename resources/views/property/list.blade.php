@@ -1,4 +1,4 @@
-@extends('layout.index')
+@extends('layouts.property')
 
 @section('title')
     Propiedades - Armentia Propiedades
@@ -8,17 +8,13 @@
     <link rel="stylesheet" href="{{asset('css/property/list.css')}}">
 @endsection
 
-@section('js')
-    <script src="{{asset('js/property/list.js')}}"></script>
-@endsection
-
-@section('header')
-    @component('components.nav.properties')
+@section('nav')
+    @component('components.nav.filter')
     @endcomponent
 @endsection
 
 @section('main')
-    <section id="filters" class="filters col-12">
+    <!-- <section id="filters" class="filters col-12">
         <ul class="filter-menu m-0">
             <li data-name="tipo-de-propiedad" class="dropdown-js closed mr-3">
                 <a href="/propiedades?tipo_de_propiedad=null" class="dropdown-title filter-text p-3">
@@ -61,7 +57,7 @@
                 </ul>
             </li>
         </ul>
-    </section>
+    </section> -->
     <section id="recommended" class="recommended col-12">
         <div class="row">
             <main class="col-12 py-5 text-center">
@@ -75,4 +71,8 @@
 @section('footer')
     @component('components.footer.properties')
     @endcomponent
+@endsection
+
+@section('js')
+    <script src="{{asset('js/property/list.js')}}"></script>
 @endsection

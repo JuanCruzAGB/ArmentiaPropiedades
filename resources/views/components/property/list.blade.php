@@ -8,7 +8,7 @@
 </ul>
 
 @if(Route::current()->getName() === 'property.list')
-    <a href="/propiedades" class="btn-uno d-inline-block p-3">
+    <a href="/propiedades" class="btn btn-uno-transparent d-inline-block p-3">
         <span>Cargar más</span>
     </a>
 @endif

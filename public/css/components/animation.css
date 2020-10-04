@@ -1,0 +1,19 @@
+@keyframes rotate{
+    0%{
+        transform: rotate(0deg);
+        opacity: 0;
+    }100%{
+        transform: rotate(360deg);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse{
+    0%{
+        box-shadow: 0 0 0 0 var(--color-one);
+	}50%{
+        box-shadow: 0 0 0 2px var(--color-one);
+	}100%{
+        box-shadow: 0 0 0 0 var(--color-one);
+	}
+}

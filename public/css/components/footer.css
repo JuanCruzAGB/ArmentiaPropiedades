@@ -71,7 +71,7 @@
     background-color: var(--color-dos);
 }
 
-/* MD */
+/* * MD */
 @media(min-width: 768px){
     .footer .top_bar{
         text-align: right;
@@ -124,12 +124,12 @@
     }
 }
 
-/* LG */
+/* * LG */
 @media(min-width: 1024px){
     /**/
 }
 
-/* XL */
+/* * XL */
 @media(min-width: 1200px){
     /**/
 }

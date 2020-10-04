@@ -1,4 +1,4 @@
-@extends('layout.index')
+@extends('layouts.web')
 
 @section('title')
     Armentia Propiedades - Eslogan
@@ -8,11 +8,7 @@
     <link rel="stylesheet" href="{{asset('css/web/home.css')}}">
 @endsection
 
-@section('js')
-    <script src="{{asset('js/web/home.js')}}"></script>
-@endsection
-
-@section('header')
+@section('nav')
     @component('components.nav.global')
     @endcomponent
 @endsection
@@ -43,7 +39,7 @@
                 @component('components.property.list')
                 @endcomponent
                 <header class="title col-12 mb-3">
-                    <h3 class="MontereyFLF mb-0">San Cayetano</h3>
+                    <h3 class="MontereyFLF mb-0 mt-4">San Cayetano</h3>
                 </header>
                 @component('components.property.list')
                 @endcomponent
@@ -55,4 +51,8 @@
 @section('footer')
     @component('components.footer.global')
     @endcomponent
+@endsection
+
+@section('js')
+    <script src="{{asset('js/web/home.js')}}"></script>
 @endsection

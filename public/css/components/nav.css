@@ -1,51 +1,108 @@
-.nav-menu,
+.nav-menu{
+    --navmenu-title-color: var(--color-dos);
+    --navmenu-button-color: var(--color-dos);
+    --navmenu-button-color-alternative: var(--color-uno);
+    --navmenu-background-color: var(--color-tres);
+    --navmenu-background-color-alternative: var(--color-tres);
+    --navmenu-border-color: var(--color-tres);
+    --navmenu-border-color-alternative: var(--color-tres);
+    --navmenu-icon-color: var(--color-uno);
+    --navmenu-icon-color-alternative: var(--color-uno-alternativo);
+}
+
 .sidebar{
-    --color-one: var(--color-uno); /* * Titles */
-    --color-two: var(--color-dos); /* * Buttons */
-    --color-two-alternative: var(--color-dos-alternativo); /* * Buttons efects */
-    --color-three: var(--color-tres); /* * Background */
-    --color-four: var(--color-dos); /* * Borders efects */
-    --color-five: var(--color-uno); /* * Icons */
-    --color-five-alternative: var(--color-uno-alternarivo); /* * Icons efects */
+    --sidebar-title-color: var(--color-dos);
+    --sidebar-button-color: var(--color-dos);
+    --sidebar-button-color-alternative: var(--color-uno);
+    --sidebar-background-color: var(--color-tres);
+    --sidebar-background-color-alternative: var(--color-tres);
+    --sidebar-border-color: var(--color-dos);
+    --sidebar-border-color-alternative: var(--color-uno);
+    --sidebar-icon-color: #ddd;
+    --sidebar-icon-color-alternative: #ddd;
+    --sidebar-icon-color: var(--color-uno);
+    --sidebar-icon-color-alternative: var(--color-uno-alternativo);
 }
 
-.sidebar .sidebar-header{
-    background-color: var(--color-tres);
-    border: none;
+/* #nav-filter.nav-menu{
+    --navmenu-title-color: var(--color-tres);
+    --navmenu-button-color: var(--color-tres);
+    --navmenu-button-color-alternative: var(--color-tres);
+    --navmenu-background-color: var(--color-uno-alternativo);
+    --navmenu-background-color-alternative: var(--color-uno);
+    --navmenu-border-color: var(--color-uno-alternativo);
+    --navmenu-border-color-alternative: var(--color-uno);
+    --navmenu-icon-color: var(--color-tres);
+    --navmenu-icon-color-alternative: var(--color-tres);
+} */
+
+#nav-filter .dropdown {
+    --dropdown-title-color: #222;
+    --dropdown-title-color-alternative: #222;
+    --dropdown-button-color: var(--color-tres);
+    --dropdown-button-color-alternative: var(--color-dos);
+    --dropdown-background-color: var(--color-uno-alternativo);
+    --dropdown-background-color-alternative: var(--color-uno-alternativo);
+    --dropdown-border-color: #ddd;
+    --dropdown-border-color-alternative: #ddd;
+    --dropdown-icon-color: #ddd;
+    --dropdown-icon-color-alternative: #ddd;
 }
 
-.sidebar .dropdown{
-    --color-two: var(--color-dos); /* * Buttons */
-    --color-two-alternative: var(--color-dos-alternativo); /* * Buttons efects */
-    --color-three: transparent; /* * Background */
+#nav-filter.nav-menu .nav-row:nth-of-type(3){
+    flex-basis: 100%;
+    overflow: visible;
+    justify-content: flex-start;
 }
 
-/* MD */
+#nav-filter.nav-menu :not(.dropdown-menu-list) .nav-menu-list .nav-link{
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+}
+
+#nav-filter .nav-row:nth-of-type(3) .nav-menu-list .opened > .nav-link {
+    background-color: var(--color-uno);
+}
+
+#nav-filter .nav-row:nth-of-type(3){
+    background-color: var(--color-uno-alternativo);
+}
+
+#nav-filter .nav-row:nth-of-type(3) .nav-menu-list .nav-link{
+    color: var(--color-tres);
+    background-color: var(--color-uno-alternativo);
+}
+
+#nav-filter .nav-row:nth-of-type(3) .nav-menu-list .nav-link:hover{
+    background-color: var(--color-uno);
+}
+
+.dropdown .dropdown-header{
+    border-radius: 0;
+}
+
+.nav-link.dropdown-link {
+    white-space: nowrap;
+}
+
+/* * MD */
 @media(min-width: 768px){
     /**/
 }
 
-/* LG */
+/* * LG */
 @media(min-width: 1024px){
-    .nav-menu .nav-link,
-    .nav-menu .nav-link{
-        display: inline-block;
-        height: 100%;
+    #nav-filter.nav-menu .nav-row:first-of-type{
+        margin-left: 10rem;
     }
-
-    .nav-menu .nav-link.active,
-    .nav-menu .nav-link:hover{
-        background-color: var(--color-uno);
-        color: var(--color-tres);
-    }
-
-    .sidebar .dropdown{
-        --color-three: var(--color-tres); /* * Background */
-        --color-three-alternative: var(--color-uno); /* * Background efects */
+    
+    #nav-filter.nav-menu .nav-row:nth-of-type(2){
+        margin-right: 10rem;
     }
 }
 
-/* XL */
+/* * XL */
 @media(min-width: 1200px){
     /**/
 }

@@ -1,11 +1,5 @@
-.cards{
-    width: auto;
-    overflow: auto;
-    margin-bottom: 0;
-}
-
-.cards.no-wrap{
-    flex-wrap: nowrap;
+.background.background-uno {
+    background-color: var(--color-uno);
 }
 
 /* * MD */

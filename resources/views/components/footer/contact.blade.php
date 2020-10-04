@@ -22,6 +22,9 @@
                         <label for="message" class="input-name Work-Sans"><span class="first-letter">M</span>ensaje</label>
                         <textarea class="input-field" name="message" id="message" cols="30" rows="10"></textarea>
                     </div>
+                    <div class="text-right col-12 mb-3 p-0">
+                        <button type="submit" class="btn btn-uno mx-0">Enviar</button>
+                    </div>
                 </div>
             </form>
         </div>

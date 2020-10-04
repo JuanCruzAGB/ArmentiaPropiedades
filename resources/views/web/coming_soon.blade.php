@@ -1,19 +1,11 @@
-@extends('layout.index')
+@extends('layouts.web')
 
 @section('title')
     Proximamente
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="{{asset('css/web/coming_soon.css')}}">
-@endsection
-
-@section('js')
-    <script src="{{asset('js/web/coming_soon.js')}}"></script>
-@endsection
-
-@section('header')
-    <!-- -->
+    <link href={{ asset('css/web/coming_soon.css') }} rel="stylesheet">
 @endsection
 
 @section('main')
@@ -46,6 +38,6 @@
     </section>
 @endsection
 
-@section('footer')
-    <!-- -->
+@section('js')
+    <script src={{ asset('js/web/coming_soon.js') }}></script>
 @endsection

@@ -81,12 +81,12 @@
     height: 100%;
 }
 
-/* MD */
+/* * MD */
 @media(min-width: 768px){
     /**/
 }
 
-/* LG */
+/* * LG */
 @media(min-width: 1024px){
     .cards{
         justify-content: center;
@@ -116,7 +116,7 @@
     }
 }
 
-/* XL */
+/* * XL */
 @media(min-width: 1200px){
     .property .card-body{
         margin: 0 .5rem;

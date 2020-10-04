@@ -1,0 +1,60 @@
+.btn {
+    display: inline-flex;
+    border-radius: .25rem;
+    transition: 500ms;
+    font-size: .9rem;
+    min-width: 5rem;
+    min-height: fit-content;
+    cursor: pointer;
+    box-shadow: none;
+}
+.btn.btn:hover {
+    animation: pulse infinite 1500ms;
+}
+
+.btn.btn-uno {
+    background-color: var(--color-uno);
+    color: var(--color-tres);
+}
+.btn.btn-uno:hover {
+    background-color: var(--color-uno-alternativo);
+    color: var(--color-tres);
+}
+
+.btn.btn-uno-transparent {
+    background-color: transparent;
+    color: var(--color-uno);
+}
+.btn.btn-uno-transparent:hover {
+    background-color: var(--color-uno);
+    color: var(--color-tres);
+}
+
+.btn.btn-dos-transparent {
+    --color-one: var(--color-dos-alternativo);
+    --color-two: var(--color-dos);
+    color: var(--color-tres);
+    border: 1px solid transparent;
+    font-weight: bold;
+    z-index: 3;
+}
+.btn.btn-dos-transparent:hover {
+    border: 1px solid var(--color-dos-alternativo);
+    background-color: var(--color-dos-alternativo);
+    color: var(--color-cuatro);
+}
+
+/* * MD */
+@media(min-width: 768px) {
+    /**/
+}
+
+/* * LG */
+@media(min-width: 1024px) {
+    /**/
+}
+
+/* * XL */
+@media(min-width: 1200px) {
+    /**/
+}

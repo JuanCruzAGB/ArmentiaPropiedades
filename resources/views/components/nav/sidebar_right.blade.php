@@ -10,7 +10,7 @@
 
     <div class="sidebar-content">
         <ul class="sidebar-menu-list">
-            <li id="dropdown-3" class="dropdown closed">
+            <!-- <li id="dropdown-3" class="dropdown closed">
                 <a href="/panel" class="sidebar-link dropdown-title nav-link">
                     <span class="text">Tipo de Propiedad</span>
                     <button class="dropdown-button">
@@ -49,7 +49,7 @@
                         </a>
                     </li>
                 </ul>
-            </li>
+            </li> -->
         </ul>
     </div>
 </div>
