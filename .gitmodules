@@ -34,3 +34,7 @@
 	path = .\\public\\submodules\\CustomConsoleErrorJS
 	url = https://github.com/JuanCruzAGB/CustomConsoleErrorJS.git
 	branch = master
+[submodule ".\\public\\submodules\\ProvidersJS"]
+	path = .\\public\\submodules\\ProvidersJS
+	url = https://github.com/JuanCruzAGB/ProvidersJS.git
+	branch = master
