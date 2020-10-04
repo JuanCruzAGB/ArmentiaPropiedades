@@ -1,0 +1,36 @@
+[submodule ".\\public\\submodules\\NavMenuJS"]
+	path = .\\public\\submodules\\NavMenuJS
+	url = https://github.com/JuanCruzAGB/NavMenuJS.git
+	branch = master
+[submodule ".\\public\\submodules\\SidebarJS"]
+	path = .\\public\\submodules\\SidebarJS
+	url = https://github.com/JuanCruzAGB/SidebarJS.git
+	branch = master
+[submodule ".\\public\\submodules\\ScrollDetectionJS"]
+	path = .\\public\\submodules\\ScrollDetectionJS
+	url = https://github.com/JuanCruzAGB/ScrollDetectionJS.git
+	branch = master
+[submodule ".\\public\\submodules\\DropdownJS"]
+	path = .\\public\\submodules\\DropdownJS
+	url = https://github.com/JuanCruzAGB/DropdownJS.git
+	branch = master
+[submodule ".\\public\\submodules\\TabMenuJS"]
+	path = .\\public\\submodules\\TabMenuJS
+	url = https://github.com/JuanCruzAGB/TabMenuJS.git
+	branch = master
+[submodule ".\\public\\submodules\\NotificationJS"]
+	path = .\\public\\submodules\\NotificationJS
+	url = https://github.com/JuanCruzAGB/NotificationJS.git
+	branch = master
+[submodule ".\\public\\submodules\\FilterJS"]
+	path = .\\public\\submodules\\FilterJS
+	url = https://github.com/JuanCruzAGB/FilterJS.git
+	branch = master
+[submodule ".\\public\\submodules\\InputFileMakerJS"]
+	path = .\\public\\submodules\\InputFileMakerJS
+	url = https://github.com/JuanCruzAGB/InputFileMakerJS.git
+	branch = master
+[submodule ".\\public\\submodules\\CustomConsoleErrorJS"]
+	path = .\\public\\submodules\\CustomConsoleErrorJS
+	url = https://github.com/JuanCruzAGB/CustomConsoleErrorJS.git
+	branch = master
