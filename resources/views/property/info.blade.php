@@ -14,9 +14,6 @@
 @endsection
 
 @section('main')
-    <a target="_blank" href="{{ asset('storage/property/1/01.jpg') }}" id="banner" class="banner col-12">
-        <aside style="--background-img: url('{{ asset('storage/property/1/01.jpg') }}')" class="banner-img"></aside>
-    </a>
     <section id="property" class="property col-12">
         <div class="row">
             <main class="col-12 py-5 text-left">
@@ -26,25 +23,39 @@
                 <div class="row">
                     <section class="gallery col-12 col-md-6 px-3">
                         <div class="row justify-content-between px-3 pr-md-0">
-                            <div class="img-gallery overflow-hidden p-0">
-                                <figure>
-                                    <img src="{{ asset('storage/property/1/01.jpg') }}" alt="Property 1 - Image 1">
-                                </figure>
-                                <figure>
-                                    <img src="{{ asset('storage/property/1/01.jpg') }}" alt="Property 1 - Image 1">
-                                </figure>
-                                <figure>
-                                    <img src="{{ asset('storage/property/1/01.jpg') }}" alt="Property 1 - Image 1">
-                                </figure>
-                                <figure>
-                                    <img src="{{ asset('storage/property/1/01.jpg') }}" alt="Property 1 - Image 1">
-                                </figure>
+                            <div class="arrows">
+                                <button class="btn btn-uno arrow prev hidden m-0">
+                                    <i class="fas fa-arrow-up"></i>
+                                </button>
+                                <button class="btn btn-uno arrow next m-0">
+                                    <i class="fas fa-arrow-down"></i>
+                                </button>
                             </div>
-                            <div class="img-selected overflow-hidden p-0">
-                                <figure class="pr-md-3">
-                                    <img src="{{ asset('storage/property/1/01.jpg') }}" alt="Property 1 - Image 1">
-                                </figure>
+                            <div class="images p-0" data-current="0">
+                                <a href="#" class="gallery-button active mb-3">
+                                    <img class="m-0" src="{{ asset('storage/property/1/01.jpg') }}" alt="Property 1 - Image 1">
+                                </a>
+                                <a href="#" class="gallery-button mb-3">
+                                    <img class="m-0" src="{{ asset('storage/property/1/01.jpg') }}" alt="Property 1 - Image 1">
+                                </a>
+                                <a href="#" class="gallery-button mb-3">
+                                    <img class="m-0" src="{{ asset('storage/property/1/01.jpg') }}" alt="Property 1 - Image 1">
+                                </a>
+                                <a href="#" class="gallery-button mb-3">
+                                    <img class="m-0" src="{{ asset('storage/property/1/01.jpg') }}" alt="Property 1 - Image 1">
+                                </a>
+                                <a href="#" class="gallery-button mb-3">
+                                    <img class="m-0" src="{{ asset('storage/property/1/01.jpg') }}" alt="Property 1 - Image 1">
+                                </a>
+                                <a href="#" class="gallery-button">
+                                    <img class="m-0" src="{{ asset('storage/property/1/01.jpg') }}" alt="Property 1 - Image 1">
+                                </a>
                             </div>
+                            <a target="_blank" href="{{ asset('storage/property/1/01.jpg') }}" class="selected overflow-hidden p-0">
+                                <figure class="m-0">
+                                    <img class="zoom" src="{{ asset('storage/property/1/01.jpg') }}" alt="Property 1 - Image 1">
+                                </figure>
+                            </a>
                         </div>
                     </section>
                     <section class="details col-12 col-md-6 px-3">
@@ -71,5 +82,5 @@
 @endsection
 
 @section('js')
-    <script src="{{asset('js/property/info.js')}}"></script>
+    <script type="module" src="{{asset('js/property/info.js')}}"></script>
 @endsection

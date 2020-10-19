@@ -1,0 +1,36 @@
+.main,
+.tab-menu.vertical {
+    min-height: calc(100vh - 9.2rem);
+}
+
+.tab-menu .tabs .tab-menu-list .tab .tab-link,
+.tab-menu .tabs .tab-menu-list .tab .tab-button {
+    justify-content: center;
+}
+
+.table thead th {
+    border: none;
+}
+
+td.actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* * MD */
+@media(min-width: 768px){
+    /*  */
+}
+
+/* * LG */
+@media(min-width: 1024px){
+    .nav-menu {
+        padding-right: 1rem;
+        padding-left: 25%;
+    }
+}
+
+/* * XL */
+@media(min-width: 1200px){
+    /*  */
+}

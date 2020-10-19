@@ -68,6 +68,10 @@
 }
 
 .footer-bar{
+    display: flex;
+    height: 4.6rem;
+    align-items: center;
+    justify-content: center;
     background-color: var(--color-dos);
 }
 

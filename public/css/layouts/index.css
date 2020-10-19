@@ -1,5 +1,6 @@
 /* ? Local components */
 @import '../components/animation.css';
+@import '../components/color.css';
 @import '../components/background.css';
 @import '../components/banner.css';
 @import '../components/button.css';
@@ -9,6 +10,7 @@
 /* ? External components */
 @import '../components/filter.css';
 @import '../components/floating.css';
+@import '../components/tab.css';
 @import '../components/nav.css';
 
 *{
@@ -32,7 +34,7 @@ body{
 }
 
 .main{
-    min-height: 100vh;
+    min-height: calc(100vh - 4.6rem);
 }
 
 .input-group .input-field{

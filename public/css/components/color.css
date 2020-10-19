@@ -1,0 +1,38 @@
+.color-uno {
+    color: var(--color-uno);
+}
+
+.color-uno-alternativo {
+    color: var(--color-uno-alternativo);
+}
+
+.color-dos {
+    color: var(--color-dos);
+}
+
+.color-dos-alternativo {
+    color: var(--color-dos-alternativo);
+}
+
+.color-tres {
+    color: var(--color-tres);
+}
+
+.color-cuatro {
+    color: var(--color-cuatro);
+}
+
+/* * MD */
+@media(min-width: 768px){
+    /**/
+}
+
+/* * LG */
+@media(min-width: 1024px){
+    /**/
+}
+
+/* * XL */
+@media(min-width: 1200px){
+    /**/
+}

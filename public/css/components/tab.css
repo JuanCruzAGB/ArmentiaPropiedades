@@ -1,0 +1,56 @@
+.tab-menu {
+    --tabmenu-title-color: #222;
+    --tabmenu-button-color: var(--color-cuatro);
+    --tabmenu-button-color-alternative: var(--color-tres);
+    --tabmenu-background-color: var(--color-dos-alternativo);
+    --tabmenu-background-color-alternative: var(--color-dos);
+    --tabmenu-border-color: #ddd;
+    --tabmenu-border-color-alternative: #ddd;
+    --tabmenu-icon-color: #ddd;
+    --tabmenu-icon-color-alternative: #ddd;
+    --tabmenu-shadow-color: #32B1DA;
+}
+
+.tab-menu .tab-content {
+    overflow: hidden;
+}
+
+.tab-menu .tabs .tab-menu-list .tab .tab-link {
+    border-radius: 0;
+}
+
+/* * MD */
+@media (min-width: 768px) {
+    .tab-menu .tab-content h2{
+        min-height: 4.6rem;
+        display: flex;
+        align-items: flex-end;
+        font-size: 1.75rem;
+        padding: 0 15px;
+    }
+}
+
+/* * LG */
+@media (min-width: 1024px) {
+    .tab-menu .tabs .tab-menu-list .tab:first-child .tab-link::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 25%;
+        height: 4.6rem;
+        background-color: var(--color-dos-alternativo);
+        z-index: 11;
+        transition: 500ms;
+    }
+
+    .tab-menu .tabs .tab-menu-list .tab:first-child .tab-link:hover::before,
+    .tab-menu .tabs .tab-menu-list .tab:first-child .tab-link.active::before {
+        background-color: var(--color-dos);
+    }
+}
+
+/* * XL */
+@media (min-width: 1200px) {
+    /**/
+}
