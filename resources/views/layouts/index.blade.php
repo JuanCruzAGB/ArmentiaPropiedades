@@ -17,6 +17,7 @@
         <link href={{ asset('submodules/SidebarJS/css/styles.css') }} rel="stylesheet">
         <link href={{ asset('submodules/NavmenuJS/css/styles.css') }} rel="stylesheet">
         <link href={{ asset('submodules/NotificationJS/css/styles.css') }} rel="stylesheet">
+        <link href={{ asset('submodules/ValidationJS/css/styles.css') }} rel="stylesheet">
 
         <!-- Global layout CSS -->
         <link href={{ asset('css/layouts/index.css') }} rel="stylesheet">
@@ -26,9 +27,6 @@
     </head>
     <body>
         @yield('body')
-        
-        @component('components.floating.whatsapp')
-        @endcomponent
 
         <!-- Material Design Bootstrap & JQuery -->
         <script src={{ asset('js/mdb/jquery.min.js') }}></script>

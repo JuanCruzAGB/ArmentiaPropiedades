@@ -2,8 +2,8 @@
     --tabmenu-title-color: #222;
     --tabmenu-button-color: var(--color-cuatro);
     --tabmenu-button-color-alternative: var(--color-tres);
-    --tabmenu-background-color: var(--color-dos-alternativo);
-    --tabmenu-background-color-alternative: var(--color-dos);
+    --tabmenu-background-color: var(--color-tres);
+    --tabmenu-background-color-alternative: var(--color-dos-alternativo);
     --tabmenu-border-color: #ddd;
     --tabmenu-border-color-alternative: #ddd;
     --tabmenu-icon-color: #ddd;
@@ -19,34 +19,61 @@
     border-radius: 0;
 }
 
+.tab-menu .tabs .tab-header {
+    display: block;
+    background-color: var(--color-tres);
+}
+
+.tab-menu .tabs .tab-footer .btn {
+    min-width: 100%;
+    margin: 0;
+    min-height: 4.6rem;
+}
+
+a.waves-effect, a.waves-light {
+    display: inline-flex;
+}
+
 /* * MD */
 @media (min-width: 768px) {
+    .tab-menu {
+        --tabmenu-title-color: #222;
+        --tabmenu-button-color: var(--color-tres);
+        --tabmenu-button-color-alternative: var(--color-tres);
+        --tabmenu-background-color: var(--color-uno);
+        --tabmenu-background-color-alternative: var(--color-uno-alternativo);
+        --tabmenu-border-color: #ddd;
+        --tabmenu-border-color-alternative: #ddd;
+        --tabmenu-icon-color: #ddd;
+        --tabmenu-icon-color-alternative: #ddd;
+        --tabmenu-shadow-color: #32B1DA;
+    }
+
+    .tab-menu .tabs .tab-header {
+        background-color: var(--tabmenu-background-color);
+    }
+
     .tab-menu .tab-content h2{
-        min-height: 4.6rem;
         display: flex;
         align-items: flex-end;
         font-size: 1.75rem;
         padding: 0 15px;
     }
+
+    .tab-menu.vertical,
+    .tab-menu.vertical .tabs {
+        min-height: 100vh;
+    }
 }
 
 /* * LG */
 @media (min-width: 1024px) {
-    .tab-menu .tabs .tab-menu-list .tab:first-child .tab-link::before {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 25%;
-        height: 4.6rem;
-        background-color: var(--color-dos-alternativo);
-        z-index: 11;
-        transition: 500ms;
+    .tab-menu.vertical .tabs {
+        width: 15%;
     }
-
-    .tab-menu .tabs .tab-menu-list .tab:first-child .tab-link:hover::before,
-    .tab-menu .tabs .tab-menu-list .tab:first-child .tab-link.active::before {
-        background-color: var(--color-dos);
+    
+    .tab-menu.vertical .tab-content-list {
+        width: 85%;
     }
 }
 

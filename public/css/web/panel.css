@@ -1,6 +1,8 @@
-.main,
-.tab-menu.vertical {
-    min-height: calc(100vh - 9.2rem);
+.floating-button.btn.btn-icon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    font-size: 2rem;
 }
 
 .tab-menu .tabs .tab-menu-list .tab .tab-link,
@@ -17,9 +19,19 @@ td.actions {
     justify-content: flex-end;
 }
 
+table tr {
+    transition: 500ms;
+}
+
+table tr:hover {
+    background-color: var(--color-dos-alternativo);
+}
+
 /* * MD */
 @media(min-width: 768px){
-    /*  */
+    .tab-menu.vertical .tab-content-list .tab-content {
+        padding-top: 4.6rem;
+    }
 }
 
 /* * LG */
