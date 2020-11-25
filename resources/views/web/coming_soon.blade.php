@@ -12,7 +12,7 @@
     <section class='col-12'>
         <header class="mb-2">
             <h1 class="mb-0 no-text">
-                <img src="{{asset('img/resources/logo_medio.png')}}" alt="Armentia Propiedades Logo">
+                <img src="{{asset('img/resources/logo_regular.png')}}" alt="Armentia Propiedades Logo">
                 <span>ArmentiaPropiedades</span>
             </h1>
         </header>

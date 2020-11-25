@@ -1,9 +1,9 @@
 .tab-menu {
     --tabmenu-title-color: #222;
-    --tabmenu-button-color: var(--color-cuatro);
+    --tabmenu-button-color: var(--color-tres);
     --tabmenu-button-color-alternative: var(--color-tres);
-    --tabmenu-background-color: var(--color-tres);
-    --tabmenu-background-color-alternative: var(--color-dos-alternativo);
+    --tabmenu-background-color: var(--color-uno);
+    --tabmenu-background-color-alternative: var(--color-uno-alternativo);
     --tabmenu-border-color: #ddd;
     --tabmenu-border-color-alternative: #ddd;
     --tabmenu-icon-color: #ddd;
@@ -21,7 +21,8 @@
 
 .tab-menu .tabs .tab-header {
     display: block;
-    background-color: var(--color-tres);
+    background-color: var(--color-uno);
+    padding: 0;
 }
 
 .tab-menu .tabs .tab-footer .btn {

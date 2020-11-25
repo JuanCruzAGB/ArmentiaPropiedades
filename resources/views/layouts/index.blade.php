@@ -27,12 +27,14 @@
     </head>
     <body>
         @yield('body')
-
         <!-- Material Design Bootstrap & JQuery -->
         <script src={{ asset('js/mdb/jquery.min.js') }}></script>
         <script src={{ asset('js/mdb/popper.min.js') }}></script>
         <script src={{ asset('js/mdb/bootstrap.min.js') }}></script>
         <script src={{ asset('js/mdb/mdb.min.js') }}></script>
+
+        <!-- Node modules -->
+        <script src="{{ asset('js/app.js') }}"></script>
 
         <!-- External Repositories js -->
 

@@ -1,6 +1,8 @@
 @extends('layouts.index')
 
 @section('head')
+    <meta name="csrf_token" content="{{ csrf_token() }}">
+
     <!-- Layout CSS -->
     <link href={{ asset('css/layouts/web.css') }} rel="stylesheet">
 
@@ -15,15 +17,15 @@
         <section class="tabs background background-one mb-4 mb-md-0">
             <a href="/" class="tab-header logo">
                 <picture>
-                    <source srcset="{{asset('img/resources/logo_medio_white.png')}}"
+                    <source srcset="{{asset('img/resources/logo_regular_white.png')}}"
                         media="(min-width: 768px)"/>
-                    <img src="{{asset('img/resources/logo_chico.png')}}" 
+                    <img src="{{asset('img/resources/logo_small_white.png')}}" 
                         alt="Armentia Propiedades Logo"/>
                 </picture>
                 <h1 class="mb-0">Armentia Propiedades</h1>
             </a>
             
-            <ul class="tab-menu-list mb-0">
+            <ul class="tab-menu-list mb-0 mt-md-3">
                 @yield('tab-menu-list')
             </ul>
             

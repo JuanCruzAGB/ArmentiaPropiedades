@@ -60,7 +60,7 @@
                     </section>
                     <section class="details col-12 col-md-6 px-3">
                         <header class="header mb-3">
-                            <h3 class="h5 mb-0 text-left MontereyFLF mb-0 mt-4 mt-md-0">
+                            <h3 class="h5 text-left MontereyFLF mb-0 mt-4 mt-md-0">
                                 <span class="category color-uno">Departamento</span>
                                 <br>
                                 <span class="location color-dos">San Cayetano</span>

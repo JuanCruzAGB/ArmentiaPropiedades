@@ -3,14 +3,14 @@
     use Illuminate\Database\Schema\Blueprint;
     use Illuminate\Support\Facades\Schema;
 
-    class CreateCateroriesTable extends Migration{
+    class CreateCategoriesTable extends Migration{
         /**
          * Run the migrations.
          *
          * @return void
          */
         public function up(){
-            Schema::create('caterories', function (Blueprint $table) {
+            Schema::create('categories', function (Blueprint $table) {
                 $table->bigIncrements('id_category');
                 $table->string('name');
                 $table->unsignedInteger('id_parent')->nullable();

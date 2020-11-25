@@ -10,6 +10,7 @@
 /* ? External components */
 @import '../components/filter.css';
 @import '../components/floating.css';
+@import '../components/validation.css';
 @import '../components/tab.css';
 @import '../components/nav.css';
 

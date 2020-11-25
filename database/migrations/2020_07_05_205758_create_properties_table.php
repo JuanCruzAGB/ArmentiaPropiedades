@@ -15,8 +15,7 @@
                 $table->string('name');
                 $table->text('description');
                 $table->string('folder');
-                $table->string('price');
-                $table->json('categories');
+                $table->unsignedInteger('id_category');
                 $table->unsignedInteger('id_location');
                 $table->string('slug');
                 $table->timestamps();

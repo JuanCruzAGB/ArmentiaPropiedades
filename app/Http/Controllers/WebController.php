@@ -1,6 +1,9 @@
 <?php
     namespace App\Http\Controllers;
 
+    use App\Models\Category;
+    use App\Models\Location;
+    use App\Models\Property;
     use Illuminate\Http\Request;
 
     class WebController extends Controller{
@@ -22,8 +25,18 @@
          * @return [*]
          */
         public function home(){
+            $locations = Location::getFavorites();
+            $favorites = collect([]);
+            foreach (Location::getFavorites() as $location) {
+                $object = (object)[
+                    'lcoation' => $location,
+                    'properties' => Property::getByLocation($location->id_location),
+                ];
+                $favorites->push($object);
+            }
+
             return view('web.home', [
-                // ? Return variables.
+                'favorites' => $favorites,
             ]);
         }
 
@@ -32,8 +45,19 @@
          * @return [*]
          */
         public function panel(){
+            $categories = Category::all();
+            $locations = Location::all();
+            $properties = Property::all();
+
+            foreach ($properties as $property) {
+                $property->category;
+                $property->location;
+            }
+
             return view('web.panel', [
-                // ? Return variables.
+                'categories' => $categories,
+                'locations' => $locations,
+                'properties' => $properties,
             ]);
         }
 

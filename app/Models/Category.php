@@ -19,26 +19,27 @@
          * @var array
          */
         protected $fillable = [
-            'name', 'id_parent', 'slug',
+            'name', 'slug',
         ];
         
         /** @var array - Validation messages and rules. */
         public static $validation = [
             'create' => [
                 'rules' => [
-                    //
+                    'name' => 'required',
                 ], 'messages' => [
-                    'en' => [
-                        //
-                    ], 'es' => [
-                        //
+                    'es' => [
+                        'name.required' => 'El Nombre es obligatorio.',
                     ],
                 ],
-                //
             ], 'edit' => [
-                //
-            ], 'delete' => [
-                //
+                'rules' => [
+                    'name' => 'required',
+                ], 'messages' => [
+                    'es' => [
+                        'name.required' => 'El Nombre es obligatorio.',
+                    ],
+                ],
             ],
         ];
         

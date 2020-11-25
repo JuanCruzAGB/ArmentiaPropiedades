@@ -9,7 +9,7 @@
         </div>
         <div class="col-12 col-md-4 col-lg-3 p-0 mb-3 mb-md-0">
             <a href="/propiedades" class="btn btn-dos-transparent m-0 p-3">
-                <i class="icon fas fa-chevron-right"></i>
+                <i class="icon fas fa-chevron-right mr-2"></i>
                 <span>Ver propiedades</span>
             </a>
         </div>

@@ -1,3 +1,13 @@
+.fade-out {
+    transform: translateX(-25%);
+    opacity: 0;
+}
+
+.fade-in {
+    transform: translateX(25%);
+    opacity: 0;
+}
+
 @keyframes rotate{
     0%{
         transform: rotate(0deg);

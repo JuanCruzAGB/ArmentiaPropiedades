@@ -1,6 +1,8 @@
 <?php
     namespace App\Models;
 
+    use Cviebrock\EloquentSluggable\Sluggable;
+    use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
     use Illuminate\Database\Eloquent\Model;
 
     class Location extends Model{
@@ -17,26 +19,27 @@
          * @var array
          */
         protected $fillable = [
-            'name', 'slug',
+            'name', 'favorite', 'slug',
         ];
         
         /** @var array - Validation messages and rules. */
         public static $validation = [
             'create' => [
                 'rules' => [
-                    //
+                    'name' => 'required',
                 ], 'messages' => [
-                    'en' => [
-                        //
-                    ], 'es' => [
-                        //
+                    'es' => [
+                        'name.required' => 'El Nombre es obligatorio.',
                     ],
                 ],
-                //
             ], 'edit' => [
-                //
-            ], 'delete' => [
-                //
+                'rules' => [
+                    'name' => 'required',
+                ], 'messages' => [
+                    'es' => [
+                        'name.required' => 'El Nombre es obligatorio.',
+                    ],
+                ],
             ],
         ];
         
@@ -51,5 +54,14 @@
                     'onUpdate'	=> true,
                 ]
             ];
+        }
+
+        /**
+         * * Returns all the favorite Locations.
+         * @static
+         * @return [Location[]]
+         */
+        public static function getFavorites(){
+            return Location::where('favorite', '=', 1)->get();
         }
     }

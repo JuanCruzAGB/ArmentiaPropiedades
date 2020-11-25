@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
             },
         }, {
             fixed: true,
+            hideOnScrollDown: true,
             current: false,
         });
     }
