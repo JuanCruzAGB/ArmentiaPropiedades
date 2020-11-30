@@ -2,10 +2,12 @@
 import { URLServiceProvider as URL } from "../../submodules/ProvidersJS/URLServiceProvider.js";
 
 // ? Local repositories
-import { Table } from "../HTMLCreator/Table/Table.js";
-import { Input } from "../HTMLCreator/Forms/Input.js";
-import { Form } from "../HTMLCreator/Forms/Form.js";
-import { Link } from "../HTMLCreator/Buttons/Link.js";
+import { Table } from "../../submodules/HTMLCreatorJS/js/Table/Table.js";
+import { Input } from "../../submodules/HTMLCreatorJS/js/Forms/Input.js";
+import { Form } from "../../submodules/HTMLCreatorJS/js/Forms/Form.js";
+import { Link } from "../../submodules/HTMLCreatorJS/js/Buttons/Link.js";
+import { Icon } from "../../submodules/HTMLCreatorJS/js/Visuals/Icon.js";
+import { Gallery as GalleryJS } from "../../submodules/GalleryJS/js/Gallery.js";
 
 for (const key in categories) {
     const category = categories[key];
@@ -239,18 +241,18 @@ function createUpdateBtn(properties = {
     key: '',
     object: undefined,
 }){
+    let icon = new Icon({
+        classes: ['icon', 'fas', 'fa-pen'],
+    });
     let btn = new Link({
         id: `${ properties.from }-${ properties.key }-button`,
         title: 'Actualizar',
         href: `#${ properties.from }?name=${ properties.object.slug }&updating`,
-        innerHTML: {
-            icon: ['icon', 'fas', 'fa-pen'],
-        },
         classes: ['update-button', 'btn', 'btn-uno-transparent', 'btn-icon', 'mr-md-1'],
     }, { }, {
         function: updateFunctionCallback,
         params: properties,
-    });
+    }, icon.getHTML());
     return btn;
 }
 
@@ -267,18 +269,18 @@ function createDeleteBtn(properties = {
     key: '',
     object: undefined,
 }){
+    let icon = new Icon({
+        classes: ['icon', 'fas', 'fa-trash'],
+    });
     let btn = new Link({
         id: `${ properties.from }-${ properties.key }-button`,
         title: 'Borrar',
         href: `#${ properties.from }?name=${ properties.object.slug }&deleting`,
-        innerHTML: {
-            icon: ['icon', 'fas', 'fa-trash'],
-        },
         classes: ['delete-button', 'btn', 'btn-uno-transparent', 'btn-icon', 'mr-md-1'],
     }, { }, {
         function: deleteFunctionCallback,
         params: properties,
-    });
+    }, icon.getHTML());
     return btn;
 }
 
@@ -295,18 +297,18 @@ function createSeeMoreBtn(properties = {
     key: '',
     object: undefined,
 }){
+    let icon = new Icon({
+        classes: ['icon', 'fas', 'fa-eye'],
+    });
     let btn = new Link({
         id: `${ properties.from }-${ properties.key }-button`,
         href: `#propiedades?name=${ properties.object.slug }`,
         title: 'Ver más',
-        innerHTML: {
-            icon: ['icon', 'fas', 'fa-eye'],
-        },
         classes: ['see-button', 'btn', 'btn-uno-transparent', 'btn-icon', 'mr-md-1'],
     }, { }, {
         function: seeMoreFunctionCallback,
         params: properties,
-    });
+    }, icon.getHTML());
     return btn;
 }
 
@@ -323,18 +325,18 @@ function createFavBtn(properties = {
     key: '',
     object: undefined,
 }){
+    let icon = new Icon({
+        classes: ['icon', ((properties.object.favorite) ? 'fas' : 'far'), 'fa-star'],
+    });
     let btn = new Link({
         id: `${ properties.from }-${ properties.key }-button`,
         title: 'Agregar a favorito',
         href: `#${ properties.from }`,
-        innerHTML: {
-            icon: ['icon', ((properties.object.favorite) ? 'fas' : 'far'), 'fa-star'],
-        },
         classes: ['fav-button', 'btn', 'btn-uno-transparent', 'btn-icon', 'mr-md-1'],
     }, { }, {
         function: favFunctionCallback,
         params: properties,
-    });
+    }, icon.getHTML());
     return btn;
 }
 
@@ -351,19 +353,19 @@ function createConfirmBtn(properties = {
     key: '',
     object: undefined,
 }){
+    let icon = new Icon({
+        classes: ['icon', 'fas', 'fa-check'],
+    });
     let btn = new Link({
         id: `${ properties.from }-${ properties.key }-button`,
         title: 'Confirmar',
-        innerHTML: {
-            icon: ['icon', 'fas', 'fa-check'],
-        },
         classes: ['confirm-button', 'btn', 'btn-uno-transparent', 'btn-icon', 'mr-md-1', 'd-none'],
     }, {
         prevenDefault: true,
     }, {
         function: confirmFunctionCallback,
         params: properties,
-    });
+    }, icon.getHTML());
     return btn;
 }
 
@@ -380,18 +382,18 @@ function createCancelBtn(properties = {
     key: '',
     object: undefined,
 }){
+    let icon = new Icon({
+        classes: ['icon', 'fas', 'fa-times'],
+    });
     let btn = new Link({
         id: `${ properties.from }-${ properties.key }-button`,
         title: 'Cancelar',
         href: `#${ properties.from }`,
-        innerHTML: {
-            icon: ['icon', 'fas', 'fa-times'],
-        },
         classes: ['cancel-button', 'btn', 'btn-uno-transparent', 'btn-icon', 'mr-md-1', 'd-none'],
     }, { }, {
         function: cancelFunctionCallback,
         params: properties,
-    });
+    }, icon.getHTML());
     return btn;
 }
 
@@ -508,7 +510,7 @@ function enableAdd(key){
         case 'propiedades':
             document.querySelector('.details-data .cancel-data').href = `#propiedades`;
             changeView('propiedades', 'details-data');
-            let inputs = document.querySelectorAll('.details-data textarea, .details-data select, .details-data button.gallery-button');
+            let inputs = document.querySelectorAll('.details-data textarea, .details-data select, .property .gallery .images button, .property .gallery .selected button');
             for (const input of inputs) {
                 input.disabled = false;
             }
@@ -590,7 +592,7 @@ function enableAdd(key){
 function disableAdd(from, key){
     switch (from) {
         case 'propiedades':
-            let inputs = document.querySelectorAll('.details-data textarea, .details-data select, .details-data button.gallery-button');
+            let inputs = document.querySelectorAll('.details-data textarea, .details-data select, .property .gallery .images button, .property .gallery .selected button');
             for (const input of inputs) {
                 input.disabled = true;
             }
@@ -618,7 +620,7 @@ function enableUpdate(from, key){
     switch (from) {
         case 'propiedades':
             document.querySelector('.details-data .cancel-data').href = `#${ window.location.href.split('#')[1].split('&')[0] }`;
-            let inputs = document.querySelectorAll('.details-data textarea, .details-data select, .details-data button.gallery-button');
+            let inputs = document.querySelectorAll('.details-data textarea, .details-data select, .property .gallery .images button, .property .gallery .selected button');
             for (const input of inputs) {
                 input.disabled = false;
             }
@@ -647,7 +649,7 @@ function disableUpdate(from, key){
     let input;
     switch (from) {
         case 'propiedades':
-            let inputs = document.querySelectorAll('.details-data textarea, .details-data select, .details-data button.gallery-button');
+            let inputs = document.querySelectorAll('.details-data textarea, .details-data select, .property .gallery .images button, .property .gallery .selected button');
             for (const input of inputs) {
                 input.disabled = true;
                 switch (input.nodeName) {
@@ -971,6 +973,11 @@ document.addEventListener('DOMContentLoaded', function(e){
             },
         }, element.cells, element.data);
     }
+
+    let gallery = new GalleryJS({
+        id: 'gallery',
+        selected: 0,
+    });
 
     changeView('categorias', 'table-data');
     changeView('propiedades', 'table-data');

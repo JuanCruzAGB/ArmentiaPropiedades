@@ -2,6 +2,7 @@
  * * Icon creates an excellent <icon>.
  * @export
  * @class Icon
+ * @author Juan Cruz Armentia <juancarmentia@gmail.com>
  */
 export class Icon{
     /**
@@ -56,10 +57,26 @@ export class Icon{
      * @memberof Icon
      */
     hasProperty(property = ''){
-        if (property && property != '' && this.properties.hasOwnProperty(property)) {
+        if (this.properties.hasOwnProperty(property)) {
             return true;
         } else {
             return false;
+        }
+    }
+
+    /**
+     * * Change a property value.
+     * @param {String} property Property name.
+     * @param {*} value Property value.
+     * @memberof Icon
+     */
+    changeProperty(property = '', value = ''){
+        if (this.hasProperty(property)) {
+            this.properties[property] = value;
+        }
+        switch (property) {
+            default:
+                break;
         }
     }
 

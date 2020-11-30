@@ -48,12 +48,16 @@
                     'description' => 'required',
                     'id_category' => 'required',
                     'id_location' => 'required',
+                    'files' => 'required',
+                    'files.*' => 'mimetypes:image/jpeg,image/png',
                 ], 'messages' => [
                     'es' => [
                         'name.required' => 'El Nombre es obligatorio.',
                         'description.required' => 'La Descripción es obligatoria.',
                         'id_category.required' => 'La Categoría es obligatoria.',
                         'id_location.required' => 'La Ubicación es obligatoria.',
+                        'files.required' => 'Al menos una imagen es obligatoria.',
+                        'files.*.mimetypes' => 'Las imágenes tienen que ser formato JPEG/JPG o PNG.',
                     ],
                 ],
             ], 'edit' => [
@@ -62,12 +66,15 @@
                     'description' => 'required',
                     'id_category' => 'required',
                     'id_location' => 'required',
+                    'files' => 'nullable',
+                    'files.*' => 'mimetypes:image/jpeg,image/png',
                 ], 'messages' => [
                     'es' => [
                         'name.required' => 'El Nombre es obligatorio.',
                         'description.required' => 'La Descripción es obligatoria.',
                         'id_category.required' => 'La Categoría es obligatoria.',
                         'id_location.required' => 'La Ubicación es obligatoria.',
+                        'files.*.mimetypes' => 'Las imágenes tienen que ser formato JPEG/JPG o PNG.',
                     ],
                 ],
             ],

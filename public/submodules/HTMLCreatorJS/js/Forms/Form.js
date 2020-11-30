@@ -58,13 +58,13 @@ export class Form{
 
     /**
      * * Returns the Form properties or an specific property.
-     * @param {String} [property] Property name.
+     * @param {String} [name] Property name.
      * @returns {Object|*}
      * @memberof Form
      */
-    getProperties(property = ''){
-        if (property && property != '') {
-            return this.properties[property];
+    getProperties(name = ''){
+        if (name && name != '') {
+            return this.properties[name];
         } else {
             return this.properties;
         }
@@ -72,15 +72,38 @@ export class Form{
 
     /**
      * * Check if there is a property.
-     * @param {String} [property] Property name.
+     * @param {String} name Property name.
      * @returns {Boolean}
      * @memberof Form
      */
-    hasProperty(property = ''){
-        if (property && property != '' && this.properties.hasOwnProperty(property)) {
+    hasProperty(name = ''){
+        if (this.properties.hasOwnProperty(name)) {
             return true;
         } else {
             return false;
+        }
+    }
+
+    /**
+     * * Change a property value.
+     * @param {String} name Property name.
+     * @param {*} value Property value.
+     * @memberof Form
+     */
+    changeProperty(name = '', value = ''){
+        if (this.hasProperty(name)) {
+            this.properties[name] = value;
+        }
+        switch (name) {
+            case 'action':
+                this.html.action = this.getProperties('action');
+                break;
+            case 'method':
+                this.html.method = this.getProperties('method');
+                break;
+            case 'enctype':
+                this.html.enctype = this.getProperties('enctype');
+                break;
         }
     }
 
@@ -251,15 +274,24 @@ export class Form{
      */
     createHTML(){
         this.html = document.createElement('form');
-        this.html.id = this.getIdProperty();
-        this.html.action = this.getActionProperty();
-        this.html.method = this.getMethodProperty();
-        this.html.enctype = this.getEnctypeProperty();
-        for (const className of this.getClassesProperty()) {
+        this.html.id = this.getProperties('id');
+        this.html.action = this.getProperties('action');
+        this.html.method = this.getProperties('method');
+        this.html.enctype = this.getProperties('enctype');
+        for (const className of this.getProperties('classes')) {
             this.html.classList.add(className);
         }
         for (const input of this.getInputs()) {
-            this.html.appendChild(input.getHTML());
+            this.appendChild(input.getHTML());
         }
+    }
+
+    /**
+     * * Append an HTML Element.
+     * @param {HTMLElement} html New child.
+     * @memberof Form
+     */
+    appendChild(html){
+        this.html.appendChild(html);
     }
 }

@@ -50,15 +50,31 @@ export class Tr{
 
     /**
      * * Check if there is a property.
-     * @param {String} [property] Property name.
+     * @param {String} property Property name.
      * @returns {Boolean}
      * @memberof Tr
      */
     hasProperty(property = ''){
-        if (property && property != '' && this.properties.hasOwnProperty(property)) {
+        if (this.properties.hasOwnProperty(property)) {
             return true;
         } else {
             return false;
+        }
+    }
+
+    /**
+     * * Change a property value.
+     * @param {String} property Property name.
+     * @param {*} value Property value.
+     * @memberof Tr
+     */
+    changeProperty(property = '', value = ''){
+        if (this.hasProperty(property)) {
+            this.properties[property] = value;
+        }
+        switch (property) {
+            default:
+                break;
         }
     }
 
@@ -127,18 +143,18 @@ export class Tr{
      */
     createHTML(){
         this.html = document.createElement('tr');
-        this.html.id = this.getIdProperty();
-        for (const className of this.getClassesProperty()) {
+        this.html.id = this.getProperties('id');
+        for (const className of this.getProperties('classes')) {
             this.html.classList.add(className);
         }
     }
 
     /**
-     * * Append the Tr cell.
-     * @param {Th|Td} cell A Td or Th.
+     * * Append an HTML Element.
+     * @param {HTMLElement} html New child.
      * @memberof Tr
      */
-    appendCell(cell){
-        this.html.appendChild(cell.getHTML());
+    appendChild(html){
+        this.html.appendChild(html);
     }
 }

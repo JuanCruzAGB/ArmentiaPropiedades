@@ -20,7 +20,7 @@ export class THead{
      */
     setTr(tr){
         this.tr = tr;
-        this.appendTr();
+        this.appendChild(tr.getHTML());
     }
 
     /**
@@ -50,10 +50,11 @@ export class THead{
     }
 
     /**
-     * * Append a <tr>.
-     * @memberof THead
+     * * Append an HTML Element.
+     * @param {HTMLElement} html New child.
+     * @memberof Div
      */
-    appendTr(){
-        this.html.appendChild(this.tr.getHTML());
+    appendChild(html){
+        this.html.appendChild(html);
     }
 }

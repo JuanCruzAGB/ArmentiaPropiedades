@@ -4,9 +4,9 @@ import { TabMenu as TabMenuJS } from "../../submodules/TabMenuJS/js/TabMenu.js";
 import { URLServiceProvider as URL } from "../../submodules/ProvidersJS/URLServiceProvider.js";
 
 document.addEventListener('DOMContentLoaded', (e) => {
-    if(document.querySelector('#nav-1')){
+    if(document.querySelector('#nav-global')){
         let navmenu = new NavMenuJS({
-            id: 'nav-1',
+            id: 'nav-global',
             sidebar: {
                 id: ['menu'],
                 position: ['left'],

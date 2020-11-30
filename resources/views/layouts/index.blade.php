@@ -18,6 +18,7 @@
         <link href={{ asset('submodules/NavmenuJS/css/styles.css') }} rel="stylesheet">
         <link href={{ asset('submodules/NotificationJS/css/styles.css') }} rel="stylesheet">
         <link href={{ asset('submodules/ValidationJS/css/styles.css') }} rel="stylesheet">
+        <link href={{ asset('submodules/GalleryJS/css/styles.css') }} rel="stylesheet">
 
         <!-- Global layout CSS -->
         <link href={{ asset('css/layouts/index.css') }} rel="stylesheet">

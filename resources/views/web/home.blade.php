@@ -28,21 +28,18 @@
     <section id="recommended" class="recommended col-12">
         <div class="row">
             <main class="col-12 py-5">
-                <header class="title col-12 mb-3">
-                    <h3 class="MontereyFLF mb-0 mt-4">Mar del Plata</h3>
-                </header>
-                @component('components.property.list')
-                @endcomponent
-                <header class="title col-12 mb-3">
-                    <h3 class="MontereyFLF mb-0 mt-4">Necochea</h3>
-                </header>
-                @component('components.property.list')
-                @endcomponent
-                <header class="title col-12 mb-3">
-                    <h3 class="MontereyFLF mb-0 mt-4">San Cayetano</h3>
-                </header>
-                @component('components.property.list')
-                @endcomponent
+                @foreach ($favorites as $favorite)
+                    <header class="title col-12 mb-3">
+                        <a href="/properties?location={{ $favorite->location->slug }}" class="">
+                            <i class="icon fas fa-angle-right"></i>
+                            <h3 class="MontereyFLF mb-0 mt-4">{{ $favorite->location->name }}</h3>
+                        </a>
+                    </header>
+                    @component('components.property.list', [
+                        'properties' => $favorite->properties,
+                    ])
+                    @endcomponent
+                @endforeach
             </main>
         </div>
     </section>

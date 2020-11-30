@@ -18,7 +18,7 @@
         <div class="row">
             <main class="col-12 py-5 text-left">
                 <header class="title col-12 mb-3">
-                    <h2 class="MontereyFLF mb-0 mt-4">Propiedad 1</h2>
+                    <h2 class="MontereyFLF mb-0 mt-4">{{ $property->name }}</h2>
                 </header>
                 <div class="row">
                     <section class="gallery col-12 col-md-6 px-3">
@@ -61,13 +61,13 @@
                     <section class="details col-12 col-md-6 px-3">
                         <header class="header mb-3">
                             <h3 class="h5 text-left MontereyFLF mb-0 mt-4 mt-md-0">
-                                <span class="category color-uno">Departamento</span>
+                                <span class="category color-uno">{{ $property->category->name }}</span>
                                 <br>
-                                <span class="location color-dos">San Cayetano</span>
+                                <span class="location color-dos">{{ $property->location->name }}</span>
                             </h3>
                         </header>
                         <main>
-                            <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati eum reiciendis dolor voluptatem! Commodi architecto est ipsam vel placeat quaerat, libero et eveniet unde, ratione veritatis quod recusandae provident tempora!</p>
+                            <p class="description">{!! $property->description !!}</p>
                         </main>
                     </section>
                 </div>
@@ -77,7 +77,9 @@
 @endsection
 
 @section('footer')
-    @component('components.footer.property')
+    @component('components.footer.property', [
+        'property' => $property,
+    ])
     @endcomponent
 @endsection
 

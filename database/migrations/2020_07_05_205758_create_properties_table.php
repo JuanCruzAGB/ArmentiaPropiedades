@@ -14,7 +14,7 @@
                 $table->bigIncrements('id_property');
                 $table->string('name');
                 $table->text('description');
-                $table->string('folder');
+                $table->string('folder')->nullable();
                 $table->unsignedInteger('id_category');
                 $table->unsignedInteger('id_location');
                 $table->string('slug');

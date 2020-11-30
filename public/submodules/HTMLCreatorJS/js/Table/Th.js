@@ -8,14 +8,12 @@ export class Th{
      * * Creates an instance of Th.
      * @param {Object} [properties] Th properties:
      * @param {String} [properties.id] Th ID.
-     * @param {String} [properties.innerHTML] Th inner HTML.
      * @param {String[]} [properties.classes] Th class names.
      * @param {*} [data] Th data.
      * @memberof Th
      */
     constructor(properties = {
         id: 'th-1',
-        innerHTML: undefined,
         classes: [],
     }, data = 'Table cell header 1'){
         this.setProperties(properties);
@@ -27,30 +25,27 @@ export class Th{
      * * Set the Th properties.
      * @param {Object} [properties] Th properties:
      * @param {String} [properties.id] Th ID.
-     * @param {String} [properties.innerHTML] Th inner HTML.
      * @param {String[]} [properties.classes] Th class names.
      * @memberof Th
      */
     setProperties(properties = {
         id: 'th-1',
-        innerHTML: undefined,
         classes: [],
     }){
         this.properties = {};
         this.setIdProperty(properties);
-        this.setInnerHTMLProperty(properties);
         this.setClassesProperty(properties);
     }
 
     /**
      * * Returns the Th properties or an specific property.
-     * @param {String} [property] Property name.
+     * @param {String} [name] Property name.
      * @returns {Object|*}.
      * @memberof Th
      */
-    getProperties(property = ''){
-        if (property && property != '') {
-            return this.properties[property];
+    getProperties(name = ''){
+        if (name && name != '') {
+            return this.properties[name];
         } else {
             return this.properties;
         }
@@ -58,15 +53,31 @@ export class Th{
 
     /**
      * * Check if there is a property.
-     * @param {String} [property] Property name.
+     * @param {String} name Property name.
      * @returns {Boolean}
      * @memberof Th
      */
-    hasProperty(property = ''){
-        if (property && property != '' && this.properties.hasOwnProperty(property)) {
+    hasProperty(name = ''){
+        if (this.properties.hasOwnProperty(name)) {
             return true;
         } else {
             return false;
+        }
+    }
+
+    /**
+     * * Change a property value.
+     * @param {String} name Property name.
+     * @param {*} value Property value.
+     * @memberof Th
+     */
+    changeProperty(name = '', value = ''){
+        if (this.hasProperty(name)) {
+            this.properties[name] = value;
+        }
+        switch (name) {
+            default:
+                break;
         }
     }
 
@@ -93,31 +104,6 @@ export class Th{
      */
     getIdProperty(){
         return this.properties.id;
-    }
-
-    /**
-     * * Set the Th inner HTML.
-     * @param {Object} [properties] Th properties:
-     * @param {String} [properties.innerHTML] Th inner HTML.
-     * @memberof Th
-     */
-    setInnerHTMLProperty(properties = {
-        innerHTML: undefined,
-    }){
-        if (properties.hasOwnProperty('innerHTML')) {
-            this.properties.innerHTML = properties.innerHTML;
-        } else {
-            this.properties.innerHTML = undefined;
-        }
-    }
-
-    /**
-     * * Returns the Th inner HTML.
-     * @returns {String}
-     * @memberof Th
-     */
-    getInnerHTMLProperty(){
-        return this.properties.innerHTML;
     }
 
     /**
@@ -164,6 +150,18 @@ export class Th{
     }
 
     /**
+     * * Change the Th data.
+     * @param {*} [data] Th data.
+     * @memberof Th
+     */
+    changeData(data = undefined){
+        this.setData(data);
+        if (this.getData()) {
+            this.html.innerHTML = this.getData();
+        }
+    }
+
+    /**
      * * Returns the <th>.
      * @returns {HTMLElement}
      * @memberof Th
@@ -181,27 +179,8 @@ export class Th{
         for (const className of this.getClassesProperty()) {
             this.html.classList.add(className);
         }
-        this.append();
-    }
-
-    /**
-     * * Append the Th inner HTML.
-     * @memberof Th
-     */
-    append(){
-        this.html.innerHTML = '';
         if (this.getData()) {
             this.html.innerHTML = this.getData();
         }
-    }
-
-    /**
-     * * Change the Th data.
-     * @param {*} [data] Th data.
-     * @memberof Th
-     */
-    changeData(data = undefined){
-        this.setData(data);
-        this.append();
     }
 }

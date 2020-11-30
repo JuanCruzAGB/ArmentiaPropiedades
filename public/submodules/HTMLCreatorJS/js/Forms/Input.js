@@ -15,8 +15,8 @@ export class Input{
      * @param {String} [properties.placeholder] Input placeholder text.
      * @param {String[]} [properties.classes] Input class names.
      * @param {Object} [states] Input states:
-     * @param {Boolean} [states.disabled] Input disabled state.
-     * @param {Boolean} [states.checked] Input checked state.
+     * @param {Boolean} [states.checked] Input checked status.
+     * @param {Boolean} [states.disabled] Input disabled status.
      * @memberof Input
      */
     constructor(properties = {
@@ -27,8 +27,8 @@ export class Input{
         placeholder: '',
         classes: [],
     }, states = {
-        disabled: false,
         checked: false,
+        disabled: false,
     }){
         this.setProperties(properties);
         this.setStates(states);
@@ -65,13 +65,13 @@ export class Input{
 
     /**
      * * Returns the Input properties or an specific property.
-     * @param {String} [property] Property name.
+     * @param {String} name Property name.
      * @returns {Object|*}
      * @memberof Input
      */
-    getProperties(property = ''){
-        if (property && property != '') {
-            return this.properties[property];
+    getProperties(name = ''){
+        if (name && name != '') {
+            return this.properties[name];
         } else {
             return this.properties;
         }
@@ -79,15 +79,38 @@ export class Input{
 
     /**
      * * Check if there is a property.
-     * @param {String} [property] Property name.
+     * @param {String} [name] Property name.
      * @returns {Boolean}
      * @memberof Input
      */
-    hasProperty(property = ''){
-        if (property && property != '' && this.properties.hasOwnProperty(property)) {
+    hasProperty(name = ''){
+        if (this.properties.hasOwnProperty(name)) {
             return true;
         } else {
             return false;
+        }
+    }
+
+    /**
+     * * Change a property value.
+     * @param {String} name Property name.
+     * @param {*} value Property value.
+     * @memberof Input
+     */
+    changeProperty(name = '', value = ''){
+        if (this.hasProperty(name)) {
+            this.properties[name] = value;
+        }
+        switch (name) {
+            case 'type':
+                this.html.type = this.getProperties('type');
+                break;
+            case 'defaultValue':
+                this.html.value = this.getProperties('defaultValue');
+                break;
+            case 'placeholder':
+                this.html.placeholder = this.getProperties('placeholder');
+                break;
         }
     }
 
@@ -244,17 +267,17 @@ export class Input{
     /**
      * * Set the Input states.
      * @param {Object} [states] Input states:
-     * @param {Boolean} [states.disabled] Input disabled state.
-     * @param {Boolean} [states.checked] Input checked state.
+     * @param {Boolean} [states.checked] Input checked status.
+     * @param {Boolean} [states.disabled] Input disabled status.
      * @memberof Input
      */
     setStates(states = {
-        disabled: false,
         checked: false,
+        disabled: false,
     }){
         this.states = {};
-        this.setDisabledState(states);
-        this.setCheckedState(states);
+        this.setDisabledStatus(states);
+        this.setCheckedStatus(states);
     }
 
     /**
@@ -272,37 +295,45 @@ export class Input{
     }
 
     /**
-     * * Set the Input disabled state.
-     * @param {Object} [states] Input states:
-     * @param {Boolean} [states.disabled] Input disabled state.
+     * * Check if there is a status.
+     * @param {String} name Status name.
+     * @returns {Boolean}
      * @memberof Input
      */
-    setDisabledState(states = {
-        disabled: false,
-    }){
-        if (states.hasOwnProperty('disabled')) {
-            this.states.disabled = states.disabled;
+    hasStates(name = ''){
+        if (this.states.hasOwnProperty(name)) {
+            return true;
         } else {
-            this.states.disabled = false;
+            return false;
         }
     }
 
     /**
-     * * Returns the Input disabled state.
-     * @returns {Boolean}
+     * * Change a status value.
+     * @param {String} name Status name.
+     * @param {*} value Status value.
      * @memberof Input
      */
-    getDisabledState(){
-        return this.states.disabled;
+    changeStatus(name = '', value = ''){
+        if (this.hasStates(name)) {
+            this.states[name] = value;
+        }
+        switch (name) {
+            case 'checked':
+                this.html.checked = true;
+            case 'disabled':
+                this.html.disabled = true;
+                break;
+        }
     }
 
     /**
-     * * Set the Input checked state.
+     * * Set the Input checked status.
      * @param {Object} [states] Input states:
-     * @param {Boolean} [states.checked] Input checked state.
+     * @param {Boolean} [states.checked] Input checked status.
      * @memberof Input
      */
-    setCheckedState(states = {
+    setCheckedStatus(states = {
         checked: false,
     }){
         if (states.hasOwnProperty('checked')) {
@@ -313,12 +344,37 @@ export class Input{
     }
 
     /**
-     * * Returns the Input checked state.
+     * * Returns the Input checked status.
      * @returns {Boolean}
      * @memberof Input
      */
-    getCheckedState(){
+    getCheckedStatus(){
         return this.states.checked;
+    }
+
+    /**
+     * * Set the Input disabled status.
+     * @param {Object} [states] Input states:
+     * @param {Boolean} [states.disabled] Input disabled status.
+     * @memberof Input
+     */
+    setDisabledStatus(states = {
+        disabled: false,
+    }){
+        if (states.hasOwnProperty('disabled')) {
+            this.states.disabled = states.disabled;
+        } else {
+            this.states.disabled = false;
+        }
+    }
+
+    /**
+     * * Returns the Input disabled status.
+     * @returns {Boolean}
+     * @memberof Input
+     */
+    getDisabledStatus(){
+        return this.states.disabled;
     }
 
     /**
@@ -336,19 +392,19 @@ export class Input{
      */
     createHTML(){
         this.html = document.createElement('input');
-        this.html.id = this.getIdProperty();
-        this.html.name = this.getNameProperty();
-        this.html.type = this.getTypeProperty();
-        this.html.value = this.getDefaultValueProperty();
-        this.html.placeholder = this.getPlaceholderProperty();
-        for (const className of this.getClassesProperty()) {
+        this.html.id = this.getProperties('id');
+        this.html.name = this.getProperties('name');
+        this.html.type = this.getProperties('type');
+        this.html.value = this.getProperties('defaultValue');
+        this.html.placeholder = this.getProperties('placeholder');
+        for (const className of this.getProperties('classes')) {
             this.html.classList.add(className);
         }
-        if (this.getDisabledState()) {
-            this.html.disabled = true;
-        }
-        if (this.getCheckedState()) {
+        if (this.getStates('checked')) {
             this.html.checked = true;
+        }
+        if (this.getStates('disabled')) {
+            this.html.disabled = true;
         }
     }
 }

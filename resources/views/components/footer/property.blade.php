@@ -2,7 +2,9 @@
     <div class="row">
         @component('components.footer.top_bar')
         @endcomponent
-        @component('components.footer.query')
+        @component('components.footer.query', [
+            'property' => $property,
+        ])
         @endcomponent
     </div>
 </div>

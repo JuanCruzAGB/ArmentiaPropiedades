@@ -9,7 +9,6 @@ export class Td{
      * @param {Object} [properties] Td properties:
      * @param {String} [properties.id] Td ID.
      * @param {String} [properties.name] Td name.
-     * @param {String} [properties.innerHTML] Td inner HTML.
      * @param {String[]} [properties.classes] Td class names.
      * @param {*} [data] Td innerHTML data.
      * @memberof Td
@@ -17,7 +16,6 @@ export class Td{
     constructor(properties = {
         id: 'td-1',
         name: 'Table cell 1',
-        innerHTML: undefined,
         classes: [],
     }, data){
         this.setProperties(properties);
@@ -30,32 +28,29 @@ export class Td{
      * @param {Object} [properties] Td properties:
      * @param {String} [properties.id] Td ID.
      * @param {String} [properties.name] Td name.
-     * @param {String} [properties.innerHTML] Td inner HTML.
      * @param {String[]} [properties.classes] Td class names.
      * @memberof Td
      */
     setProperties(properties = {
         id: 'td-1',
         name: 'Table cell 1',
-        innerHTML: undefined,
         classes: [],
     }){
         this.properties = {};
         this.setIdProperty(properties);
         this.setNameProperty(properties);
-        this.setInnerHTMLProperty(properties);
         this.setClassesProperty(properties);
     }
 
     /**
      * * Returns the Td properties or an specific property.
-     * @param {String} [property] Property name.
+     * @param {String} [name] Property name.
      * @returns {Object|*}
      * @memberof Td
      */
-    getProperties(property = ''){
-        if (property && property != '') {
-            return this.properties[property];
+    getProperties(name = ''){
+        if (name && name != '') {
+            return this.properties[name];
         } else {
             return this.properties;
         }
@@ -63,15 +58,32 @@ export class Td{
 
     /**
      * * Check if there is a property.
-     * @param {String} [property] Property name.
+     * @param {String} name Property name.
      * @returns {Boolean}
      * @memberof Td
      */
-    hasProperty(property = ''){
-        if (property && property != '' && this.properties.hasOwnProperty(property)) {
+    hasProperty(name = ''){
+        if (this.properties.hasOwnProperty(name)) {
             return true;
         } else {
             return false;
+        }
+    }
+
+    /**
+     * * Change a property value.
+     * @param {String} name Property name.
+     * @param {*} value Property value.
+     * @memberof Td
+     */
+    changeProperty(name = '', value = ''){
+        if (this.hasProperty(name)) {
+            this.properties[name] = value;
+        }
+        switch (name) {
+            case 'name':
+                this.html.title = this.getProperties('name');
+                break;
         }
     }
 
@@ -126,31 +138,6 @@ export class Td{
     }
 
     /**
-     * * Set the Td inner HTML.
-     * @param {Object} [properties] Td properties:
-     * @param {String} [properties.innerHTML] Td inner HTML.
-     * @memberof Td
-     */
-    setInnerHTMLProperty(properties = {
-        innerHTML: undefined,
-    }){
-        if (properties.hasOwnProperty('innerHTML')) {
-            this.properties.innerHTML = properties.innerHTML;
-        } else {
-            this.properties.innerHTML = undefined;
-        }
-    }
-
-    /**
-     * * Returns the Td inner HTML.
-     * @returns {String}
-     * @memberof Td
-     */
-    getInnerHTMLProperty(){
-        return this.properties.innerHTML;
-    }
-
-    /**
      * * Set the Td class names.
      * @param {Object} [properties] Td properties:
      * @param {String[]} [properties.classes] Td class names.
@@ -194,6 +181,19 @@ export class Td{
     }
 
     /**
+     * * Change the Td data.
+     * @param {*} data Td data.
+     * @memberof Td
+     */
+    changeData(data = undefined){
+        this.setData(data);
+        this.html.innerHTML = '';
+        if (this.getData()) {
+            this.html.appendChild(this.getData());
+        }
+    }
+
+    /**
      * * Returns the <td>.
      * @returns {HTMLElement}
      * @memberof Td
@@ -208,32 +208,14 @@ export class Td{
      */
     createHTML(){
         this.html = document.createElement('td');
-        this.html.title = this.getNameProperty();
-        this.html.classList.add(this.getIdProperty());
-        for (const className of this.getClassesProperty()) {
+        this.html.title = this.getProperties('name');
+        this.html.classList.add(this.getProperties('id'));
+        for (const className of this.getProperties('classes')) {
             this.html.classList.add(className);
         }
-        this.append();
-    }
-
-    /**
-     * * Append the Td inner HTML.
-     * @memberof Td
-     */
-    append(){
         this.html.innerHTML = '';
         if (this.getData()) {
             this.html.appendChild(this.getData());
         }
-    }
-
-    /**
-     * * Change the Td data.
-     * @param {*} data Td data.
-     * @memberof Td
-     */
-    changeData(data = undefined){
-        this.setData(data);
-        this.append();
     }
 }

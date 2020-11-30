@@ -14,14 +14,14 @@
 @import '../components/tab.css';
 @import '../components/nav.css';
 
-*{
+* {
     margin: 0;
     padding: 0;
     list-style: none;
     box-sizing: border-box;
 }
 
-body{
+body {
     --color-uno: #c11b34;
     --color-uno-alternativo: #db0c19;
     --color-dos: #a39b99;
@@ -34,11 +34,11 @@ body{
     color: var(--color-cuatro);
 }
 
-.main{
+.main {
     min-height: calc(100vh - 4.6rem);
 }
 
-.input-group .input-field{
+.input-group .input-field {
     background: white;
     border: 1px solid var(--color-cuatro);
     color: var(--color-cuatro);
@@ -46,27 +46,31 @@ body{
     resize: none;
 }
 
-.input-group .input-field:focus{
+.input-group .input-field:focus {
     border-width: 2px;
     padding: .5rem 1rem;
 }
 
-::selection{
+::selection {
     background-color: var(--color-uno);
     color: var(--color-tres);
 }
 
+.asterisk {
+    cursor: help;
+}
+
 /* * MD */
-@media(min-width: 768px){
+@media (min-width: 768px) {
     /**/
 }
 
 /* * LG */
-@media(min-width: 1024px){
+@media (min-width: 1024px) {
     /**/
 }
 
 /* * XL */
-@media(min-width: 1200px){
+@media (min-width: 1200px) {
     /**/
 }

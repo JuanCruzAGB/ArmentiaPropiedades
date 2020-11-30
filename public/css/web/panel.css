@@ -153,14 +153,23 @@ textarea.title[disabled]::placeholder {
     color: var(--color-cuatro);
 }
 
-.property .gallery .images button.gallery-button {
+.property .gallery .images button {
+    display: inline-block;
+    width: calc(100% - .5rem);
+    height: 4rem;
+    overflow: hidden;
+    border: 2px solid transparent;
     background-color: var(--color-uno);
     border-radius: .25rem;
     color: var(--color-tres);
     font-size: 1.5rem;
 }
 
-.property .gallery .images button.gallery-button[disabled] {
+.property .gallery .images .gallery-button {
+    cursor: pointer;
+}
+
+.property .gallery .images button[disabled] {
     display: none;
 }
 
@@ -221,6 +230,20 @@ textarea.description[disabled] {
 
 .details-data .floating-menu.right {
     right: -.5rem;
+}
+
+.gallery .selected:not(.gallery-button) {
+    position: relative;
+}
+
+.gallery .selected:not(.gallery-button) .buttons {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.gallery .selected:not(.gallery-button) .buttons button[disabled] {
+    display: none;
 }
 
 /* * MD */

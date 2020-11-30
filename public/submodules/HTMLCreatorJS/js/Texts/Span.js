@@ -55,15 +55,32 @@ export class Span{
 
     /**
      * * Check if there is a property.
-     * @param {String} [property] Property name.
+     * @param {String} property Property name.
      * @returns {Boolean}
      * @memberof Span
      */
     hasProperty(property = ''){
-        if (property && property != '' && this.properties.hasOwnProperty(property)) {
+        if (this.properties.hasOwnProperty(property)) {
             return true;
         } else {
             return false;
+        }
+    }
+
+    /**
+     * * Change a property value.
+     * @param {String} property Property name.
+     * @param {*} value Property value.
+     * @memberof Span
+     */
+    changeProperty(property = '', value = ''){
+        if (this.hasProperty(property)) {
+            this.properties[property] = value;
+        }
+        switch (property) {
+            case 'innerHTML':
+                this.getHTML().innerHTML = this.getProperties('innerHTML');
+                break;
         }
     }
 

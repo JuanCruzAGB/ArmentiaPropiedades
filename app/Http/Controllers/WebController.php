@@ -29,7 +29,7 @@
             $favorites = collect([]);
             foreach (Location::getFavorites() as $location) {
                 $object = (object)[
-                    'lcoation' => $location,
+                    'location' => $location,
                     'properties' => Property::getByLocation($location->id_location),
                 ];
                 $favorites->push($object);
@@ -58,16 +58,6 @@
                 'categories' => $categories,
                 'locations' => $locations,
                 'properties' => $properties,
-            ]);
-        }
-
-        /**
-         * * Control the contact page.
-         * @return [*]
-         */
-        public function contact(){
-            return view('web.contact', [
-                // ? Return variables.
             ]);
         }
 

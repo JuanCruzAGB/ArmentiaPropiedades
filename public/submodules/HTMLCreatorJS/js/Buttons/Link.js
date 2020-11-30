@@ -15,38 +15,32 @@ export class Link{
      * @param {String} [properties.id] Link ID.
      * @param {String} [properties.href] Link href.
      * @param {String} [properties.title] Link title.
-     * @param {Object} [properties.innerHTML] Link inner HTML:
-     * @param {String[]} [properties.innerHTML.icon] Link Inner HTML icon.
-     * @param {String} [properties.innerHTML.text] Link Inner HTML text.
      * @param {String[]} [properties.classes] Link class names.
-     * @param {Object} [status] Link status:
-     * @param {Boolean} [status.prevenDefault] Link click event prevent default.
+     * @param {Object} [states] Link states:
+     * @param {Boolean} [states.prevenDefault] Link click event prevent default.
      * @param {Object} [callback] Link click callback.
      * @param {Function} [callback.function] Link click callback function.
      * @param {Object} [callback.params] Link click callback params.
+     * @param {HTMLElement} [innerHTML] Link inner HTML Element.
      * @memberof Link
      */
     constructor(properties = {
         id: 'link-1',
         href: '#',
         title: false,
-        innerHTML: {
-            icon: ['fas', 'fa-angle-right'],
-            text: 'Click me!',
-        },
         classes: [],
-    }, status = {
+    }, states = {
         preventDefault: false,
     }, callback = {
         function: function(){ /* console.log('clicked') */ },
         params: {
             //
         },
-    }){
+    }, innerHTML = false){
         this.setProperties(properties);
-        this.setStatus(status);
+        this.setStates(states);
         this.setCallback(callback);
-        this.createHTML();
+        this.createHTML(innerHTML);
     }
 
     /**
@@ -65,29 +59,24 @@ export class Link{
         id: 'link-1',
         href: '#',
         title: false,
-        innerHTML: {
-            icon: ['fas', 'fa-angle-right'],
-            text: 'Click me!',
-        },
         classes: [],
     }){
         this.properties = {};
         this.setIdProperty(properties);
         this.setHrefProperty(properties);
         this.setTitleProperty(properties);
-        this.setInnerHTMLProperty(properties);
         this.setClassesProperty(properties);
     }
 
     /**
      * * Returns the Link properties or an specific property.
-     * @param {String} [property] Property name.
+     * @param {String} [name] Property name.
      * @returns {Object|*}
      * @memberof Link
      */
-    getProperties(property = ''){
-        if (property && property != '') {
-            return this.properties[property];
+    getProperties(name = ''){
+        if (name && name != '') {
+            return this.properties[name];
         } else {
             return this.properties;
         }
@@ -95,15 +84,37 @@ export class Link{
 
     /**
      * * Check if there is a property.
-     * @param {String} [property] Property name.
+     * @param {String} name Property name.
      * @returns {Boolean}
      * @memberof Link
      */
-    hasProperty(property = ''){
-        if (property && property != '' && this.properties.hasOwnProperty(property)) {
+    hasProperty(name = ''){
+        if (this.properties.hasOwnProperty(name)) {
             return true;
         } else {
             return false;
+        }
+    }
+
+    /**
+     * * Change a property value.
+     * @param {String} name Property name.
+     * @param {*} value Property value.
+     * @memberof Link
+     */
+    changeProperty(name = '', value = ''){
+        if (this.hasProperty(name)) {
+            this.properties[name] = value;
+        }
+        switch (name) {
+            case 'href':
+                this.html.href = this.getProperties('href');
+                break;
+            case 'title':
+                if (this.hasProperty('title')) {
+                    this.html.title = this.getProperties('title');
+                }
+                break;
         }
     }
 
@@ -181,43 +192,6 @@ export class Link{
     }
 
     /**
-     * * Set the Link innerHTML.
-     * @param {Object} [properties] Link properties:
-     * @param {Object} [properties.innerHTML] Link inner HTML:
-     * @param {String[]} [properties.innerHTML.icon] Link Inner HTML icon.
-     * @param {String} [properties.innerHTML.text] Link Inner HTML text.
-     * @memberof Link
-     */
-    setInnerHTMLProperty(properties = {
-        innerHTML: {
-            icon: ['fas', 'fa-angle-right'],
-            text: 'Click me!',
-        },
-    }){
-        this.properties.innerHTML = {};
-        if (properties.hasOwnProperty('innerHTML')) {
-            if (properties.innerHTML.hasOwnProperty('icon')) {
-                this.properties.innerHTML.icon = new Icon({id: `${ this.getIdProperty() }-icon-1`, classes: properties.innerHTML.icon});
-            }
-            if (properties.innerHTML.hasOwnProperty('text')) {
-                this.properties.innerHTML.text = new Span({id: `${ this.getIdProperty() }-text-1`, innerHTML: properties.innerHTML.text});
-            }
-        } else {
-            this.properties.innerHTML.icon = new Icon({id: `${ this.getIdProperty() }-icon-1`, classes: ['fas', 'fa-angle-right']});
-            this.properties.innerHTML.text = new Span({id: `${ this.getIdProperty() }-text-1`, innerHTML: 'Click me!'});
-        }
-    }
-
-    /**
-     * * Returns the Link innerHTML.
-     * @returns {String}
-     * @memberof Link
-     */
-    getInnerHTMLProperty(){
-        return this.properties.innerHTML;
-    }
-
-    /**
      * * Set the Link class names.
      * @param {Object} [properties] Link properties:
      * @param {String[]} [properties.classes] Link class names.
@@ -243,45 +217,75 @@ export class Link{
     }
 
     /**
-     * * Set the Link status.
-     * @param {Object} [status] Link status:
-     * @param {Boolean} [status.prevenDefault] Link click event prevent default.
+     * * Set the Link states.
+     * @param {Object} [states] Link states:
+     * @param {Boolean} [states.prevenDefault] Link click event prevent default.
      * @memberof Link
      */
-    setStatus(status = {
+    setStates(states = {
         preventDefault: false,
     }){
-        this.status = {};
-        this.setPreventDefaultStatus(status);
+        this.states = {};
+        this.setPreventDefaultStatus(states);
     }
 
     /**
-     * * Returns the Link status or an specific status.
-     * @param {String} [property] Status name.
+     * * Returns the Link states or an specific states.
+     * @param {String} [property] States name.
      * @returns {Object|*}
      * @memberof Link
      */
-    getStatus(property = ''){
+    getStates(property = ''){
         if (property && property != '') {
-            return this.status[property];
+            return this.states[property];
         } else {
-            return this.status;
+            return this.states;
+        }
+    }
+
+    /**
+     * * Check if there is a status.
+     * @param {String} name Status name.
+     * @returns {Boolean}
+     * @memberof Link
+     */
+    hasStates(name = ''){
+        if (this.status.hasOwnProperty(name)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * * Change a status value.
+     * @param {String} name Status name.
+     * @param {*} value Status value.
+     * @memberof Input
+     */
+    changeStatus(name = '', value = ''){
+        if (this.hasStates(name)) {
+            this.states[name] = value;
+        }
+        switch (name) {
+            default:
+                break;
         }
     }
 
     /**
      * * Set the Link click prevent default status.
-     * @param {Object} [status] Link status:
-     * @param {Boolean} [status.prevenDefault] Link click event prevent default.
+     * @param {Object} [states] Link states:
+     * @param {Boolean} [states.prevenDefault] Link click event prevent default.
      * @memberof Link
      */
-    setPreventDefaultStatus(status = {
+    setPreventDefaultStatus(states = {
         preventDefault: false,
     }){
-        if (status.hasOwnProperty('preventDefault')) {
-            this.status.preventDefault = status.preventDefault;
+        if (states.hasOwnProperty('preventDefault')) {
+            this.states.preventDefault = states.preventDefault;
         } else {
-            this.status.prevenDefault = false;
+            this.states.prevenDefault = false;
         }
     }
 
@@ -291,7 +295,7 @@ export class Link{
      * @memberof Link
      */
     getPreventDefaultStatus(){
-        return this.status.preventDefault;
+        return this.states.preventDefault;
     }
 
     /**
@@ -333,31 +337,49 @@ export class Link{
 
     /**
      * * Creates the <a> HTML Element.
+     * @param {HTMLElement} [innerHTML] Link inner HTML Element.
      * @memberof Link
      */
-    createHTML(){
+    createHTML(innerHTML = false){
         let instance = this;
         this.html = document.createElement('a');
-        this.html.id = this.getIdProperty();
-        this.html.href = this.getHrefProperty();
+        this.html.id = this.getProperties('id');
+        this.html.href = this.getProperties('href');
         if (this.hasProperty('title')) {
-            this.html.title = this.getTitleProperty();
+            this.html.title = this.getProperties('title');
         }
-        for (const className of this.getClassesProperty()) {
+        for (const className of this.getProperties('classes')) {
             this.html.classList.add(className);
         }
-        let innerHTMLs = this.getInnerHTMLProperty();
-        for (const key in innerHTMLs) {
-            const html = innerHTMLs[key];
-            this.html.appendChild(html.getHTML());
+        if (innerHTML) {
+            this.html.appendChild(innerHTML);
         }
         this.html.addEventListener('click', function(e){
-            if (instance.getPreventDefaultStatus()) {
+            if (instance.getStates('preventDefault')) {
                 e.preventDefault();
             }
             let params = instance.getCallback().params;
             params.link = instance;
             instance.getCallback().function(params);
         });
+    }
+
+    /**
+     * * Append an HTML Element.
+     * @param {HTMLElement} html New child.
+     * @memberof Link
+     */
+    appendChild(html){
+        this.html.appendChild(html);
+    }
+
+    /**
+     * * Insert an HTML Element before another.
+     * @param {HTMLElement} newHTML New child.
+     * @param {HTMLElement} oldHTML New child.
+     * @memberof Link
+     */
+    insertBefore(newHTML, oldHTML){
+        this.html.insertBefore(newHTML, oldHTML);
     }
 }

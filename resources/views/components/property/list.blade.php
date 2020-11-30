@@ -3,7 +3,9 @@
 @else
     <ul class="cards row">
 @endif
-    @component('components.property.info')
+    @component('components.property.info', [
+        'properties' => $properties,
+    ])
     @endcomponent
 </ul>
 

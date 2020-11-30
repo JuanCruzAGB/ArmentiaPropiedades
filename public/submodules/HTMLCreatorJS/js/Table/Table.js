@@ -56,13 +56,13 @@ export class Table{
 
     /**
      * * Returns the Table properties or an specific property.
-     * @param {String} [property] Property name.
+     * @param {String} [name] Property name.
      * @returns {Object|*}
      * @memberof Table
      */
-    getProperties(property = ''){
-        if (property && property != '') {
-            return this.properties[property];
+    getProperties(name = ''){
+        if (name && name != '') {
+            return this.properties[name];
         } else {
             return this.properties;
         }
@@ -70,15 +70,31 @@ export class Table{
 
     /**
      * * Check if there is a property.
-     * @param {String} [property] Property name.
+     * @param {String} name Property name.
      * @returns {Boolean}
      * @memberof Table
      */
-    hasProperty(property = ''){
-        if (property && property != '' && this.properties.hasOwnProperty(property)) {
+    hasProperty(name = ''){
+        if (this.properties.hasOwnProperty(name)) {
             return true;
         } else {
             return false;
+        }
+    }
+
+    /**
+     * * Change a property value.
+     * @param {String} name Property name.
+     * @param {*} value Property value.
+     * @memberof Table
+     */
+    changeProperty(name = '', value = ''){
+        if (this.hasProperty(name)) {
+            this.properties[name] = value;
+        }
+        switch (name) {
+            default:
+                break;
         }
     }
 
@@ -242,6 +258,41 @@ export class Table{
     }
 
     /**
+     * * Change the Table data.
+     * @param {Object[]} data Table data.
+     * @memberof Table
+     */
+    changeData(data){
+        this.setData(data);
+        this.setCells();
+    }
+
+    /**
+     * * Add new Table data.
+     * @param {Object[]} newData Table data.
+     * @memberof Table
+     */
+    addData(newData){
+        for (const data of newData) {
+            this.data.push(data);
+        }
+    }
+
+    /**
+     * * Remove a Table data.
+     * @param {Number} position Table data position.
+     * @memberof Table
+     */
+    removeData(position){
+        let data = this.getData();
+        for (const key in this.getData()) {
+            if (position == key) {
+                data.splice(key);
+            }
+        }
+    }
+
+    /**
      * * Set the Table info.
      * @param {Object} [info] Table Cells information.
      * @memberof Table
@@ -317,15 +368,15 @@ export class Table{
         switch (type) {
             case 'th':
                 column = new Th({
-                    id: properties.hasOwnProperty('id') ? properties.id : `th-${key}`,
+                    id: properties.hasOwnProperty('id') ? properties.id : `th-${ key }`,
                     innerHTML: properties.hasOwnProperty('innerHTML') ? properties.innerHTML : undefined,
                     classes: properties.hasOwnProperty('thClasses') ? properties.thClasses : [],
-                }, properties.hasOwnProperty('name') ? properties.name : `Table cell header ${key}`);
+                }, properties.hasOwnProperty('name') ? properties.name : `Table cell header ${ key }`);
                 break;
             case 'td':
                 column = new Td({
-                    id: properties.hasOwnProperty('id') ? properties.id : `td-${key}`,
-                    name: properties.hasOwnProperty('name') ? properties.name : `Table cell ${key}`,
+                    id: properties.hasOwnProperty('id') ? properties.id : `td-${ key }`,
+                    name: properties.hasOwnProperty('name') ? properties.name : `Table cell ${ key }`,
                     innerHTML: properties.hasOwnProperty('innerHTML') ? properties.innerHTML : undefined,
                     classes: properties.hasOwnProperty('tdClasses') ? properties.tdClasses : [],
                 }, this.getData(row, properties.innerHTML));
@@ -389,7 +440,7 @@ export class Table{
             classes: (properties.hasOwnProperty('trClasses') && properties.trClasses.hasOwnProperty('thead')) ? properties.trClasses.thead : [],
         });
         for (const cell of cellsToAppend) {
-            tr.appendCell(cell);
+            tr.appendChild(cell.getHTML());
         }
         this.getTHead().setTr(tr);
     }
@@ -406,11 +457,11 @@ export class Table{
             this.trs = [];
         }
         let tr = new Tr({
-            id: `tr-${row}`,
+            id: `tr-${ row }`,
             classes: classes,
         });
         for (const cell of cellsToAppend) {
-            tr.appendCell(cell);
+            tr.appendChild(cell.getHTML());
         }
         this.trs.push(tr);
         this.getTBody().setTr(tr);
@@ -437,21 +488,22 @@ export class Table{
             this.trs = [];
         }
         let tr = new Tr({
-            id: `tr-${row}`,
+            id: `tr-${ row }`,
             classes: classes,
         });
         for (const cell of this.createCellByInfo(row)) {
-            tr.appendCell(cell);
+            tr.appendChild(cell.getHTML());
         }
         switch (position) {
             case 'before':
                 this.trs.unshift(tr);
+                this.getTBody().insertBefore(tr.getHTML(), this.getTBody().getTr()[0].getHTML());
                 break;
             default:
                 this.trs.push(tr);
+                this.getTBody().appendChild(tr.getHTML());
                 break;
         }
-        this.getTBody().appendTr(tr, position);
     }
 
     /**
@@ -463,7 +515,7 @@ export class Table{
         let trRemoved;
         for (const key in this.trs) {
             const tr = this.trs[key];
-            if (tr.getIdProperty() == ID) {
+            if (tr.getProperties('id') == ID) {
                 trRemoved = this.trs.splice(key);
             }
         }
@@ -475,8 +527,13 @@ export class Table{
      * @memberof Table
      */
     setHTML(){
-        this.html = document.querySelector(`table#${this.getIdProperty()}`);
-        this.append();
+        this.html = document.querySelector(`table#${ this.getProperties('id') }`);
+        if (this.getProperties('thead')) {
+            this.html.appendChild(this.getTHead().getHTML());
+        }
+        if (this.getProperties('tbody')) {
+            this.html.appendChild(this.getTBody().getHTML());
+        }
     }
 
     /**
@@ -486,53 +543,5 @@ export class Table{
      */
     getHTML(){
         return this.trs;
-    }
-
-    /**
-     * * Append the Table HTML Element childs.
-     * @memberof Table
-     */
-    append(){
-        if (this.getTHeadBooleanProperty) {
-            this.html.appendChild(this.getTHead().getHTML());
-        }
-        if (this.getTBodyBooleanProperty) {
-            this.html.appendChild(this.getTBody().getHTML());
-        }
-    }
-
-    /**
-     * * Change the Table data.
-     * @param {Object[]} data Table data.
-     * @memberof Table
-     */
-    changeData(data){
-        this.setData(data);
-        this.setCells();
-    }
-
-    /**
-     * * Add new Table data.
-     * @param {Object[]} newData Table data.
-     * @memberof Table
-     */
-    addData(newData){
-        for (const data of newData) {
-            this.data.push(data);
-        }
-    }
-
-    /**
-     * * Remove a Table data.
-     * @param {Number} position Table data position.
-     * @memberof Table
-     */
-    removeData(position){
-        let data = this.getData();
-        for (const key in this.getData()) {
-            if (position == key) {
-                data.splice(key);
-            }
-        }
     }
 }

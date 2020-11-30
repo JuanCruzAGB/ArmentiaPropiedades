@@ -23,7 +23,7 @@ export class TBody{
             this.trs = [];
         }
         this.trs.push(tr);
-        this.appendTr(tr);
+        this.appendChild(tr.getHTML());
     }
 
     /**
@@ -53,20 +53,22 @@ export class TBody{
     }
 
     /**
-     * * Append a <tr>.
-     * @param {Tr} tr A Tr.
-     * @param {String} [position] Tr position to append.
-     * @memberof TBody
+     * * Append an HTML Element.
+     * @param {HTMLElement} html New child.
+     * @memberof Div
      */
-    appendTr(tr, position = 'after'){
-        switch (position) {
-            case 'before':
-                this.html.insertBefore(tr.getHTML(), this.html.children[0]);
-                break;
-            default:
-                this.html.appendChild(tr.getHTML());
-                break;
-        }
+    appendChild(html){
+        this.html.appendChild(html);
+    }
+
+    /**
+     * * Insert an HTML Element before another.
+     * @param {HTMLElement} newHTML New child.
+     * @param {HTMLElement} oldHTML New child.
+     * @memberof Div
+     */
+    insertBefore(newHTML, oldHTML){
+        this.html.insertBefore(newHTML, oldHTML);
     }
 
     /**

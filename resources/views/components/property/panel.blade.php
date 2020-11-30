@@ -31,43 +31,52 @@
         </header>
         <main class="content-data col-12 p-md-0">
             <div class="row">
-                <section class="gallery col-12 col-md-6 px-3">
+                <section id="gallery" class="gallery col-12 col-md-6 px-3">
                     <div class="row justify-content-between px-3 pr-md-0">
-                        <div class="arrows">
-                            <button class="btn btn-uno arrow prev hidden m-0">
-                                <i class="fas fa-arrow-up"></i>
-                            </button>
-                            <button class="btn btn-uno arrow next m-0">
-                                <i class="fas fa-arrow-down"></i>
-                            </button>
-                        </div>
                         <div class="images p-0" data-current="0">
-                            <button disabled class="gallery-button mb-3">
+                            <button disabled class="mb-3">
                                 <i class="fas fa-plus"></i>
                             </button>
-                            <a href="#" class="gallery-button active mb-3">
-                                <img class="m-0" src="{{ asset('storage/property/1/01.jpg') }}" alt="Property 1 - Image 1">
-                            </a>
-                            <a href="#" class="gallery-button mb-3">
-                                <img class="m-0" src="{{ asset('storage/property/1/01.jpg') }}" alt="Property 1 - Image 1">
-                            </a>
-                            <a href="#" class="gallery-button mb-3">
-                                <img class="m-0" src="{{ asset('storage/property/1/01.jpg') }}" alt="Property 1 - Image 1">
-                            </a>
-                            <a href="#" class="gallery-button mb-3">
-                                <img class="m-0" src="{{ asset('storage/property/1/01.jpg') }}" alt="Property 1 - Image 1">
-                            </a>
-                            <a href="#" class="gallery-button mb-3">
-                                <img class="m-0" src="{{ asset('storage/property/1/01.jpg') }}" alt="Property 1 - Image 1">
-                            </a>
-                            <a href="#" class="gallery-button">
-                                <img class="m-0" src="{{ asset('storage/property/1/01.jpg') }}" alt="Property 1 - Image 1">
-                            </a>
+                            <label class="gallery-button selected mb-3">
+                                <input type="checkbox" name="files[0]" value="{{ asset('storage/property/1/01.jpg') }}">
+                                <img class="gallery-image m-0" src="{{ asset('storage/property/1/01.jpg') }}" alt="Property 1 - Image 1">
+                            </label>
+                            <label class="gallery-button mb-3">
+                                <input type="checkbox" name="files[1]" value="{{ asset('storage/property/2/01.png') }}">
+                                <img class="gallery-image m-0" src="{{ asset('storage/property/2/01.png') }}" alt="Property 1 - Image 1">
+                            </label>
+                            <label class="gallery-button mb-3">
+                                <input type="checkbox" name="files[2]" value="{{ asset('storage/property/1/01.jpg') }}">
+                                <img class="gallery-image m-0" src="{{ asset('storage/property/1/01.jpg') }}" alt="Property 1 - Image 1">
+                            </label>
+                            <label class="gallery-button mb-3">
+                                <input type="checkbox" name="files[3]" value="{{ asset('storage/property/1/01.jpg') }}">
+                                <img class="gallery-image m-0" src="{{ asset('storage/property/1/01.jpg') }}" alt="Property 1 - Image 1">
+                            </label>
+                            <label class="gallery-button mb-3">
+                                <input type="checkbox" name="files[4]" value="{{ asset('storage/property/1/01.jpg') }}">
+                                <img class="gallery-image m-0" src="{{ asset('storage/property/1/01.jpg') }}" alt="Property 1 - Image 1">
+                            </label>
+                            <label class="gallery-button">
+                                <input type="checkbox" name="files[5]" value="{{ asset('storage/property/1/01.jpg') }}">
+                                <img class="gallery-image m-0" src="{{ asset('storage/property/1/01.jpg') }}" alt="Property 1 - Image 1">
+                            </label>
                         </div>
                         <a target="_blank" href="{{ asset('storage/property/1/01.jpg') }}" class="selected overflow-hidden p-0">
                             <figure class="m-0">
-                                <img class="zoom" src="{{ asset('storage/property/1/01.jpg') }}" alt="Property 1 - Image 1">
+                                <img class="gallery-image zoom" src="{{ asset('storage/property/1/01.jpg') }}" alt="Property 1 - Image 1">
                             </figure>
+                            <div class="buttons">
+                                <button disabled class="btn btn-uno btn-icon">
+                                    <i class="fas fa-check"></i>
+                                </button>
+                                <button disabled class="btn btn-uno btn-icon">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                                <button disabled class="btn btn-uno btn-icon">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
                         </a>
                     </div>
                 </section>

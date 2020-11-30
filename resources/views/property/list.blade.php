@@ -17,7 +17,9 @@
     <section id="recommended" class="recommended col-12">
         <div class="row">
             <main class="col-12 py-5 text-center">
-                @component('components.property.list')
+                @component('components.property.list', [
+                    'properties' => $properties,
+                ])
                 @endcomponent
             </main>
         </div>

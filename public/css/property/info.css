@@ -2,94 +2,6 @@
     min-height: initial;
 }
 
-.property .gallery {
-    position: relative;
-}
-
-.property .gallery .images {
-    display: flex;
-    flex-wrap: wrap;
-    width: calc((100% / 12) * 3);
-    max-height: 17rem;
-    overflow-y: scroll;
-}
-
-.property .gallery .arrows {
-    position: absolute;
-    top: 0;
-    left: 1rem;
-    display: none;
-    width: calc((100% / 12) * 3);
-    height: 17rem;
-    pointer-events: none;
-}
-
-.property .gallery .arrows .arrow {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    min-height: 2rem;
-    height: 2rem;
-    pointer-events: all;
-}
-
-.property .gallery .arrows .arrow.hidden {
-    display: none;
-}
-
-.property .gallery .arrows .arrow.prev {
-    top: 0;
-}
-
-.property .gallery .arrows .arrow.next {
-    bottom: 0;
-}
-
-.property .gallery .images .gallery-button {
-    display: inline-block;
-    width: calc(100% - 1rem);
-    height: 4rem;
-    overflow: hidden;
-    border: 2px solid transparent;
-}
-
-.property .gallery .images .gallery-button.active {
-    border: 2px solid var(--color-uno-alternativo);
-}
-
-.property .gallery .images .gallery-button.active img {
-    opacity: .2;
-}
-
-.property .gallery .images .gallery-button img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.property .gallery .selected {
-    width: calc((100% / 12) * 9);
-}
-
-.property .gallery .selected figure {
-    width: 100%;
-    max-height: 17rem;
-    overflow: hidden;
-}
-
-.property .gallery .selected figure img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: 500ms;
-}
-
-.property .gallery .selected:hover figure img {
-    transform: scale(1.05);
-}
-
 /* * MD */
 @media(min-width: 768px) {
     /**/
@@ -97,46 +9,10 @@
 
 /* * LG */
 @media(min-width: 1024px) {
-    .property .gallery .arrows {
-        display: block;
-    }
-
-    .property .gallery .images {
-        width: calc((100% / 12) * 4);
-    }
-
-    .property .gallery .arrows {
-        width: calc(((100% - 3.5rem) / 12) * 4);
-    }
-
-    .property .gallery .selected {
-        width: calc((100% / 12) * 8);
-    }
-
-    .property .gallery .images .gallery-button:last-of-type {
-        margin-bottom: 3rem;
-    }
+    /**/
 }
 
 /* * XL */
 @media(min-width: 1200px) {
-    .property .gallery .images {
-        width: calc((100% / 12) * 2);
-    }
-
-    .property .gallery .arrows {
-        width: calc(((100% - 7rem) / 12) * 2);
-    }
-
-    .property .gallery .images::-webkit-scrollbar {
-        display: none;
-    }
-
-    .property .gallery .selected {
-        width: calc((100% / 12) * 10);
-    }
-
-    .property .gallery .selected figure {
-        height: 17rem;
-    }
+    /**/
 }
