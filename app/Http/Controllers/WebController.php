@@ -52,6 +52,7 @@
             foreach ($properties as $property) {
                 $property->category;
                 $property->location;
+                $property->images();
             }
 
             return view('web.panel', [

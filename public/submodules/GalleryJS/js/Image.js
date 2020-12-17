@@ -18,9 +18,10 @@ export class Image{
     constructor(properties = {
         id: 'image-1',
         source: undefined,
-    }, html){
+    }, html, gallery){
         this.setProperties(properties);
         this.setHTML(html);
+        this.setNotFound(gallery);
     }
 
     /**
@@ -35,7 +36,7 @@ export class Image{
         source: undefined,
     }){
         this.properties = {};
-        this.setIdProperty(properties);
+        this.setIDProperty(properties);
         this.setSourceProperty(properties);
     }
 
@@ -79,7 +80,12 @@ export class Image{
         }
         switch (name) {
             case 'source':
-                this.html.src = this.getProperties('source');
+                if (this.getProperties('source')) {
+                    this.getHTML().src = this.getProperties('source');
+                } else {
+                    this.getHTML().classList.add('hidden');
+                    this.getNotFound().classList.remove('hidden');
+                }
                 break;
         }
     }
@@ -90,7 +96,7 @@ export class Image{
      * @param {String} [properties.id] Image ID.
      * @memberof Image
      */
-    setIdProperty(properties = {
+    setIDProperty(properties = {
         id: 'image-1',
     }){
         if (properties.hasOwnProperty('id')) {
@@ -105,7 +111,7 @@ export class Image{
      * @returns {String}
      * @memberof Image
      */
-    getIdProperty(){
+    getIDProperty(){
         return this.properties.id;
     }
 
@@ -141,10 +147,6 @@ export class Image{
      */
     setHTML(html){
         this.html = html;
-        this.html.addEventListener('click', function(e){
-            e.preventDefault();
-            console.log('clicked');
-        });
     }
 
     /**
@@ -157,6 +159,23 @@ export class Image{
     }
 
     /**
+     * * Set the not found image.
+     * @memberof Image
+     */
+    setNotFound(gallery){
+        this.notFound = document.querySelector(`#${ gallery.getProperties('id') }.gallery .selected:not(.gallery-button) .not-found`);
+    }
+
+    /**
+     * * Returns the Image not found HTML Element.
+     * @returns {HTMLElement}
+     * @memberof Image
+     */
+    getNotFound(){
+        return this.notFound;
+    }
+
+    /**
      * * Get all the Gallery Images.
      * @static
      * @param {Gallery} gallery Button Gallery parent.
@@ -166,8 +185,7 @@ export class Image{
     static getDomHTML(gallery){
         let html = document.querySelector(`#${ gallery.getProperties('id') }.gallery .selected:not(.gallery-button) .gallery-image`);
         let properties = Image.generateProperties(html);
-        properties.id = `image-selected`;
-        let image = new this(properties, html);
+        let image = new this(properties, html, gallery);
         return image;
     }
 
@@ -180,6 +198,7 @@ export class Image{
      */
     static generateProperties(html){
         let properties = {
+            id: `image-selected`,
             source: html.src,
         };
         return properties;

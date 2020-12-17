@@ -16,14 +16,24 @@ export class Gallery{
      * @param {String} [properties.selected] Image selected.
      * @param {Object} [states] Gallery states:
      * @param {String} [states.mode] Gallery status mode.
+     * @param {Object} [callback] Gallery selected callback.
+     * @param {Function} [callback.function] Gallery selected callback function.
+     * @param {Object} [callback.params] Gallery selected callback params.
      * @memberof Gallery
      */
     constructor(properties = {
         id: 'gallery-1',
         selected: 0,
-    }, states = {}){
+    }, states = {},
+    callback = {
+        function: function(){ /* console.log('clicked') */ },
+        params: {
+            //
+        },
+    }){
         this.setProperties(properties);
         this.setStates(states);
+        this.setCallback(callback);
         this.setButtons();
         this.setImage();
     }
@@ -40,7 +50,7 @@ export class Gallery{
         selected: 0,
     }){
         this.properties = {};
-        this.setIdProperty(properties);
+        this.setIDProperty(properties);
         this.setSelectedProperty(properties);
     }
 
@@ -95,7 +105,7 @@ export class Gallery{
      * @param {String} [properties.id] Gallery ID.
      * @memberof Gallery
      */
-    setIdProperty(properties = {
+    setIDProperty(properties = {
         id: 'gallery-1',
     }){
         if (properties.hasOwnProperty('id')) {
@@ -110,7 +120,7 @@ export class Gallery{
      * @returns {String}
      * @memberof Gallery
      */
-    getIdProperty(){
+    getIDProperty(){
         return this.properties.id;
     }
 
@@ -219,6 +229,34 @@ export class Gallery{
     }
 
     /**
+     * * Set the Gallery selected callback.
+     * @param {Object} [callback] Gallery selected callback.
+     * @param {Function} [callback.function] Gallery selected callback function.
+     * @param {Object} [callback.params] Gallery selected callback params.
+     * @memberof Gallery
+     */
+    setCallback(callback = {
+        function: function(){ /* console.log('clicked') */ },
+        params: {
+            //
+        },
+    }){
+        this.callback = {
+            function: (callback.hasOwnProperty('function')) ? callback.function : function(){ /* console.log('clicked') */ },
+            params: (callback.hasOwnProperty('params')) ? callback.params : {},
+        };
+    }
+
+    /**
+     * * Returns the Gallery selected callback.
+     * @returns {Object}
+     * @memberof Gallery
+     */
+    getCallback(){
+        return this.callback;
+    }
+
+    /**
      * * Set the Gallery HTML Element.
      * @memberof Gallery
      */
@@ -258,6 +296,14 @@ export class Gallery{
     }
 
     /**
+     * * Reloads the Gallery Buttons.
+     * @memberof Gallery
+     */
+    reloadButton(){
+        this.buttons = Button.getDomHTML(this);
+    }
+
+    /**
      * * Set the Gallery Image.
      * @memberof Gallery
      */
@@ -276,19 +322,34 @@ export class Gallery{
 
     /**
      * * Select a new Image.
-     * @param {String} id Gallery Button ID.
+     * @param {String} [id] Gallery Button ID.
      * @memberof Gallery
      */
-    select(id){
-        let key = 0;
-        for (const btn of this.getButtons()) {
-            btn.unselect();
-            if (btn.getProperties('id') == id) {
-                this.changeProperty('selected', key);
-                btn.select();
+    select(id = undefined){
+        if (id != undefined) {
+            let key = 0;
+            for (const btn of this.getButtons()) {
+                btn.unselect();
+                if (btn.getProperties('id') == id) {
+                    this.changeProperty('selected', key);
+                    btn.select();
+                }
+                key++;
             }
-            key++;
+        } else {
+            this.unselect();
         }
+        let params = this.getCallback().params;
+        params.gallery = this;
+        this.getCallback().function(params);
+    }
+
+    /**
+     * * Unselect the Image.
+     * @memberof Gallery
+     */
+    unselect(){
+        this.image.changeProperty('source', undefined)
     }
 
     /**

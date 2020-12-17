@@ -49,7 +49,7 @@ export class Table{
         tbody: true,
     }){
         this.properties = {};
-        this.setIdProperty(properties);
+        this.setIDProperty(properties);
         this.setTHeadBooleanProperty(properties);
         this.setTBodyBooleanProperty(properties);
     }
@@ -104,7 +104,7 @@ export class Table{
      * @param {String} [properties.id] Table ID.
      * @memberof Table
      */
-    setIdProperty(properties = {
+    setIDProperty(properties = {
         id: 'table-1',
     }){
         if (properties.hasOwnProperty('id')) {
@@ -119,7 +119,7 @@ export class Table{
      * @returns {String}
      * @memberof Table
      */
-    getIdProperty(){
+    getIDProperty(){
         return this.properties.id;
     }
 
@@ -494,14 +494,13 @@ export class Table{
         for (const cell of this.createCellByInfo(row)) {
             tr.appendChild(cell.getHTML());
         }
+        this.getTBody().addTr(tr, position);
         switch (position) {
             case 'before':
                 this.trs.unshift(tr);
-                this.getTBody().insertBefore(tr.getHTML(), this.getTBody().getTr()[0].getHTML());
                 break;
             default:
                 this.trs.push(tr);
-                this.getTBody().appendChild(tr.getHTML());
                 break;
         }
     }
@@ -512,14 +511,15 @@ export class Table{
      * @memberof Table
      */
     removeTr(ID){
-        let trRemoved;
+        let keyRemoved;
         for (const key in this.trs) {
             const tr = this.trs[key];
             if (tr.getProperties('id') == ID) {
-                trRemoved = this.trs.splice(key);
+                keyRemoved = key;
             }
         }
-        this.getTBody().removeTr(trRemoved[0]);
+        this.trs.splice(keyRemoved, 1);
+        this.getTBody().removeTr(ID);
     }
 
     /**

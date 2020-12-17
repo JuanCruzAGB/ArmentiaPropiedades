@@ -12,7 +12,8 @@ export class Button{
      * @param {String} [properties.title] Button title.
      * @param {String[]} [properties.classes] Button class names.
      * @param {Object} [states] Button states:
-     * @param {Boolean} [states.prevenDefault] Button click event prevent default.
+     * @param {Boolean} [states.preventDefault] Button click event prevent default.
+     * @param {Boolean} [states.disabled] Button disabled status.
      * @param {Object} [callback] Button click callback.
      * @param {Function} [callback.function] Button click callback function.
      * @param {Object} [callback.params] Button click callback params.
@@ -25,6 +26,7 @@ export class Button{
         classes: [],
     }, states = {
         preventDefault: false,
+        disabled: false,
     }, callback = {
         function: function(){ /* console.log('clicked') */ },
         params: {
@@ -51,7 +53,7 @@ export class Button{
         classes: [],
     }){
         this.properties = {};
-        this.setIdProperty(properties);
+        this.setIDProperty(properties);
         this.setTitleProperty(properties);
         this.setClassesProperty(properties);
     }
@@ -109,7 +111,7 @@ export class Button{
      * @param {String} [properties.id] Button ID.
      * @memberof Button
      */
-    setIdProperty(properties = {
+    setIDProperty(properties = {
         id: 'button-1',
     }){
         if (properties.hasOwnProperty('id')) {
@@ -124,7 +126,7 @@ export class Button{
      * @returns {String}
      * @memberof Button
      */
-    getIdProperty(){
+    getIDProperty(){
         return this.properties.id;
     }
 
@@ -179,14 +181,17 @@ export class Button{
     /**
      * * Set the Button states.
      * @param {Object} [states] Button states:
-     * @param {Boolean} [states.prevenDefault] Button click event prevent default.
+     * @param {Boolean} [states.preventDefault] Button click event prevent default.
+     * @param {Boolean} [states.disabled] Button disabled status.
      * @memberof Button
      */
     setStates(states = {
         preventDefault: false,
+        disabled: false,
     }){
         this.states = {};
         this.setPreventDefaultStatus(states);
+        this.setDisabledStatus(states);
     }
 
     /**
@@ -228,7 +233,8 @@ export class Button{
             this.states[name] = value;
         }
         switch (name) {
-            default:
+            case 'disabled':
+                this.getHTML().disabled = this.getStates('disabled');
                 break;
         }
     }
@@ -236,7 +242,7 @@ export class Button{
     /**
      * * Set the Button click prevent default status.
      * @param {Object} [states] Button states:
-     * @param {Boolean} [states.prevenDefault] Button click event prevent default.
+     * @param {Boolean} [states.preventDefault] Button click event prevent default.
      * @memberof Button
      */
     setPreventDefaultStatus(states = {
@@ -245,7 +251,7 @@ export class Button{
         if (states.hasOwnProperty('preventDefault')) {
             this.states.preventDefault = states.preventDefault;
         } else {
-            this.states.prevenDefault = false;
+            this.states.preventDefault = false;
         }
     }
 
@@ -256,6 +262,31 @@ export class Button{
      */
     getPreventDefaultStatus(){
         return this.states.preventDefault;
+    }
+
+    /**
+     * * Set the Button disabled status.
+     * @param {Object} [states] Button states:
+     * @param {Boolean} [states.disabled] Button disabled status.
+     * @memberof Button
+     */
+    setDisabledStatus(states = {
+        disabled: false,
+    }){
+        if (states.hasOwnProperty('disabled')) {
+            this.states.disabled = states.disabled;
+        } else {
+            this.states.disabled = false;
+        }
+    }
+
+    /**
+     * * Returns the Button disabled status.
+     * @returns {Boolean}
+     * @memberof Button
+     */
+    getDisabledStatus(){
+        return this.states.disabled;
     }
 
     /**
@@ -302,12 +333,15 @@ export class Button{
      */
     createHTML(innerHTML = false){
         let instance = this;
-        this.html = document.createElement('a');
-        this.html.id = this.getProperty('id');
-        if (this.hasProperty('title')) {
-            this.html.title = this.getProperty('title');
+        this.html = document.createElement('button');
+        this.html.id = this.getProperties('id');
+        if (this.getStates('disabled')) {
+            this.html.disabled = true;
         }
-        for (const className of this.getProperty('classes')) {
+        if (this.hasProperty('title')) {
+            this.html.title = this.getProperties('title');
+        }
+        for (const className of this.getProperties('classes')) {
             this.html.classList.add(className);
         }
         if (innerHTML) {

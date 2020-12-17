@@ -40,7 +40,7 @@ export class Image{
         classes: [],
     }){
         this.properties = {};
-        this.setIdProperty(properties);
+        this.setIDProperty(properties);
         this.setUrlProperty(properties);
         this.setNameProperty(properties);
         this.setClassesProperty(properties);
@@ -100,7 +100,7 @@ export class Image{
      * @param {String} [properties.id] Image ID.
      * @memberof Image
      */
-    setIdProperty(properties = {
+    setIDProperty(properties = {
         id: 'img-1',
     }){
         if (properties.hasOwnProperty('id')) {
@@ -115,7 +115,7 @@ export class Image{
      * @returns {String}
      * @memberof Image
      */
-    getIdProperty(){
+    getIDProperty(){
         return this.properties.id;
     }
 

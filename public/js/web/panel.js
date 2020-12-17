@@ -1,13 +1,13 @@
 // ? External repositories
 import { URLServiceProvider as URL } from "../../submodules/ProvidersJS/URLServiceProvider.js";
-
-// ? Local repositories
 import { Table } from "../../submodules/HTMLCreatorJS/js/Table/Table.js";
 import { Input } from "../../submodules/HTMLCreatorJS/js/Forms/Input.js";
 import { Form } from "../../submodules/HTMLCreatorJS/js/Forms/Form.js";
 import { Link } from "../../submodules/HTMLCreatorJS/js/Buttons/Link.js";
 import { Icon } from "../../submodules/HTMLCreatorJS/js/Visuals/Icon.js";
-import { Gallery as GalleryJS } from "../../submodules/GalleryJS/js/Gallery.js";
+
+// ? Local repositories
+import { loadImages, removeImages, confirmImage, cancelImage, deleteImage, showTrashBtn, hideTrashBtn } from "../gallery.js";
 
 for (const key in categories) {
     const category = categories[key];
@@ -361,7 +361,7 @@ function createConfirmBtn(properties = {
         title: 'Confirmar',
         classes: ['confirm-button', 'btn', 'btn-uno-transparent', 'btn-icon', 'mr-md-1', 'd-none'],
     }, {
-        prevenDefault: true,
+        preventDefault: true,
     }, {
         function: confirmFunctionCallback,
         params: properties,
@@ -494,6 +494,7 @@ function changeView(from, viewName, object = undefined) {
             break;
         case 'details-data':
             hideAddButton();
+            removeImages();
             changeDetailsData(from, object);
             break;
     }
@@ -501,16 +502,16 @@ function changeView(from, viewName, object = undefined) {
 
 /**
  * * Enable the add from a section.
- * @param {Number} key Number of new <tr> to add.
  */
-function enableAdd(key){
+function enableAdd(){
     let from = URL.findHashParameter(),
         input, confirmBtn, cancelBtn;
     switch (from) {
         case 'propiedades':
+            hideTrashBtn(document.querySelector('.gallery .selected:not(.gallery-button) .buttons'));
             document.querySelector('.details-data .cancel-data').href = `#propiedades`;
             changeView('propiedades', 'details-data');
-            let inputs = document.querySelectorAll('.details-data textarea, .details-data select, .property .gallery .images button, .property .gallery .selected button');
+            let inputs = document.querySelectorAll('.details-data textarea, .details-data select, .property .gallery .images button');
             for (const input of inputs) {
                 input.disabled = false;
             }
@@ -548,6 +549,7 @@ function enableAdd(key){
             tables.ubicaciones.table.addTr(tables.ubicaciones.table.getData().length - 1, [], 'before');
             document.querySelector(`#ubicaciones tbody tr#tr-${ tables.ubicaciones.table.getData().length - 1 }`).classList.add('adding');
             showConfirmBtns(divLocation);
+            hideAddButton();
             break;
         default:
             input = new Input({
@@ -580,6 +582,7 @@ function enableAdd(key){
             tables.categorias.table.addTr(tables.categorias.table.getData().length - 1, [], 'before');
             document.querySelector(`#categorias tbody tr#tr-${ tables.categorias.table.getData().length - 1 }`).classList.add('adding');
             showConfirmBtns(divCategory);
+            hideAddButton();
             break;
     }
 }
@@ -592,7 +595,8 @@ function enableAdd(key){
 function disableAdd(from, key){
     switch (from) {
         case 'propiedades':
-            let inputs = document.querySelectorAll('.details-data textarea, .details-data select, .property .gallery .images button, .property .gallery .selected button');
+            hideTrashBtn(document.querySelector('.gallery .selected:not(.gallery-button) .buttons'));
+            let inputs = document.querySelectorAll('.details-data textarea, .details-data select, .property .gallery .images button');
             for (const input of inputs) {
                 input.disabled = true;
             }
@@ -603,10 +607,12 @@ function disableAdd(from, key){
         case 'ubicaciones':
             tables.ubicaciones.table.removeTr(`tr-${ key }`);
             tables.ubicaciones.table.removeData(key);
+            showAddButton();
             break;
         default:
             tables.categorias.table.removeTr(`tr-${ key }`);
             tables.categorias.table.removeData(key);
+            showAddButton();
             break;
     }
 }
@@ -619,8 +625,9 @@ function disableAdd(from, key){
 function enableUpdate(from, key){
     switch (from) {
         case 'propiedades':
+            showTrashBtn(document.querySelector('.gallery .selected:not(.gallery-button) .buttons'));
             document.querySelector('.details-data .cancel-data').href = `#${ window.location.href.split('#')[1].split('&')[0] }`;
-            let inputs = document.querySelectorAll('.details-data textarea, .details-data select, .property .gallery .images button, .property .gallery .selected button');
+            let inputs = document.querySelectorAll('.details-data textarea, .details-data select, .property .gallery .images button');
             for (const input of inputs) {
                 input.disabled = false;
             }
@@ -649,7 +656,8 @@ function disableUpdate(from, key){
     let input;
     switch (from) {
         case 'propiedades':
-            let inputs = document.querySelectorAll('.details-data textarea, .details-data select, .property .gallery .images button, .property .gallery .selected button');
+            hideTrashBtn(document.querySelector('.gallery .selected:not(.gallery-button) .buttons'));
+            let inputs = document.querySelectorAll('.details-data textarea, .details-data select, .property .gallery .images button');
             for (const input of inputs) {
                 input.disabled = true;
                 switch (input.nodeName) {
@@ -824,12 +832,11 @@ function hideAddButton(){
  * @param {String} from Who is the details to change.
  * @param {Object} object Data to get from.
  */
-function changeDetailsData(from, object = false) {
-    let slug;
+function changeDetailsData(from, originalObject = false) {
     switch (from) {
         case 'propiedades':
-            let inputs = [], mode = 'edit';
-            if (!object) {
+            let inputs = [], mode = 'edit', object = originalObject;
+            if (!originalObject) {
                 object = properties[0];
                 mode = 'add';
             } else {
@@ -880,6 +887,7 @@ function changeDetailsData(from, object = false) {
                     inputs.push(input);
                 }
             }
+            loadImages(((originalObject) ? object.images : []));
             break;
     }
 }
@@ -974,11 +982,6 @@ document.addEventListener('DOMContentLoaded', function(e){
         }, element.cells, element.data);
     }
 
-    let gallery = new GalleryJS({
-        id: 'gallery',
-        selected: 0,
-    });
-
     changeView('categorias', 'table-data');
     changeView('propiedades', 'table-data');
     changeView('ubicaciones', 'table-data');
@@ -1001,6 +1004,8 @@ document.addEventListener('DOMContentLoaded', function(e){
                 } else if (URL.findGetParameter('deleting')) {
                     enableDelete('propiedades', key, propertySelected);
                 }
+            } else if (URL.findGetParameter('adding')) {
+                enableAdd('propiedades');
             }
             break;
         case 'ubicaciones':
@@ -1018,6 +1023,8 @@ document.addEventListener('DOMContentLoaded', function(e){
                 } else if (URL.findGetParameter('deleting')) {
                     enableDelete('ubicaciones', key, locationSelected);
                 }
+            } else if (URL.findGetParameter('adding')) {
+                enableAdd('ubicaciones');
             }
             break;
         default:
@@ -1033,6 +1040,8 @@ document.addEventListener('DOMContentLoaded', function(e){
                 } else if (URL.findGetParameter('deleting')) {
                     enableDelete('categorias');
                 }
+            } else if (URL.findGetParameter('adding')) {
+                enableAdd('categorias');
             }
             break;
     }
@@ -1049,6 +1058,11 @@ document.addEventListener('DOMContentLoaded', function(e){
     });
 
     document.querySelector('.return-data').addEventListener('click', function(e){
+        if (URL.findGetParameter().hasOwnProperty('adding')) {
+            disableAdd('propiedades');
+        } else {
+            disableUpdate('propiedades');
+        }
         changeView('propiedades', 'table-data');
     });
 
@@ -1062,5 +1076,20 @@ document.addEventListener('DOMContentLoaded', function(e){
         } else if (document.querySelector('.details-data').classList.contains('adding')) {
             disableAdd('propiedades');
         }
+    });
+
+    document.querySelector('.confirm-image').addEventListener('click', function(e){
+        e.preventDefault();
+        confirmImage();
+    });
+
+    document.querySelector('.cancel-image').addEventListener('click', function(e){
+        e.preventDefault();
+        cancelImage();
+    });
+
+    document.querySelector('.delete-image').addEventListener('click', function(e){
+        e.preventDefault();
+        deleteImage();
     });
 });

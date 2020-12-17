@@ -2,10 +2,12 @@
     namespace App\Models;
 
     use App\Models\Category;
+    use App\Models\Image;
     use App\Models\Location;
     use Cviebrock\EloquentSluggable\Sluggable;
     use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
     use Illuminate\Database\Eloquent\Model;
+    use Storage;
 
     class Property extends Model{
         use Sluggable, SluggableScopeHelpers;
@@ -38,6 +40,14 @@
          */
         public function location(){
             return $this->belongsTo(Location::class, 'id_location', 'id_location');
+        }
+        
+        /**
+         * * Get the images from the folder.
+         * @return [type]
+         */
+        public function images(){
+            return $this->images = Image::getAll("property/$this->folder");
         }
         
         /** @var array - Validation messages and rules. */

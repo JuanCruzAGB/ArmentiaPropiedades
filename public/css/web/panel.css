@@ -246,6 +246,14 @@ textarea.description[disabled] {
     display: none;
 }
 
+.gallery .input-text {
+    display: none;
+}
+
+.gallery .images .gallery-button:last-of-type {
+    margin-bottom: 0 !important;
+}
+
 /* * MD */
 @media(min-width: 768px){
     .tab-menu.vertical .tab-content-list .tab-content {

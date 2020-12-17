@@ -2,6 +2,7 @@
 
 @section('head')
     <meta name="csrf_token" content="{{ csrf_token() }}">
+    <meta name="asset" content="{{ asset('storage') }}">
 
     <!-- Layout CSS -->
     <link href={{ asset('css/layouts/web.css') }} rel="stylesheet">

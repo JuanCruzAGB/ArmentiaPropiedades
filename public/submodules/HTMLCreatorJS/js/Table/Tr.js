@@ -31,7 +31,7 @@ export class Tr{
         classes: [],
     }){
         this.properties = {};
-        this.setIdProperty(properties);
+        this.setIDProperty(properties);
         this.setClassesProperty(properties);
     }
 
@@ -84,7 +84,7 @@ export class Tr{
      * @param {String} [properties.id] Tr ID.
      * @memberof Tr
      */
-    setIdProperty(properties = {
+    setIDProperty(properties = {
         id: 'tr-1',
     }){
         if (properties.hasOwnProperty('id')) {
@@ -99,7 +99,7 @@ export class Tr{
      * @returns {String} The Tr ID.
      * @memberof Tr
      */
-    getIdProperty(){
+    getIDProperty(){
         return this.properties.id;
     }
 

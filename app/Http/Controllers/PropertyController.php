@@ -37,6 +37,9 @@
          */
         public function info($slug){
             $property = Property::findBySlug($slug);
+            $property->category;
+            $property->location;
+            $property->images();
 
             return view('property.info', [
                 'property' => $property,

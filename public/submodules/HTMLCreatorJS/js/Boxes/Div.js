@@ -33,7 +33,7 @@ export class Div{
         classes: [],
     }){
         this.properties = {};
-        this.setIdProperty(properties);
+        this.setIDProperty(properties);
         this.setUrlProperty(properties);
         this.setNameProperty(properties);
         this.setClassesProperty(properties);
@@ -73,7 +73,7 @@ export class Div{
      * @param {String} [properties.id] Div ID.
      * @memberof Div
      */
-    setIdProperty(properties = {
+    setIDProperty(properties = {
         id: 'div-1',
     }){
         if (properties.hasOwnProperty('id')) {
@@ -88,7 +88,7 @@ export class Div{
      * @returns {String}
      * @memberof Div
      */
-    getIdProperty(){
+    getIDProperty(){
         return this.properties.id;
     }
 

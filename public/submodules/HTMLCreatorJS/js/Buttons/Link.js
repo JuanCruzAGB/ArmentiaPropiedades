@@ -17,7 +17,7 @@ export class Link{
      * @param {String} [properties.title] Link title.
      * @param {String[]} [properties.classes] Link class names.
      * @param {Object} [states] Link states:
-     * @param {Boolean} [states.prevenDefault] Link click event prevent default.
+     * @param {Boolean} [states.preventDefault] Link click event prevent default.
      * @param {Object} [callback] Link click callback.
      * @param {Function} [callback.function] Link click callback function.
      * @param {Object} [callback.params] Link click callback params.
@@ -62,7 +62,7 @@ export class Link{
         classes: [],
     }){
         this.properties = {};
-        this.setIdProperty(properties);
+        this.setIDProperty(properties);
         this.setHrefProperty(properties);
         this.setTitleProperty(properties);
         this.setClassesProperty(properties);
@@ -124,7 +124,7 @@ export class Link{
      * @param {String} [properties.id] Link ID.
      * @memberof Link
      */
-    setIdProperty(properties = {
+    setIDProperty(properties = {
         id: 'link-1',
     }){
         if (properties.hasOwnProperty('id')) {
@@ -139,7 +139,7 @@ export class Link{
      * @returns {String}
      * @memberof Link
      */
-    getIdProperty(){
+    getIDProperty(){
         return this.properties.id;
     }
 
@@ -219,7 +219,7 @@ export class Link{
     /**
      * * Set the Link states.
      * @param {Object} [states] Link states:
-     * @param {Boolean} [states.prevenDefault] Link click event prevent default.
+     * @param {Boolean} [states.preventDefault] Link click event prevent default.
      * @memberof Link
      */
     setStates(states = {
@@ -276,7 +276,7 @@ export class Link{
     /**
      * * Set the Link click prevent default status.
      * @param {Object} [states] Link states:
-     * @param {Boolean} [states.prevenDefault] Link click event prevent default.
+     * @param {Boolean} [states.preventDefault] Link click event prevent default.
      * @memberof Link
      */
     setPreventDefaultStatus(states = {
@@ -285,7 +285,7 @@ export class Link{
         if (states.hasOwnProperty('preventDefault')) {
             this.states.preventDefault = states.preventDefault;
         } else {
-            this.states.prevenDefault = false;
+            this.states.preventDefault = false;
         }
     }
 

@@ -49,7 +49,7 @@ export class Form{
         classes: [],
     }){
         this.properties = {};
-        this.setIdProperty(properties);
+        this.setIDProperty(properties);
         this.setActionProperty(properties);
         this.setMethodProperty(properties);
         this.setEnctypeProperty(properties);
@@ -113,7 +113,7 @@ export class Form{
      * @param {String} [properties.id] Form ID.
      * @memberof Form
      */
-    setIdProperty(properties = {
+    setIDProperty(properties = {
         id: 'form-1',
     }){
         if (properties.hasOwnProperty('id')) {
@@ -128,7 +128,7 @@ export class Form{
      * @returns {String}
      * @memberof Form
      */
-    getIdProperty(){
+    getIDProperty(){
         return this.properties.id;
     }
 

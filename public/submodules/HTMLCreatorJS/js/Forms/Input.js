@@ -13,10 +13,12 @@ export class Input{
      * @param {String} [properties.type] Input type.
      * @param {String} [properties.defaultValue] Input default value.
      * @param {String} [properties.placeholder] Input placeholder text.
+     * @param {String[]} [properties.accept] Input mimetype accepted.
      * @param {String[]} [properties.classes] Input class names.
      * @param {Object} [states] Input states:
      * @param {Boolean} [states.checked] Input checked status.
      * @param {Boolean} [states.disabled] Input disabled status.
+     * @param {Boolean} [states.multiple] Input accept multiple files boolean.
      * @memberof Input
      */
     constructor(properties = {
@@ -25,10 +27,12 @@ export class Input{
         type: 'text',
         defaultValue: '',
         placeholder: '',
+        accept: [],
         classes: [],
     }, states = {
         checked: false,
         disabled: false,
+        multiple: false,
     }){
         this.setProperties(properties);
         this.setStates(states);
@@ -43,6 +47,7 @@ export class Input{
      * @param {String} [properties.type] Input type.
      * @param {String} [properties.defaultValue] Input default value.
      * @param {String} [properties.placeholder] Input placeholder text.
+     * @param {String[]} [properties.accept] Input mimetype accepted.
      * @param {String[]} [properties.classes] Input class names.
      * @memberof Input
      */
@@ -52,14 +57,16 @@ export class Input{
         type: 'text',
         defaultValue: '',
         placeholder: '',
+        accept: [],
         classes: [],
     }){
         this.properties = {};
-        this.setIdProperty(properties);
+        this.setIDProperty(properties);
         this.setNameProperty(properties);
         this.setTypeProperty(properties);
         this.setDefaultValueProperty(properties);
         this.setPlaceholderProperty(properties);
+        this.setAcceptProperty(properties);
         this.setClassesProperty(properties);
     }
 
@@ -120,7 +127,7 @@ export class Input{
      * @param {String} [properties.id] Input ID.
      * @memberof Input
      */
-    setIdProperty(properties = {
+    setIDProperty(properties = {
         id: 'input-1',
     }){
         if (properties.hasOwnProperty('id')) {
@@ -135,7 +142,7 @@ export class Input{
      * @returns {String}
      * @memberof Input
      */
-    getIdProperty(){
+    getIDProperty(){
         return this.properties.id;
     }
 
@@ -265,19 +272,56 @@ export class Input{
     }
 
     /**
+     * * Returns the Input placeholder text.
+     * @returns {String}
+     * @memberof Input
+     */
+    getPlaceholderProperty(){
+        return this.properties.placeholder;
+    }
+
+    /**
+     * * Set the Input mimetypes accepted.
+     * @param {Object} [properties] Input properties:
+     * @param {String[]} [properties.accept] Input mimetypes accepted.
+     * @memberof Input
+     */
+    setAcceptProperty(properties = {
+        accept: [],
+    }){
+        if (properties.hasOwnProperty('accept')) {
+            this.properties.accept = properties.accept;
+        } else {
+            this.properties.accept = [];
+        }
+    }
+
+    /**
+     * * Returns the Input mimetypes accepted.
+     * @returns {Array}
+     * @memberof Input
+     */
+    getAcceptProperty(){
+        return this.properties.accept;
+    }
+
+    /**
      * * Set the Input states.
      * @param {Object} [states] Input states:
      * @param {Boolean} [states.checked] Input checked status.
      * @param {Boolean} [states.disabled] Input disabled status.
+     * @param {Boolean} [states.multiple] Input accept multiple files boolean.
      * @memberof Input
      */
     setStates(states = {
         checked: false,
         disabled: false,
+        multiple: false,
     }){
         this.states = {};
         this.setDisabledStatus(states);
         this.setCheckedStatus(states);
+        this.setMultipleStatus(states);
     }
 
     /**
@@ -378,6 +422,31 @@ export class Input{
     }
 
     /**
+     * * Set the Input accept multiple files boolean.
+     * @param {Object} [states] Input states:
+     * @param {Boolean} [states.multiple] Input accept multiple files boolean.
+     * @memberof Input
+     */
+    setMultipleStatus(states = {
+        multiple: false,
+    }){
+        if (states.hasOwnProperty('multiple')) {
+            this.states.multiple = states.multiple;
+        } else {
+            this.states.multiple = false;
+        }
+    }
+
+    /**
+     * * Returns the Input accept multiple files boolean.
+     * @returns {Boolean}
+     * @memberof Input
+     */
+    getMultipleStatus(){
+        return this.states.multiple;
+    }
+
+    /**
      * * Returns the <input> HTML Element.
      * @returns {HTMLElement}
      * @memberof Input
@@ -395,6 +464,15 @@ export class Input{
         this.html.id = this.getProperties('id');
         this.html.name = this.getProperties('name');
         this.html.type = this.getProperties('type');
+        switch (this.getProperties('type')) {
+            case 'file':
+                this.html.multiple = this.getStates('multiple');
+                this.html.accept = '';
+                for (const accepted of this.getProperties('accept')) {
+                    this.html.accept += `,${ accepted }`;
+                }
+                break;
+        }
         this.html.value = this.getProperties('defaultValue');
         this.html.placeholder = this.getProperties('placeholder');
         for (const className of this.getProperties('classes')) {

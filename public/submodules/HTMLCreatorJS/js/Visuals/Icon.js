@@ -32,7 +32,7 @@ export class Icon{
         classes: [],
     }){
         this.properties = {};
-        this.setIdProperty(properties);
+        this.setIDProperty(properties);
         this.setClassesProperty(properties);
     }
 
@@ -86,7 +86,7 @@ export class Icon{
      * @param {String} [properties.id] Icon ID.
      * @memberof Icon
      */
-    setIdProperty(properties = {
+    setIDProperty(properties = {
         id: 'icon-1',
     }){
         if (properties.hasOwnProperty('id')) {
@@ -101,7 +101,7 @@ export class Icon{
      * @returns {String}
      * @memberof Icon
      */
-    getIdProperty(){
+    getIDProperty(){
         return this.properties.id;
     }
 
@@ -145,7 +145,7 @@ export class Icon{
      */
     createHTML(){
         this.html = document.createElement('i');
-        this.html.id = this.getIdProperty();
+        this.html.id = this.getIDProperty();
         for (const className of this.getClassesProperty()) {
             this.html.classList.add(className);
         }

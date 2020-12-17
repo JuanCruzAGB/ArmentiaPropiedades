@@ -39,7 +39,7 @@ export class Button{
         source: undefined,
     }){
         this.properties = {};
-        this.setIdProperty(properties);
+        this.setIDProperty(properties);
         this.setSourceProperty(properties);
     }
 
@@ -93,7 +93,7 @@ export class Button{
      * @param {String} [properties.id] Button ID.
      * @memberof Button
      */
-    setIdProperty(properties = {
+    setIDProperty(properties = {
         id: 'button-1',
     }){
         if (properties.hasOwnProperty('id')) {
@@ -108,7 +108,7 @@ export class Button{
      * @returns {String}
      * @memberof Button
      */
-    getIdProperty(){
+    getIDProperty(){
         return this.properties.id;
     }
 

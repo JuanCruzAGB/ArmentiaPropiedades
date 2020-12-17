@@ -8,34 +8,31 @@ export class Span{
      * * Creates an instance of Span.
      * @param {Object} [properties] Span properties:
      * @param {String} [properties.id] Span ID.
-     * @param {String} [properties.innerHTML] Span inner HTML.
      * @param {String[]} [properties.classes] Span class names.
+     * @param {String} [innerHTML] Span inner HTML.
      * @memberof Span
      */
     constructor(properties = {
         id: 'span-1',
-        innerHTML: 'Hi i\'m an span!',
         classes: [],
-    }){
+    }, innerHTML = 'Hi i\'m an span!'){
         this.setProperties(properties);
-        this.createHTML();
+        this.createHTML(innerHTML);
     }
 
     /**
      * * Set the Span properties.
      * @param {Object} [properties] Span properties:
      * @param {String} [properties.id] Span ID.
-     * @param {String} [properties.innerHTML] Span inner HTML.
      * @param {String[]} [properties.classes] Span class names.
      * @memberof Span
      */
     setProperties(properties = {
         id: 'span-1',
-        innerHTML: 'Hi i\'m an span!',
         classes: [],
     }){
         this.properties = {};
-        this.setIdProperty(properties);
+        this.setIDProperty(properties);
         this.setClassesProperty(properties);
     }
 
@@ -78,8 +75,7 @@ export class Span{
             this.properties[property] = value;
         }
         switch (property) {
-            case 'innerHTML':
-                this.getHTML().innerHTML = this.getProperties('innerHTML');
+            default:
                 break;
         }
     }
@@ -90,7 +86,7 @@ export class Span{
      * @param {String} [properties.id] Span ID.
      * @memberof Span
      */
-    setIdProperty(properties = {
+    setIDProperty(properties = {
         id: 'span-1',
     }){
         if (properties.hasOwnProperty('id')) {
@@ -105,33 +101,8 @@ export class Span{
      * @returns {String}
      * @memberof Span
      */
-    getIdProperty(){
+    getIDProperty(){
         return this.properties.id;
-    }
-
-    /**
-     * * Set the Span inner HTML.
-     * @param {Object} [properties] Span properties:
-     * @param {String} [properties.innerHTML] Span inner HTML.
-     * @memberof Span
-     */
-    setInnerHTMLProperty(properties = {
-        innerHTML: 'Hi i\'m an span!',
-    }){
-        if (properties.hasOwnProperty('innerHTML')) {
-            this.properties.innerHTML = properties.innerHTML;
-        } else {
-            this.properties.innerHTML = 'Hi i\'m an span!';
-        }
-    }
-
-    /**
-     * * Returns the Span inner HTML.
-     * @returns {String}
-     * @memberof Span
-     */
-    getInnerHTMLProperty(){
-        return this.properties.innerHTML;
     }
 
     /**
@@ -170,14 +141,15 @@ export class Span{
 
     /**
      * * Creates the <span> HTML Element.
+     * @param {String} [innerHTML] Span inner HTML.
      * @memberof Span
      */
-    createHTML(){
-        this.html = document.createElement('i');
-        this.html.id = this.getIdProperty();
+    createHTML(innerHTML = 'Hi i\'m an span!'){
+        this.html = document.createElement('span');
+        this.html.id = this.getIDProperty();
         for (const className of this.getClassesProperty()) {
             this.html.classList.add(className);
         }
-        this.html.innerHTML = this.getInnerHTMLProperty();
+        this.html.innerHTML = innerHTML;
     }
 }
