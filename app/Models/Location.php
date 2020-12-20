@@ -32,7 +32,7 @@
                         'name.required' => 'El Nombre es obligatorio.',
                     ],
                 ],
-            ], 'edit' => [
+            ], 'update' => [
                 'rules' => [
                     'name' => 'required',
                 ], 'messages' => [

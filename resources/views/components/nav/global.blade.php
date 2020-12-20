@@ -26,10 +26,17 @@
             <li><a href="/panel" class="nav-link p-0">
                 Panel
             </a></li>
-            <li><a href="/cerrar-sesion" class="nav-link p-0">
-                <i class="link-icon left fas fa-sign-out-alt"></i>
-                <span class="link-text">Cerrar Sesión</span>
-            </a></li>
+            @if (Auth::check())
+                <li><a href="/cerrar-sesion" class="nav-link p-0">
+                    <i class="link-icon left fas fa-sign-out-alt"></i>
+                    <span class="link-text">Cerrar Sesión</span>
+                </a></li>
+            @else
+                <li><a href="/iniciar-sesion" class="nav-link p-0">
+                    <i class="link-icon left fas fa-sign-in-alt"></i>
+                    <span class="link-text">Iniciar Sesión</span>
+                </a></li>
+            @endif
         </ul>
     </div>
 

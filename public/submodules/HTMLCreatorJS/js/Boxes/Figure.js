@@ -1,35 +1,39 @@
+// ? Local repository
+import { Image } from "../Visuals/Image.js";
+
 /**
- * * Div creates an excellent <div>.
+ * * Figure creates an excellent <figure>.
  * @export
- * @class Div
+ * @class Figure
  * @author Juan Cruz Armentia <juancarmentia@gmail.com>
  */
-export class Div{
+export class Figure{
     /**
-     * * Creates an instance of Div.
-     * @param {Object} [properties] Div properties:
-     * @param {String} [properties.id] Div ID.
-     * @param {String[]} [properties.classes] Div class names.
-     * @param {HTMLElement} [innerHTML] Div inner HTML Element.
-     * @memberof Div
+     * * Creates an instance of Figure.
+     * @param {Object} [properties] Figure properties:
+     * @param {String} [properties.id] Figure ID.
+     * @param {String[]} [properties.classes] Figure class names.
+     * @param {Object} [image] Image properties.
+     * @memberof Figure
      */
     constructor(properties = {
-        id: 'div-1',
+        id: 'figure-1',
         classes: [],
-    }, innerHTML = false){
+    }, image = {}){
         this.setProperties(properties);
-        this.createHTML(innerHTML);
+        this.setImage(image);
+        this.createHTML();
     }
 
     /**
-     * * Set the Div properties.
-     * @param {Object} [properties] Div properties:
-     * @param {String} [properties.id] Div ID.
-     * @param {String[]} [properties.classes] Div class names.
-     * @memberof Div
+     * * Set the Figure properties.
+     * @param {Object} [properties] Figure properties:
+     * @param {String} [properties.id] Figure ID.
+     * @param {String[]} [properties.classes] Figure class names.
+     * @memberof Figure
      */
     setProperties(properties = {
-        id: 'div-1',
+        id: 'figure-1',
         classes: [],
     }){
         this.properties = {};
@@ -38,10 +42,10 @@ export class Div{
     }
 
     /**
-     * * Returns the Div properties or an specific property.
+     * * Returns the Figure properties or an specific property.
      * @param {String} [name] Property name.
      * @returns {Object|*}
-     * @memberof Div
+     * @memberof Figure
      */
     getProperties(name = ''){
         if (name && name != '') {
@@ -55,7 +59,7 @@ export class Div{
      * * Check if there is a property.
      * @param {String} name Property name.
      * @returns {Boolean}
-     * @memberof Div
+     * @memberof Figure
      */
     hasProperty(name = ''){
         if (this.properties.hasOwnProperty(name)) {
@@ -66,35 +70,35 @@ export class Div{
     }
 
     /**
-     * * Set the Div ID.
-     * @param {Object} [properties] Div properties:
-     * @param {String} [properties.id] Div ID.
-     * @memberof Div
+     * * Set the Figure ID.
+     * @param {Object} [properties] Figure properties:
+     * @param {String} [properties.id] Figure ID.
+     * @memberof Figure
      */
     setIDProperty(properties = {
-        id: 'div-1',
+        id: 'figure-1',
     }){
         if (properties.hasOwnProperty('id')) {
             this.properties.id = properties.id;
         } else {
-            this.properties.id = 'div-1';
+            this.properties.id = 'figure-1';
         }
     }
 
     /**
-     * * Returns the Div ID.
+     * * Returns the Figure ID.
      * @returns {String}
-     * @memberof Div
+     * @memberof Figure
      */
     getIDProperty(){
         return this.properties.id;
     }
 
     /**
-     * * Set the Div class names.
-     * @param {Object} [properties] Div properties:
-     * @param {String} [properties.classes] Div class names.
-     * @memberof Div
+     * * Set the Figure class names.
+     * @param {Object} [properties] Figure properties:
+     * @param {String} [properties.classes] Figure class names.
+     * @memberof Figure
      */
     setClassesProperty(properties = {
         classes: [],
@@ -107,32 +111,49 @@ export class Div{
     }
 
     /**
-     * * Returns the Div class names.
+     * * Returns the Figure class names.
      * @returns {Array}
-     * @memberof Div
+     * @memberof Figure
      */
     getClassesProperty(){
         return this.properties.classes;
     }
 
     /**
-     * * Returns the <div> HTML Element.
+     * * Set the Figure Image.
+     * @param {Object} [image] Image properties.
+     * @memberof Figure
+     */
+    setImage(image = {}){
+        this.image = new Image(((image.hasOwnProperty('properties')) ? image.properties : {}));
+    }
+
+    /**
+     * * Returns the Figure Image.
+     * @returns {Image}
+     * @memberof Figure
+     */
+    getImage(){
+        return this.image;
+    }
+
+    /**
+     * * Returns the <figure> HTML Element.
      * @returns {HTMLElement}
-     * @memberof Div
+     * @memberof Figure
      */
     getHTML(){
         return this.html;
     }
 
     /**
-     * * Creates the <div> HTML Element.
-     * @param {HTMLElement} [innerHTML] Div inner HTML Element.
-     * @memberof Div
+     * * Creates the <figure> HTML Element.
+     * @memberof Figure
      */
-    createHTML(innerHTML = false){
-        this.html = document.createElement('div');
-        if (innerHTML) {
-            this.html.appendChild(innerHTML);
+    createHTML(){
+        this.html = document.createElement('figure');
+        if (this.getImage()) {
+            this.html.appendChild(this.getImage().getHTML());
         }
         for (const className of this.getClassesProperty()) {
             this.html.classList.add(className);
@@ -142,7 +163,7 @@ export class Div{
     /**
      * * Append an HTML Element.
      * @param {HTMLElement} html New child.
-     * @memberof Div
+     * @memberof Figure
      */
     appendChild(html){
         this.html.appendChild(html);
@@ -152,7 +173,7 @@ export class Div{
      * * Insert an HTML Element before another.
      * @param {HTMLElement} newHTML New child.
      * @param {HTMLElement} oldHTML New child.
-     * @memberof Div
+     * @memberof Figure
      */
     insertBefore(newHTML, oldHTML){
         this.html.insertBefore(newHTML, oldHTML);

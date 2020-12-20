@@ -4,6 +4,7 @@
     use App\Models\Category;
     use App\Models\Location;
     use App\Models\Property;
+    use Auth;
     use Illuminate\Http\Request;
 
     class WebController extends Controller{

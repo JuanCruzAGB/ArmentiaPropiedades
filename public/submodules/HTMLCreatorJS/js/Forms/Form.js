@@ -23,7 +23,7 @@ export class Form{
         id: 'form-1',
         action: '#',
         method: 'post',
-        enctype: 'application/x-www-form-urlencoded',
+        enctype: false,
         classes: [],
     }, inputs = []){
         this.setProperties(properties);
@@ -45,7 +45,7 @@ export class Form{
         id: 'form-1',
         action: '#',
         method: 'post',
-        enctype: 'application/x-www-form-urlencoded',
+        enctype: false,
         classes: [],
     }){
         this.properties = {};
@@ -102,7 +102,11 @@ export class Form{
                 this.html.method = this.getProperties('method');
                 break;
             case 'enctype':
-                this.html.enctype = this.getProperties('enctype');
+                if (this.getProperties('enctype')) {
+                    this.html.enctype = this.getProperties('enctype');
+                } else if (this.html.hasAttribute('enctype')) {
+                    this.html.removeAttribute('enctype');
+                }
                 break;
         }
     }
@@ -189,12 +193,12 @@ export class Form{
      * @memberof Form
      */
     setEnctypeProperty(properties = {
-        enctype: 'application/x-www-form-urlencoded',
+        enctype: false,
     }){
         if (properties.hasOwnProperty('enctype')) {
             this.properties.enctype = properties.enctype;
         } else {
-            this.properties.enctype = 'application/x-www-form-urlencoded';
+            this.properties.enctype = false;
         }
     }
 
@@ -277,7 +281,11 @@ export class Form{
         this.html.id = this.getProperties('id');
         this.html.action = this.getProperties('action');
         this.html.method = this.getProperties('method');
-        this.html.enctype = this.getProperties('enctype');
+        if (this.getProperties('enctype')) {
+            this.html.enctype = this.getProperties('enctype');
+        } else if (this.html.hasAttribute('enctype')) {
+            this.html.removeAttribute('enctype');
+        }
         for (const className of this.getProperties('classes')) {
             this.html.classList.add(className);
         }

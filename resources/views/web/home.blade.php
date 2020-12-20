@@ -1,7 +1,7 @@
 @extends('layouts.web')
 
 @section('title')
-    Armentia Propiedades - Eslogan
+    Armentia Propiedades - En los negocios no se consigue lo que se merece, se consigue lo que se negocia
 @endsection
 
 @section('css')

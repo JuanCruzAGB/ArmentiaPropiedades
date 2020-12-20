@@ -2,7 +2,9 @@
     namespace App\Http\Controllers;
 
     use App\Models\Category;
+    use Cviebrock\EloquentSluggable\Services\SlugService;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Validator;
 
     class CategoryController extends Controller{
         /**
@@ -14,6 +16,7 @@
             $input = (object) $request->all();
             
             $validator = Validator::make($request->all(), Category::$validation['create']['rules'], Category::$validation['create']['messages']['es']);
+
             if ($validator->fails()) {
                 return redirect("/panel#categorias?adding")->withErrors($validator)->withInput();
             }

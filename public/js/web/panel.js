@@ -5,39 +5,75 @@ import { Input } from "../../submodules/HTMLCreatorJS/js/Forms/Input.js";
 import { Form } from "../../submodules/HTMLCreatorJS/js/Forms/Form.js";
 import { Link } from "../../submodules/HTMLCreatorJS/js/Buttons/Link.js";
 import { Icon } from "../../submodules/HTMLCreatorJS/js/Visuals/Icon.js";
+import { HTMLCreator as HTMLCreatorJS } from "../../submodules/HTMLCreatorJS/js/HTMLCreator.js";
 
 // ? Local repositories
 import { loadImages, removeImages, confirmImage, cancelImage, deleteImage, showTrashBtn, hideTrashBtn } from "../gallery.js";
 
 for (const key in categories) {
     const category = categories[key];
-    let input = createInput({from: 'categorias', key: key, object: category}),
-        updateBtn = createUpdateBtn({from: 'categorias', key: key, object: category}),
-        deleteBtn = createDeleteBtn({from: 'categorias', key: key, object: category}),
-        form = createConfirmForm({from: 'categorias', key: key, object: category}),
-        confirmBtn = createConfirmBtn({from: 'categorias', key: key, object: category}),
-        cancelBtn = createCancelBtn({from: 'categorias', key: key, object: category});
+
     let idCategorySpan = document.createElement('span');
     idCategorySpan.innerHTML = category.id_category;
     category.id_category = {
         text: category.id_category,
         html: idCategorySpan,
     };
+
+    let form = createForm({
+        id: `categorias-update-form-${ key }`,
+        from: 'categoria',
+        key: key,
+        action: `/categoria/${ category.slug }/actualizar`,
+        method: 'PUT',
+        classes: [],
+        inputs: [{
+            properties: {
+                id: `categoria-name-${ key }`,
+                name: `name`,
+                type: 'text',
+                defaultValue: category.name,
+                placeholder: `Nombre`,
+                classes: ['form-input', 'p-2'],
+            }, states: {
+                disabled: true,
+    }}]});
     category.name = {
         text: category.name,
-        input: input,
-        html: input.getHTML(),
+        form: form,
+        html: form.getHTML(),
     };
+    
     let updatedAtSpan = document.createElement('span');
     updatedAtSpan.innerHTML = parseDate(category.updated_at);
     category.updated_at = {
         text: category.updated_at,
         html: updatedAtSpan,
     };
+
+    let updateBtn = createUpdateBtn({from: 'categorias', key: key, object: category});
+    let deleteBtn = createDeleteBtn({from: 'categorias', key: key, object: category});
+    let confirmForm = createForm({
+        id: `categorias-confirm-form-${ key }`,
+        from: 'categoria',
+        key: key,
+        action: `/categoria/${ category.slug }/borrar`,
+        method: 'DELETE',
+        classes: ['confirm-form', 'd-none'],
+        inputs: [{
+            properties: {
+                id: `categoria-message-${ key }`,
+                name: `message`,
+                type: 'text',
+                classes: ['form-input', 'p-2'],
+                placeholder: 'BORRAR',
+    }}]});
+    let confirmBtn = createConfirmBtn({from: 'categorias', key: key, object: category});
+    let cancelBtn = createCancelBtn({from: 'categorias', key: key, object: category});
     let divCategory = document.createElement('div');
     divCategory.appendChild(updateBtn.getHTML());
     divCategory.appendChild(deleteBtn.getHTML());
-    divCategory.appendChild(form.getHTML());
+    divCategory.appendChild(confirmForm.getHTML());
     divCategory.appendChild(confirmBtn.getHTML());
     divCategory.appendChild(cancelBtn.getHTML());
     category.actions = {
@@ -47,45 +83,65 @@ for (const key in categories) {
 
 for (const key in properties) {
     const property = properties[key];
-    let seeMoreBtn = createSeeMoreBtn({from: 'propiedades', object: property}),
-        deleteBtn = createDeleteBtn({from: 'propiedades', key: key, object: property}),
-        form = createConfirmForm({from: 'propiedades', key: key, object: property}),
-        confirmBtn = createConfirmBtn({from: 'propiedades', key: key, object: property}),
-        cancelBtn = createCancelBtn({from: 'propiedades', key: key, object: property});
+    
     let idPropertySpan = document.createElement('span');
     idPropertySpan.innerHTML = property.id_property;
     property.id_property = {
         text: property.id_property,
         html: idPropertySpan,
     }
+    
     let nameSpan = document.createElement('span');
     nameSpan.innerHTML = property.name;
     property.name = {
         text: property.name,
         html: nameSpan,
     }
+
     let categoryNameSpan = document.createElement('span');
     categoryNameSpan.innerHTML = property.category.name;
     property.category.name = {
         text: property.category.name,
         html: categoryNameSpan,
     }
+
     let locationNameSpan = document.createElement('span');
     locationNameSpan.innerHTML = property.location.name;
     property.location.name = {
         text: property.location.name,
         html: locationNameSpan,
     }
+
     let updatedAtSpan = document.createElement('span');
     updatedAtSpan.innerHTML = parseDate(property.updated_at);
     property.updated_at = {
         text: property.updated_at,
         html: updatedAtSpan,
     }
+
+    let seeMoreBtn = createSeeMoreBtn({from: 'propiedades', object: property});
+    let deleteBtn = createDeleteBtn({from: 'propiedades', key: key, object: property});
+    let confirmForm = createForm({
+        id: `propiedades-confirm-form-${ key }`,
+        from: 'propiedad',
+        key: key,
+        action: `/propiedad/${ property.slug }/borrar`,
+        method: 'DELETE',
+        classes: ['confirm-form', 'd-none'],
+        inputs: [{
+            properties: {
+                id: `propiedad-message-${ key }`,
+                name: `message`,
+                type: 'text',
+                classes: ['form-input', 'p-2'],
+                placeholder: 'BORRAR',
+    }}]});
+    let confirmBtn = createConfirmBtn({from: 'propiedades', key: key, object: property});
+    let cancelBtn = createCancelBtn({from: 'propiedades', key: key, object: property});
     let divProperty = document.createElement('div');
     divProperty.appendChild(seeMoreBtn.getHTML());
     divProperty.appendChild(deleteBtn.getHTML());
-    divProperty.appendChild(form.getHTML());
+    divProperty.appendChild(confirmForm.getHTML());
     divProperty.appendChild(confirmBtn.getHTML());
     divProperty.appendChild(cancelBtn.getHTML());
     property.actions = {
@@ -95,35 +151,79 @@ for (const key in properties) {
 
 for (const key in locations) {
     const location = locations[key];
-    let input = createInput({from: 'ubicaciones', key: key, object: location}),
-        favBtn = createFavBtn({from: 'ubicaciones', key: key, object: location}),
-        updateBtn = createUpdateBtn({from: 'ubicaciones', key: key, object: location}),
-        deleteBtn = createDeleteBtn({from: 'ubicaciones', key: key, object: location}),
-        form = createConfirmForm({from: 'ubicaciones', key: key, object: location}),
-        confirmBtn = createConfirmBtn({from: 'ubicaciones', key: key, object: location}),
-        cancelBtn = createCancelBtn({from: 'ubicaciones', key: key, object: location});
+
     let idLocationSpan = document.createElement('span');
     idLocationSpan.innerHTML = location.id_location;
     location.id_location = {
         text: location.id_location,
         html: idLocationSpan,
     }
-    location.name = {
-        text: location.name,
-        input: input,
-        html: input.getHTML(),
-    }
+    
     let updatedAtSpan = document.createElement('span');
     updatedAtSpan.innerHTML = parseDate(location.updated_at);
     location.updated_at = {
         text: location.updated_at,
         html: updatedAtSpan,
     }
+    
+    let form = createForm({
+        id: `ubicaciones-update-form-${ key }`,
+        from: 'ubicacion',
+        key: key,
+        action: `/ubicacion/${ location.slug }/actualizar`,
+        method: 'PUT',
+        classes: [],
+        inputs: [{
+            properties: {
+                id: `ubicacion-name-${ key }`,
+                name: `name`,
+                type: 'text',
+                defaultValue: location.name,
+                placeholder: `Nombre`,
+                classes: ['form-input', 'p-2'],
+            }, states: {
+                disabled: true,
+    }}]});
+    location.name = {
+        text: location.name,
+        form: form,
+        html: form.getHTML(),
+    };
+
+    let favForm = createForm({
+        id: `ubicaciones-fav-form-${ key }`,
+        from: 'ubicacion',
+        key: key,
+        action: `/ubicacion/${ location.slug }/favorito`,
+        method: 'PUT',
+        classes: ['fav-form', 'd-none'],
+        inputs: []});
+    let favBtn = createFavBtn({from: 'ubicaciones', key: key, object: location});
+    let updateBtn = createUpdateBtn({from: 'ubicaciones', key: key, object: location});
+    let deleteBtn = createDeleteBtn({from: 'ubicaciones', key: key, object: location});
+    let confirmForm = createForm({
+        id: `ubicaciones-confirm-form-${ key }`,
+        from: 'ubicacion',
+        key: key,
+        action: `/ubicacion/${ location.slug }/borrar`,
+        method: 'DELETE',
+        classes: ['confirm-form', 'd-none'],
+        inputs: [{
+            properties: {
+                id: `ubicacion-message-${ key }`,
+                name: `message`,
+                type: 'text',
+                classes: ['form-input', 'p-2'],
+                placeholder: 'BORRAR',
+    }}]});
+    let confirmBtn = createConfirmBtn({from: 'ubicaciones', key: key, object: location});
+    let cancelBtn = createCancelBtn({from: 'ubicaciones', key: key, object: location});
     let divLocation = document.createElement('div');
+    divLocation.appendChild(favForm.getHTML());
     divLocation.appendChild(favBtn.getHTML());
     divLocation.appendChild(updateBtn.getHTML());
     divLocation.appendChild(deleteBtn.getHTML());
-    divLocation.appendChild(form.getHTML());
+    divLocation.appendChild(confirmForm.getHTML());
     divLocation.appendChild(confirmBtn.getHTML());
     divLocation.appendChild(cancelBtn.getHTML());
     location.actions = {
@@ -206,13 +306,19 @@ function favFunctionCallback(params) {
         params.link.getHTML().children[0].classList.add('fas');
         params.link.getHTML().children[0].classList.remove('far');
     }
+    sendForm(document.querySelector(`#${ params.from } #tr-${ params.key } .actions form#${ params.from }-fav-form-${ params.key }`));
 }
 
 /**
  * * Just the confirm function callback.
  */
 function confirmFunctionCallback(params) {
-    console.log(params);
+    let tr = document.querySelector(`#${ params.from } #tr-${ params.key }`);
+    if (tr.classList.contains('deleting')) {
+        sendForm(document.querySelector(`#${ params.from } #tr-${ params.key } .actions form#${ params.from }-confirm-form-${ params.key }`));
+    } else {
+        sendForm(document.querySelector(`#${ params.from } #tr-${ params.key } form`));
+    }
 }
 
 /**
@@ -229,6 +335,44 @@ function cancelFunctionCallback(params) {
 }
 
 /**
+ * * Creates the object Form.
+ * @param {Object} params
+ * @returns
+ */
+function createForm(params){
+    params.inputs.push({
+        properties: {
+            id: `${ params.from }-token-${ params.key }`,
+            name: `_token`,
+            type: 'hidden',
+            defaultValue: document.querySelector('meta[name=csrf_token]').content,
+            placeholder: `_token`,
+            classes: [],
+        }, states: {
+            //
+    }});
+    params.inputs.push({
+        properties: {
+            id: `${ params.from }-method-${ params.key }`,
+            name: `_method`,
+            type: 'hidden',
+            defaultValue: params.method,
+            placeholder: `_method`,
+            classes: [],
+        }, states: {
+            //
+    }});
+    return new HTMLCreatorJS('form', {
+        properties: {
+            id: params.id,
+            action: params.action,
+            method: 'POST',
+            classes: params.classes,
+        }, inputs: params.inputs,
+    });
+}
+
+/**
  * * Creates an update button.
  * @param {Object} properties Button properties:
  * @param {String} properties.from Who executes the function.
@@ -241,19 +385,20 @@ function createUpdateBtn(properties = {
     key: '',
     object: undefined,
 }){
-    let icon = new Icon({
-        classes: ['icon', 'fas', 'fa-pen'],
+    return new HTMLCreatorJS('a', {
+        properties: {
+            id: `${ properties.from }-${ properties.key }-button`,
+            title: 'Actualizar',
+            href: `#${ properties.from }?name=${ properties.object.slug }&updating`,
+            classes: ['update-button', 'btn', 'btn-uno-transparent', 'btn-icon', 'mr-md-1'],
+        }, states: { }, callback: {
+            function: updateFunctionCallback,
+            params: properties,
+        }, innerHTML: new HTMLCreatorJS('icon', {
+            properties: {
+                classes: ['icon', 'fas', 'fa-pen'],
+        }}).getHTML()
     });
-    let btn = new Link({
-        id: `${ properties.from }-${ properties.key }-button`,
-        title: 'Actualizar',
-        href: `#${ properties.from }?name=${ properties.object.slug }&updating`,
-        classes: ['update-button', 'btn', 'btn-uno-transparent', 'btn-icon', 'mr-md-1'],
-    }, { }, {
-        function: updateFunctionCallback,
-        params: properties,
-    }, icon.getHTML());
-    return btn;
 }
 
 /**
@@ -269,19 +414,20 @@ function createDeleteBtn(properties = {
     key: '',
     object: undefined,
 }){
-    let icon = new Icon({
-        classes: ['icon', 'fas', 'fa-trash'],
+    return new HTMLCreatorJS('a', {
+        properties: {
+            id: `${ properties.from }-${ properties.key }-button`,
+            title: 'Borrar',
+            href: `#${ properties.from }?name=${ properties.object.slug }&deleting`,
+            classes: ['delete-button', 'btn', 'btn-uno-transparent', 'btn-icon', 'mr-md-1'],
+        }, states: { }, callback: {
+            function: deleteFunctionCallback,
+            params: properties,
+        }, innerHTML: new HTMLCreatorJS('icon', {
+            properties: {
+                classes: ['icon', 'fas', 'fa-trash'],
+        }}).getHTML()
     });
-    let btn = new Link({
-        id: `${ properties.from }-${ properties.key }-button`,
-        title: 'Borrar',
-        href: `#${ properties.from }?name=${ properties.object.slug }&deleting`,
-        classes: ['delete-button', 'btn', 'btn-uno-transparent', 'btn-icon', 'mr-md-1'],
-    }, { }, {
-        function: deleteFunctionCallback,
-        params: properties,
-    }, icon.getHTML());
-    return btn;
 }
 
 /**
@@ -297,19 +443,20 @@ function createSeeMoreBtn(properties = {
     key: '',
     object: undefined,
 }){
-    let icon = new Icon({
-        classes: ['icon', 'fas', 'fa-eye'],
+    return new HTMLCreatorJS('a', {
+        properties: {
+            id: `${ properties.from }-${ properties.key }-button`,
+            href: `#propiedades?name=${ properties.object.slug }`,
+            title: 'Ver más',
+            classes: ['see-button', 'btn', 'btn-uno-transparent', 'btn-icon', 'mr-md-1'],
+        }, states: { }, callback: {
+            function: seeMoreFunctionCallback,
+            params: properties,
+        }, innerHTML: new HTMLCreatorJS('icon', {
+            properties: {
+                classes: ['icon', 'fas', 'fa-eye'],
+        }}).getHTML()
     });
-    let btn = new Link({
-        id: `${ properties.from }-${ properties.key }-button`,
-        href: `#propiedades?name=${ properties.object.slug }`,
-        title: 'Ver más',
-        classes: ['see-button', 'btn', 'btn-uno-transparent', 'btn-icon', 'mr-md-1'],
-    }, { }, {
-        function: seeMoreFunctionCallback,
-        params: properties,
-    }, icon.getHTML());
-    return btn;
 }
 
 /**
@@ -325,19 +472,20 @@ function createFavBtn(properties = {
     key: '',
     object: undefined,
 }){
-    let icon = new Icon({
-        classes: ['icon', ((properties.object.favorite) ? 'fas' : 'far'), 'fa-star'],
+    return new HTMLCreatorJS('a', {
+        properties: {
+            id: `${ properties.from }-${ properties.key }-button`,
+            title: 'Agregar a favorito',
+            href: `#${ properties.from }`,
+            classes: ['fav-button', 'btn', 'btn-uno-transparent', 'btn-icon', 'mr-md-1'],
+        }, states: { }, callback: {
+            function: favFunctionCallback,
+            params: properties,
+        }, innerHTML: new HTMLCreatorJS('icon', {
+            properties: {
+                classes: ['icon', ((properties.object.favorite) ? 'fas' : 'far'), 'fa-star'],
+            }}).getHTML()
     });
-    let btn = new Link({
-        id: `${ properties.from }-${ properties.key }-button`,
-        title: 'Agregar a favorito',
-        href: `#${ properties.from }`,
-        classes: ['fav-button', 'btn', 'btn-uno-transparent', 'btn-icon', 'mr-md-1'],
-    }, { }, {
-        function: favFunctionCallback,
-        params: properties,
-    }, icon.getHTML());
-    return btn;
 }
 
 /**
@@ -353,20 +501,21 @@ function createConfirmBtn(properties = {
     key: '',
     object: undefined,
 }){
-    let icon = new Icon({
-        classes: ['icon', 'fas', 'fa-check'],
+    return new HTMLCreatorJS('a', {
+            properties: {
+            id: `${ properties.from }-${ properties.key }-button`,
+            title: 'Confirmar',
+            classes: ['confirm-button', 'btn', 'btn-uno-transparent', 'btn-icon', 'mr-md-1', 'd-none'],
+        }, states: {
+            preventDefault: true,
+        }, callback: {
+            function: confirmFunctionCallback,
+            params: properties,
+        }, innerHTML: new HTMLCreatorJS('icon', {
+            properties: {
+                classes: ['icon', 'fas', 'fa-check'],
+        }}).getHTML()
     });
-    let btn = new Link({
-        id: `${ properties.from }-${ properties.key }-button`,
-        title: 'Confirmar',
-        classes: ['confirm-button', 'btn', 'btn-uno-transparent', 'btn-icon', 'mr-md-1', 'd-none'],
-    }, {
-        preventDefault: true,
-    }, {
-        function: confirmFunctionCallback,
-        params: properties,
-    }, icon.getHTML());
-    return btn;
 }
 
 /**
@@ -382,94 +531,28 @@ function createCancelBtn(properties = {
     key: '',
     object: undefined,
 }){
-    let icon = new Icon({
-        classes: ['icon', 'fas', 'fa-times'],
+    return new HTMLCreatorJS('a', {
+        properties: {
+            id: `${ properties.from }-${ properties.key }-button`,
+            title: 'Cancelar',
+            href: `#${ properties.from }`,
+            classes: ['cancel-button', 'btn', 'btn-uno-transparent', 'btn-icon', 'mr-md-1', 'd-none'],
+        }, states: { }, callback: {
+            function: cancelFunctionCallback,
+            params: properties,
+        }, innerHTML: new HTMLCreatorJS('icon', {
+            properties: {
+                classes: ['icon', 'fas', 'fa-times'],
+        }}).getHTML()
     });
-    let btn = new Link({
-        id: `${ properties.from }-${ properties.key }-button`,
-        title: 'Cancelar',
-        href: `#${ properties.from }`,
-        classes: ['cancel-button', 'btn', 'btn-uno-transparent', 'btn-icon', 'mr-md-1', 'd-none'],
-    }, { }, {
-        function: cancelFunctionCallback,
-        params: properties,
-    }, icon.getHTML());
-    return btn;
 }
 
 /**
- * * Creates a confirm form.
- * @param {Object} properties Form properties:
- * @param {String} properties.from Who executes the function.
- * @param {String} properties.key
- * @param {Object} properties.object Object to get data.
- * @returns {Object}
+ * * Send a form.
+ * @param {HTMLElement} form
  */
-function createConfirmForm(properties = {
-    from: '',
-    key: '',
-    object: undefined,
-}){
-    let form = new Form({
-        id: `${ properties.from }-form-${ properties.key }`,
-        action: '#',
-        classes: ['confirm-form', 'd-none'],
-    }, [{
-        properties: {
-            id: `${ properties.from }-csrf-${ properties.key }`,
-            name: `csrf_token`,
-            type: 'hidden',
-            defaultValue: document.querySelector('meta[name=csrf_token]').content,
-    }}, {
-        properties: {
-            id: `${ properties.from }-method-${ properties.key }`,
-            name: `method`,
-            type: 'hidden',
-            defaultValue: 'PUT',
-    }}, {
-        properties: {
-            id: `${ properties.from }-input-${ properties.key }`,
-            name: `message`,
-            type: 'text',
-            classes: ['form-input', 'p-2'],
-            placeholder: 'BORRAR',
-    }}]);
-    return form;
-}
-
-/**
- * * Creates a confirm form.
- * @param {Object} properties Input properties:
- * @param {String} properties.from Who executes the function.
- * @param {String} properties.key
- * @param {Object} properties.object Object to get data.
- * @returns {Object}
- */
-function createInput(properties = {
-    from: '',
-    key: '',
-    object: undefined,
-}){
-    let id;
-    switch (properties.from) {
-        case 'categorias':
-            id = properties.object.id_category;
-            break;
-        case 'ubicaciones':
-            id = properties.object.id_location;
-            break;
-    }
-    let input = new Input({
-        id: `${ properties.from }-${ id }`,
-        name: `name`,
-        type: 'text',
-        defaultValue: `${ properties.object.name }`,
-        placeholder: `Nombre`,
-        classes: ['form-input', 'p-2'],
-    }, {
-        disabled: true,
-    });
-    return input;
+function sendForm(form){
+    form.submit();
 }
 
 /**
@@ -505,7 +588,7 @@ function changeView(from, viewName, object = undefined) {
  */
 function enableAdd(){
     let from = URL.findHashParameter(),
-        input, confirmBtn, cancelBtn;
+        form, input, confirmBtn, cancelBtn;
     switch (from) {
         case 'propiedades':
             hideTrashBtn(document.querySelector('.gallery .selected:not(.gallery-button) .buttons'));
@@ -519,14 +602,24 @@ function enableAdd(){
             showConfirmBtns(document.querySelector(`#${ from } .details-data .floating-menu.right`));
             break;
         case 'ubicaciones':
-            input = new Input({
-                id: `ubicaciones-${ tables.ubicaciones.table.getData().length }`,
-                name: `name`,
-                type: 'text',
-                defaultValue: '',
-                placeholder: `Nombre`,
-                classes: ['form-input', 'p-2'],
-            }, { });
+            form = createForm({
+                id: `ubicaciones-add-form-${ params.key }`,
+                from: 'ubicacion',
+                key: tables.ubicaciones.table.getData().length + 1,
+                action: '/ubicacion/crear',
+                method: 'POST',
+                classes: [],
+                inputs: [{
+                    properties: {
+                        id: `ubicacion-name-${ tables.ubicaciones.table.getData().length + 1 }`,
+                        name: `name`,
+                        type: 'text',
+                        defaultValue: '',
+                        placeholder: `Nombre`,
+                        classes: ['form-input', 'p-2'],
+                    }, states: {
+                        //
+            }}]});
             let divLocation = document.createElement('div');
             confirmBtn = createConfirmBtn({from: 'ubicaciones', key: tables.ubicaciones.table.getData().length});
             cancelBtn = createCancelBtn({from: 'ubicaciones', key: tables.ubicaciones.table.getData().length});
@@ -538,8 +631,8 @@ function enableAdd(){
                     html: document.createElement('span'),
                 }, name: {
                     text: '',
-                    input: input,
-                    html: input.getHTML(),
+                    form: form,
+                    html: form.getHTML(),
                 }, updated_at: {
                     text: '',
                     html: document.createElement('span'),
@@ -552,14 +645,24 @@ function enableAdd(){
             hideAddButton();
             break;
         default:
-            input = new Input({
-                id: `categorias-${ tables.categorias.table.getData().length }`,
-                name: `name`,
-                type: 'text',
-                defaultValue: '',
-                placeholder: `Nombre`,
-                classes: ['form-input', 'p-2'],
-            }, { });
+            form = createForm({
+                id: `categorias-add-form-${ params.key }`,
+                from: 'categoria',
+                key: tables.categorias.table.getData().length + 1,
+                action: '/categoria/crear',
+                method: 'POST',
+                classes: [],
+                inputs: [{
+                    properties: {
+                        id: `ubicacion-name-${ tables.categorias.table.getData().length + 1 }`,
+                        name: `name`,
+                        type: 'text',
+                        defaultValue: '',
+                        placeholder: `Nombre`,
+                        classes: ['form-input', 'p-2'],
+                    }, states: {
+                        //
+            }}]});
             let divCategory = document.createElement('div');
             confirmBtn = createConfirmBtn({from: 'categorias', key: tables.categorias.table.getData().length});
             cancelBtn = createCancelBtn({from: 'categorias', key: tables.categorias.table.getData().length});
@@ -571,8 +674,8 @@ function enableAdd(){
                     html: document.createElement('span'),
                 }, name: {
                     text: '',
-                    input: input,
-                    html: input.getHTML(),
+                    form: form,
+                    html: form.getHTML(),
                 }, updated_at: {
                     text: '',
                     html: document.createElement('span'),
@@ -685,14 +788,14 @@ function disableUpdate(from, key){
             document.querySelector(`#${ from } tbody tr#tr-${ key }`).classList.remove('updating');
             input = document.querySelector(`#${ from } tbody tr#tr-${ key } [name=name]`);
             input.disabled = true;
-            input.value = locations[key].name.input.getDefaultValueProperty();
+            input.value = locations[key].name.form.getInputs()[0].getDefaultValueProperty();
             hideConfirmBtns(document.querySelector(`#${ from } tbody tr#tr-${ key } td:last-child div`));
             break;
         default:
             document.querySelector(`#${ from } tbody tr#tr-${ key }`).classList.remove('updating');
             input = document.querySelector(`#${ from } tbody tr#tr-${ key } [name=name]`);
             input.disabled = true;
-            input.value = categories[key].name.input.getDefaultValueProperty();
+            input.value = categories[key].name.form.getInputs()[0].getDefaultValueProperty();
             hideConfirmBtns(document.querySelector(`#${ from } tbody tr#tr-${ key } td:last-child div`));
             break;
     }
@@ -729,19 +832,21 @@ function enableDelete(from, key){
  * @param {String} key
  */
 function disableDelete(from, key){
-    let input;
     switch (from) {
         case 'propiedades':
+            document.querySelector(`#${ from } #tr-${ key } .actions [name=message]`).value = '';
             document.querySelector(`#${ from } tbody tr#tr-${ key }`).classList.remove('deleting');
             hideConfirmBtns(document.querySelector(`#${ from } tbody tr#tr-${ key } td:last-child div`));
             hideConfirmForm(document.querySelector(`#${ from } tbody tr#tr-${ key } td:last-child div`));
             break;
         case 'ubicaciones':
+            document.querySelector(`#${ from } #tr-${ key } .actions [name=message]`).value = '';
             document.querySelector(`#${ from } tbody tr#tr-${ key }`).classList.remove('deleting');
             hideConfirmBtns(document.querySelector(`#${ from } tbody tr#tr-${ key } td:last-child div`));
             hideConfirmForm(document.querySelector(`#${ from } tbody tr#tr-${ key } td:last-child div`));
             break;
         default:
+            document.querySelector(`#${ from } #tr-${ key } .actions [name=message]`).value = '';
             document.querySelector(`#${ from } tbody tr#tr-${ key }`).classList.remove('deleting');
             hideConfirmBtns(document.querySelector(`#${ from } tbody tr#tr-${ key } td:last-child div`));
             hideConfirmForm(document.querySelector(`#${ from } tbody tr#tr-${ key } td:last-child div`))

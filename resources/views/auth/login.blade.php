@@ -15,11 +15,12 @@
 
 @section('main')
     <section id="login" class="form col-12 col-md-8 col-xl-6 p-5">
-        <form action="#">
+        <form action="/login" method="post">
+            @csrf
             <div class="row px-xl-5">
                 <div class="input-group col-12 mb-3 p-0" title="El Correo es obligatorio">
                     <label for="email" class="input-name Work-Sans"><span class="first-letter">C</span>orreo <span class="asterisk color-uno">*</span></label>
-                    <input class="input-field" type="email" name="email" id="email">
+                    <input class="input-field" type="email" name="email" id="email" value="{{ old('email') }}">
                 </div>
                 <div class="input-group col-12 mb-3 p-0" title="La Contraseña es obligatorio">
                     <label for="password" class="input-name Work-Sans"><span class="first-letter">C</span>ontraseña <span class="asterisk color-uno">*</span></label>

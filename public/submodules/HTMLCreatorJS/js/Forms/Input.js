@@ -473,7 +473,7 @@ export class Input{
                 }
                 break;
         }
-        this.html.value = this.getProperties('defaultValue');
+        this.html.setAttribute('value', this.getProperties('defaultValue'));
         this.html.placeholder = this.getProperties('placeholder');
         for (const className of this.getProperties('classes')) {
             this.html.classList.add(className);

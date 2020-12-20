@@ -1,35 +1,39 @@
+// ? Local repository
+import { Title } from "../Texts/Title.js";
+
 /**
- * * Div creates an excellent <div>.
+ * * Header creates an excellent <header>.
  * @export
- * @class Div
+ * @class Header
  * @author Juan Cruz Armentia <juancarmentia@gmail.com>
  */
-export class Div{
+export class Header{
     /**
-     * * Creates an instance of Div.
-     * @param {Object} [properties] Div properties:
-     * @param {String} [properties.id] Div ID.
-     * @param {String[]} [properties.classes] Div class names.
-     * @param {HTMLElement} [innerHTML] Div inner HTML Element.
-     * @memberof Div
+     * * Creates an instance of Header.
+     * @param {Object} [properties] Header properties:
+     * @param {String} [properties.id] Header ID.
+     * @param {String[]} [properties.classes] Header class names.
+     * @param {Object} [title] Title properties.
+     * @memberof Header
      */
     constructor(properties = {
-        id: 'div-1',
+        id: 'header-1',
         classes: [],
-    }, innerHTML = false){
+    }, title = {}){
         this.setProperties(properties);
-        this.createHTML(innerHTML);
+        this.setTitle(title);
+        this.createHTML();
     }
 
     /**
-     * * Set the Div properties.
-     * @param {Object} [properties] Div properties:
-     * @param {String} [properties.id] Div ID.
-     * @param {String[]} [properties.classes] Div class names.
-     * @memberof Div
+     * * Set the Header properties.
+     * @param {Object} [properties] Header properties:
+     * @param {String} [properties.id] Header ID.
+     * @param {String[]} [properties.classes] Header class names.
+     * @memberof Header
      */
     setProperties(properties = {
-        id: 'div-1',
+        id: 'header-1',
         classes: [],
     }){
         this.properties = {};
@@ -38,10 +42,10 @@ export class Div{
     }
 
     /**
-     * * Returns the Div properties or an specific property.
+     * * Returns the Header properties or an specific property.
      * @param {String} [name] Property name.
      * @returns {Object|*}
-     * @memberof Div
+     * @memberof Header
      */
     getProperties(name = ''){
         if (name && name != '') {
@@ -55,7 +59,7 @@ export class Div{
      * * Check if there is a property.
      * @param {String} name Property name.
      * @returns {Boolean}
-     * @memberof Div
+     * @memberof Header
      */
     hasProperty(name = ''){
         if (this.properties.hasOwnProperty(name)) {
@@ -66,35 +70,35 @@ export class Div{
     }
 
     /**
-     * * Set the Div ID.
-     * @param {Object} [properties] Div properties:
-     * @param {String} [properties.id] Div ID.
-     * @memberof Div
+     * * Set the Header ID.
+     * @param {Object} [properties] Header properties:
+     * @param {String} [properties.id] Header ID.
+     * @memberof Header
      */
     setIDProperty(properties = {
-        id: 'div-1',
+        id: 'header-1',
     }){
         if (properties.hasOwnProperty('id')) {
             this.properties.id = properties.id;
         } else {
-            this.properties.id = 'div-1';
+            this.properties.id = 'header-1';
         }
     }
 
     /**
-     * * Returns the Div ID.
+     * * Returns the Header ID.
      * @returns {String}
-     * @memberof Div
+     * @memberof Header
      */
     getIDProperty(){
         return this.properties.id;
     }
 
     /**
-     * * Set the Div class names.
-     * @param {Object} [properties] Div properties:
-     * @param {String} [properties.classes] Div class names.
-     * @memberof Div
+     * * Set the Header class names.
+     * @param {Object} [properties] Header properties:
+     * @param {String} [properties.classes] Header class names.
+     * @memberof Header
      */
     setClassesProperty(properties = {
         classes: [],
@@ -107,32 +111,49 @@ export class Div{
     }
 
     /**
-     * * Returns the Div class names.
+     * * Returns the Header class names.
      * @returns {Array}
-     * @memberof Div
+     * @memberof Header
      */
     getClassesProperty(){
         return this.properties.classes;
     }
 
     /**
-     * * Returns the <div> HTML Element.
+     * * Set the Header Title.
+     * @param {Object} [title] Title properties.
+     * @memberof Header
+     */
+    setTitle(title = {}){
+        this.title = new Title(((title.hasOwnProperty('properties')) ? title.properties : {}), ((title.hasOwnProperty('innerHTML')) ? title.innerHTML : undefined));
+    }
+
+    /**
+     * * Returns the Header Title.
+     * @returns {Title}
+     * @memberof Header
+     */
+    getTitle(){
+        return this.title;
+    }
+
+    /**
+     * * Returns the <header> HTML Element.
      * @returns {HTMLElement}
-     * @memberof Div
+     * @memberof Header
      */
     getHTML(){
         return this.html;
     }
 
     /**
-     * * Creates the <div> HTML Element.
-     * @param {HTMLElement} [innerHTML] Div inner HTML Element.
-     * @memberof Div
+     * * Creates the <header> HTML Element.
+     * @memberof Header
      */
-    createHTML(innerHTML = false){
-        this.html = document.createElement('div');
-        if (innerHTML) {
-            this.html.appendChild(innerHTML);
+    createHTML(){
+        this.html = document.createElement('header');
+        if (this.getTitle()) {
+            this.html.appendChild(this.getTitle().getHTML());
         }
         for (const className of this.getClassesProperty()) {
             this.html.classList.add(className);
@@ -142,7 +163,7 @@ export class Div{
     /**
      * * Append an HTML Element.
      * @param {HTMLElement} html New child.
-     * @memberof Div
+     * @memberof Header
      */
     appendChild(html){
         this.html.appendChild(html);
@@ -152,7 +173,7 @@ export class Div{
      * * Insert an HTML Element before another.
      * @param {HTMLElement} newHTML New child.
      * @param {HTMLElement} oldHTML New child.
-     * @memberof Div
+     * @memberof Header
      */
     insertBefore(newHTML, oldHTML){
         this.html.insertBefore(newHTML, oldHTML);

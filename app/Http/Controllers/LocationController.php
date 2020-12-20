@@ -2,7 +2,9 @@
     namespace App\Http\Controllers;
 
     use App\Models\Location;
+    use Cviebrock\EloquentSluggable\Services\SlugService;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Validator;
 
     class LocationController extends Controller{
         /**
@@ -71,6 +73,24 @@
             return redirect("/panel#ubicaciones")->with('status', [
                 'code' => 200,
                 'message' => "Ubicación eliminada correctamente.",
+            ]);
+        }
+
+        /**
+         * * Control the Location deletion.
+         * @param Request $request
+         * @param string $slug Location slug.
+         * @return [*]
+         */
+        public function doFav(Request $request, $slug){
+            $input = (object) $request->all();
+            $location = Location::where('slug', '=', $slug)->get()[0];
+
+            $location->update(['favorite' => !$location->favorite]);
+            
+            return redirect("/panel#ubicaciones")->with('status', [
+                'code' => 200,
+                'message' => (($location->favorite) ? "$location->name se agrego de favoritos" : "$location->name se quito de favoritos"),
             ]);
         }
     }

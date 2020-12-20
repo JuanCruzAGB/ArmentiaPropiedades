@@ -70,7 +70,7 @@
                         'files.*.mimetypes' => 'Las imágenes tienen que ser formato JPEG/JPG o PNG.',
                     ],
                 ],
-            ], 'edit' => [
+            ], 'update' => [
                 'rules' => [
                     'name' => 'required',
                     'description' => 'required',

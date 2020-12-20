@@ -254,6 +254,10 @@ textarea.description[disabled] {
     margin-bottom: 0 !important;
 }
 
+#auxiliar-form {
+    display: none;
+}
+
 /* * MD */
 @media(min-width: 768px){
     .tab-menu.vertical .tab-content-list .tab-content {

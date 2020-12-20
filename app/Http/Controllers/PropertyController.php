@@ -4,10 +4,11 @@
     use App\Models\Category;
     use App\Models\Location;
     use App\Models\Property;
+    use Cviebrock\EloquentSluggable\Services\SlugService;
     use Illuminate\Http\Request;
-    use Intervention\Image\ImageManagerStatic as Image;
     use Illuminate\Support\Facades\File;
     use Illuminate\Support\Facades\Validator;
+    use Intervention\Image\ImageManagerStatic as Image;
     use Storage;
 
     class PropertyController extends Controller{
@@ -22,6 +23,10 @@
             $categories = Category::all();
             $locations = Location::all();
             $properties = Property::all();
+
+            foreach ($properties as $property) {
+                $property->images();
+            }
 
             return view('property.list', [
                 'categories' => $categories,

@@ -37,7 +37,7 @@
         </ul>
     </div>
 
-    <div class="nav-row">
+    {{-- <div class="nav-row">
         <ul class="nav-menu-list">
             <li id="dropdown-tipo_propiedades" class="dropdown closed">
                 <a href="#" class="nav-link dropdown-header">
@@ -47,12 +47,11 @@
                     </button>
                 </a>
                 <ul class="dropdown-menu-list p-0">
-                    <li class="m-0"><a href="#" class="nav-link dropdown-link">
-                        Departamento
-                    </a></li>
-                    <li class="m-0"><a href="#" class="nav-link dropdown-link">
-                        Terreno
-                    </a></li>
+                    @foreach ($categories as $category)
+                        <li class="m-0"><a href="#filter?category={{ $category->slug }}" data-target="{{ $category->id_category }}" class="filter filter-select nav-link dropdown-link">
+                            {{ $category->name }}
+                        </a></li>
+                    @endforeach
                 </ul>
             </li>
             <li id="dropdown-ciudad" class="dropdown closed m-0">
@@ -63,16 +62,15 @@
                     </button>
                 </a>
                 <ul class="dropdown-menu-list p-0">
-                    <li class="m-0"><a href="#" class="nav-link dropdown-link">
-                        Necochea
-                    </a></li>
-                    <li class="m-0"><a href="#" class="nav-link dropdown-link">
-                        San Cayetano
-                    </a></li>
+                    @foreach ($locations as $location)
+                        <li class="m-0"><a href="#filter?location={{ $location->slug }}" data-target="{{ $location->id_location }}" class="filter filter-select nav-link dropdown-link">
+                            {{ $location->name }}
+                        </a></li>
+                    @endforeach
                 </ul>
             </li>
         </ul>
-    </div>
+    </div> --}}
 
     @component('components.nav.sidebar_left')
     @endcomponent
