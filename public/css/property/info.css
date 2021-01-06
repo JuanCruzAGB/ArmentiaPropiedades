@@ -2,7 +2,7 @@
     min-height: initial;
 }
 
-.gallery .images .gallery-button:last-of-type {
+.gallery .files .gallery-button:last-of-type {
     margin-bottom: 0 !important;
 }
 

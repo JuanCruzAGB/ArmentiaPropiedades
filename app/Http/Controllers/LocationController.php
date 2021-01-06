@@ -15,7 +15,7 @@
         public function doCreate(Request $request){
             $input = (object) $request->all();
             
-            $validator = Validator::make($request->all(), Location::$validation['create']['rules'], Location::$validation['create']['messages']['es']);
+            $validator = Validator::make($request->all(), Location::$validation['adding']['rules'], Location::$validation['adding']['messages']['es']);
             if ($validator->fails()) {
                 return redirect("/panel#ubicaciones?adding")->withErrors($validator)->withInput();
             }
@@ -39,7 +39,7 @@
             $input = (object) $request->all();
             $location = Location::where('slug', '=', $slug)->get()[0];
             
-            $validator = Validator::make($request->all(), Location::$validation['update']['rules'], Location::$validation['update']['messages']['es']);
+            $validator = Validator::make($request->all(), Location::$validation['updating']['rules'], Location::$validation['updating']['messages']['es']);
             if ($validator->fails()) {
                 return redirect("/panel#ubicaciones?name=$slug&updating")->withErrors($validator)->withInput();
             }

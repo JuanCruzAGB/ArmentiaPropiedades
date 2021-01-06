@@ -38,7 +38,7 @@ function generateItems(data){
                 }, image: {
                     properties: {
                         id: `property-${ property.id_property }-image`,
-                        url: `${ document.querySelector('[name=asset]').content }/${ property.images[0] }`,
+                        url: `${ document.querySelector('[name=asset]').content }/${ property.files[0] }`,
                         name: `${ property.name }: Image`,
                         classes: [],
                 }}}).getHTML()

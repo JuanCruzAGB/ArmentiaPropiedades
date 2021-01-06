@@ -2,7 +2,7 @@
     namespace App\Models;
 
     use App\Models\Category;
-    use App\Models\Image;
+    use App\Models\File;
     use App\Models\Location;
     use Cviebrock\EloquentSluggable\Sluggable;
     use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
@@ -43,16 +43,16 @@
         }
         
         /**
-         * * Get the images from the folder.
+         * * Get the files from the folder.
          * @return [type]
          */
-        public function images(){
-            return $this->images = Image::getAll("property/$this->folder");
+        public function files(){
+            return $this->files = File::getAll("property/$this->folder");
         }
         
         /** @var array - Validation messages and rules. */
         public static $validation = [
-            'create' => [
+            'adding' => [
                 'rules' => [
                     'name' => 'required',
                     'description' => 'required',
@@ -68,9 +68,7 @@
                         'id_location.required' => 'La Ubicación es obligatoria.',
                         'files.required' => 'Al menos una imagen es obligatoria.',
                         'files.*.mimetypes' => 'Las imágenes tienen que ser formato JPEG/JPG o PNG.',
-                    ],
-                ],
-            ], 'update' => [
+            ],],], 'updating' => [
                 'rules' => [
                     'name' => 'required',
                     'description' => 'required',
@@ -85,9 +83,14 @@
                         'id_category.required' => 'La Categoría es obligatoria.',
                         'id_location.required' => 'La Ubicación es obligatoria.',
                         'files.*.mimetypes' => 'Las imágenes tienen que ser formato JPEG/JPG o PNG.',
-                    ],
-                ],
-            ],
+            ],],], 'deleting' => [
+                'rules' => [
+                    'message' => 'required|regex:/^BORRAR$/',
+                ], 'messages' => [
+                    'es' => [
+                        'message.required' => 'El Mensaje de confirmación es obligatorio.',
+                        'message.regex' => 'El Mensaje no es correcto.',
+            ],]]
         ];
         
         /**

@@ -469,7 +469,11 @@ export class Input{
                 this.html.multiple = this.getStates('multiple');
                 this.html.accept = '';
                 for (const accepted of this.getProperties('accept')) {
-                    this.html.accept += `,${ accepted }`;
+                    if (this.html.accept == '') {
+                        this.html.accept = `${ accepted }`;
+                    } else {
+                        this.html.accept += `,${ accepted }`;
+                    }
                 }
                 break;
         }

@@ -1,4 +1,4 @@
-// ? Local repository
+// ? HTMLCreatorJS repository
 import { Image } from "../Visuals/Image.js";
 
 /**

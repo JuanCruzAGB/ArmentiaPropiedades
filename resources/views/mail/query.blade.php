@@ -2,7 +2,7 @@
 <html lang="es">
 	<head>
 		<meta charset="utf-8">
-		<title>{{ $data->name }} quiere contactarte</title>
+		<title>{{ $data->name }} desea consultar sobre la propiedad: {{ $data->property->name }}</title>
 	</head>
 	<body>
 		<img src="{{ asset('img/resources/logo_Regular.png') }}" style=" width: 100%; height: 10rem; object-fit: contain;" alt="Mutualcoop">
@@ -10,7 +10,7 @@
 			<tr>
 				<td style="background-color: #fff">
 					<div style="color: #1C1F22; margin: 4% 10% 2%; text-align: justify;font-family: sans-serif">
-						<h2 style="text-align: center; color: #a39b99;margin: 20px 0;">{{ $data->name }} quiere contactarte</h2>
+						<h2 style="text-align: center; color: #a39b99;margin: 20px 0;">{{ $data->name }} desea consultar sobre la propiedad: {{ $data->property->name }}</h2>
 						<ul style="font-size: 15px;  margin: 10px 0">
 							<li style="list-style: none;"><strong>Se ha contactado:</strong> {{ $data->name }} desde tu sitio web.</li>
 							<li style="list-style: none;"><strong>Email:</strong> {{ $data->email }}</li>

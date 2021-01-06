@@ -51,5 +51,8 @@
 @endsection
 
 @section('js')
-    <script src="{{asset('js/web/home.js')}}"></script>
+    <script>
+        const validation = @json($validation);
+    </script>
+    <script type="module" src="{{asset('js/web/home.js')}}"></script>
 @endsection

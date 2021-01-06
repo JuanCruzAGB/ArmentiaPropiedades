@@ -9,7 +9,7 @@
     Route::middleware('auth')->group(function(){
         Route::get('/panel', 'WebController@panel')->name('web.panel');
     });
-    Route::get('/gracias', 'WebController@thankYou')->name('web.thank_you');
+    Route::get('/gracias', 'WebController@thanks')->name('web.thanks');
     
 // * AuthController - Controls the authentication.
     Route::get('/iniciar-sesion', 'AuthController@showLogIn')->name('auth.showLogIn');
@@ -18,7 +18,7 @@
     
 // * MailController - Controls the sending mails.
     Route::post('/contactar', 'MailController@contact')->name('mail.contact');
-    Route::post('/consultar', 'MailController@query')->name('mail.query');
+    Route::post('/consultar/propiedad/{slug}', 'MailController@query')->name('mail.query');
 
 // * PropertyController - Controls the Property.
     Route::get('/propiedades', 'PropertyController@list')->name('property.list');

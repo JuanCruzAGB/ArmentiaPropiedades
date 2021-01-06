@@ -1,4 +1,4 @@
-// ? Local repository
+// ? HTMLCreatorJS repository
 import { THead } from "./THead.js";
 import { TBody } from "./TBody.js";
 import { Tr } from "./Tr.js";

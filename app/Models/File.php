@@ -4,9 +4,9 @@
     use Illuminate\Database\Eloquent\Model;
     use Storage;
 
-    class Image extends Model{        
+    class File extends Model{        
         /**
-         * * Get all the images from a route
+         * * Get all the files from a route
          * @param string $route
          * @return [string[]]
          */

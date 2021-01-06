@@ -44,6 +44,7 @@
         const categories = @json($categories);
         const locations = @json($locations);
         const properties = @json($properties);
+        const validation = @json($validation);
     </script>
     <script type="module" src="{{asset('js/web/panel.js')}}"></script>
 @endsection

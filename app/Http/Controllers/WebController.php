@@ -3,6 +3,7 @@
 
     use App\Models\Category;
     use App\Models\Location;
+    use App\Models\Mail;
     use App\Models\Property;
     use Auth;
     use Illuminate\Http\Request;
@@ -38,6 +39,10 @@
 
             return view('web.home', [
                 'favorites' => $favorites,
+                'validation' => (object) [
+                    'rules' => Mail::$validation['contact']['rules'],
+                    'messages' => Mail::$validation['contact']['messages']['es'],
+                ],
             ]);
         }
 
@@ -53,13 +58,45 @@
             foreach ($properties as $property) {
                 $property->category;
                 $property->location;
-                $property->images();
+                $property->files();
             }
 
             return view('web.panel', [
                 'categories' => $categories,
                 'locations' => $locations,
                 'properties' => $properties,
+                'validation' => (object) [
+                    'categories' => (object) [
+                        'adding' => (object) [
+                            'rules' => Category::$validation['adding']['rules'],
+                            'messages' => Category::$validation['adding']['messages']['es'],
+                        ], 'updating' => (object) [
+                            'rules' => Category::$validation['updating']['rules'],
+                            'messages' => Category::$validation['updating']['messages']['es'],
+                        ], 'deleting' => (object) [
+                            'rules' => Category::$validation['deleting']['rules'],
+                            'messages' => Category::$validation['deleting']['messages']['es'],
+                    ]], 'locations' => (object) [
+                        'adding' => (object) [
+                            'rules' => Location::$validation['adding']['rules'],
+                            'messages' => Location::$validation['adding']['messages']['es'],
+                        ], 'updating' => (object) [
+                            'rules' => Location::$validation['updating']['rules'],
+                            'messages' => Location::$validation['updating']['messages']['es'],
+                        ], 'deleting' => (object) [
+                            'rules' => Location::$validation['deleting']['rules'],
+                            'messages' => Location::$validation['deleting']['messages']['es'],
+                    ]], 'properties' => (object) [
+                        'adding' => (object) [
+                            'rules' => Property::$validation['adding']['rules'],
+                            'messages' => Property::$validation['adding']['messages']['es'],
+                        ], 'updating' => (object) [
+                            'rules' => Property::$validation['updating']['rules'],
+                            'messages' => Property::$validation['updating']['messages']['es'],
+                        ], 'deleting' => (object) [
+                            'rules' => Property::$validation['deleting']['rules'],
+                            'messages' => Property::$validation['deleting']['messages']['es'],
+                ]]],
             ]);
         }
 
@@ -67,7 +104,7 @@
          * * Control the "thank you" page.
          * @return [*]
          */
-        public function thankYou(){
-            return view('web.thank_you');
+        public function thanks(){
+            return view('web.thanks');
         }
     }

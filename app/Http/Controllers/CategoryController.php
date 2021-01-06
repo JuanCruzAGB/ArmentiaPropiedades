@@ -15,7 +15,7 @@
         public function doCreate(Request $request){
             $input = (object) $request->all();
             
-            $validator = Validator::make($request->all(), Category::$validation['create']['rules'], Category::$validation['create']['messages']['es']);
+            $validator = Validator::make($request->all(), Category::$validation['adding']['rules'], Category::$validation['adding']['messages']['es']);
 
             if ($validator->fails()) {
                 return redirect("/panel#categorias?adding")->withErrors($validator)->withInput();
@@ -40,7 +40,7 @@
             $input = (object) $request->all();
             $category = Category::where('slug', '=', $slug)->get()[0];
             
-            $validator = Validator::make($request->all(), Category::$validation['update']['rules'], Category::$validation['update']['messages']['es']);
+            $validator = Validator::make($request->all(), Category::$validation['updating']['rules'], Category::$validation['updating']['messages']['es']);
             if ($validator->fails()) {
                 return redirect("/panel#categorias?name=$slug&updating")->withErrors($validator)->withInput();
             }

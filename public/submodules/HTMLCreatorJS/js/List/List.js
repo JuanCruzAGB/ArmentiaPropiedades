@@ -1,4 +1,4 @@
-// ? Local repository
+// ? HTMLCreatorJS repository
 import { Item } from "./Item.js";
 
 /**

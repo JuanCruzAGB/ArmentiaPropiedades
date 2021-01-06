@@ -1,7 +1,3 @@
-// ? Local repository
-import { Icon } from "../Visuals/Icon.js";
-import { Span } from "../Texts/Span.js";
-
 /**
  * * Link creates an excellet <a>.
  * @export
@@ -250,7 +246,7 @@ export class Link{
      * @memberof Link
      */
     hasStates(name = ''){
-        if (this.status.hasOwnProperty(name)) {
+        if (this.states.hasOwnProperty(name)) {
             return true;
         } else {
             return false;
@@ -261,7 +257,7 @@ export class Link{
      * * Change a status value.
      * @param {String} name Status name.
      * @param {*} value Status value.
-     * @memberof Input
+     * @memberof TabMenu
      */
     changeStatus(name = '', value = ''){
         if (this.hasStates(name)) {

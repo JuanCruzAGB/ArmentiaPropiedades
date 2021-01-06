@@ -23,8 +23,8 @@
                 <div class="row">
                     <section id="property-gallery" class="gallery col-12 col-md-6 px-3">
                         <div class="row justify-content-between px-3 pr-md-0">
-                            <div class="images p-0">
-                                @foreach ($property->images as $key => $image)
+                            <div class="files p-0">
+                                @foreach ($property->files as $key => $image)
                                     @if ($key == 0)
                                         <a href="#" class="gallery-button selected mb-3">
                                     @else
@@ -70,5 +70,8 @@
 @endsection
 
 @section('js')
+    <script>
+        const validation = @json($validation);
+    </script>
     <script type="module" src="{{asset('js/property/info.js')}}"></script>
 @endsection

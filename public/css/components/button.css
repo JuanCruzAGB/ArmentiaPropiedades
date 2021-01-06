@@ -55,7 +55,6 @@
 .btn.btn-dos-transparent:hover {
     border: 1px solid var(--color-dos-alternativo);
     background-color: var(--color-dos-alternativo);
-    color: var(--color-cuatro);
 }
 
 /* * MD */

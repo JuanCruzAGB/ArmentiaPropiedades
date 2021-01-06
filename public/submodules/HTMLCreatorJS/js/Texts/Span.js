@@ -150,6 +150,8 @@ export class Span{
         for (const className of this.getClassesProperty()) {
             this.html.classList.add(className);
         }
-        this.html.innerHTML = innerHTML;
+        if (innerHTML) {
+            this.html.innerHTML = innerHTML;
+        }
     }
 }

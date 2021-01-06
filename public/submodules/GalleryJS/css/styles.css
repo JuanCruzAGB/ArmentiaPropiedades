@@ -2,7 +2,7 @@
     position: relative;
 }
 
-.gallery .images {
+.gallery .files {
     width: calc((100% / 12) * 3);
     max-height: 17rem;
     overflow-y: scroll;
@@ -41,11 +41,11 @@
     bottom: 0;
 }
 
-.gallery .images input {
+.gallery .files input {
     display: none;
 }
 
-.gallery .images .gallery-button {
+.gallery .files .gallery-button {
     display: inline-block;
     width: calc(100% - .5rem);
     height: 4rem;
@@ -54,15 +54,15 @@
     transition: 500ms;
 }
 
-.gallery .images .gallery-button.selected {
+.gallery .files .gallery-button.selected {
     border: 2px solid var(--color-uno-alternativo);
 }
 
-.gallery .images .gallery-button.selected img {
+.gallery .files .gallery-button.selected img {
     opacity: .2;
 }
 
-.gallery .images .gallery-button img {
+.gallery .files .gallery-button img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -109,7 +109,7 @@
         width: calc(((100% - 3.5rem) / 12) * 4);
     }
 
-    .gallery .images {
+    .gallery .files {
         width: calc((100% / 12) * 4);
     }
 
@@ -125,7 +125,7 @@
 
 /* * XL */
 @media(min-width: 1200px) {
-    .gallery .images {
+    .gallery .files {
         width: calc((100% / 12) * 2);
         margin-right: .5rem;
     }
@@ -134,22 +134,22 @@
         width: calc(((100% - 7rem) / 12) * 2);
     }
 
-    .gallery .images::-webkit-scrollbar {
+    .gallery .files::-webkit-scrollbar {
         width: .5rem;
     }
     
-    .gallery .images::-webkit-scrollbar-track {
+    .gallery .files::-webkit-scrollbar-track {
         background: var(--color-dos-alternativo);
         border-radius: .25rem;
     }
      
-    .gallery .images::-webkit-scrollbar-thumb {
+    .gallery .files::-webkit-scrollbar-thumb {
         background: var(--color-uno);
         border-radius: .25rem;
         transition: 500ms;
     }
     
-    .gallery .images::-webkit-scrollbar-thumb:hover {
+    .gallery .files::-webkit-scrollbar-thumb:hover {
         background: var(--color-uno-alternativo);
     }
 

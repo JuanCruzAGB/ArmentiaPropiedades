@@ -1,4 +1,4 @@
-// ? Local repository
+// ? HTMLCreatorJS repository
 import { Title } from "../Texts/Title.js";
 
 /**

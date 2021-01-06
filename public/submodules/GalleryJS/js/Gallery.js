@@ -1,9 +1,9 @@
-// ? Local repository
+// ? GalleryJS repository
 import { Button } from "./Button.js";
 import { Image } from "./Image.js";
 
 /**
- * * Gallery makes an excellent gallery of images.
+ * * Gallery makes an excellent gallery of files.
  * @export
  * @class Gallery
  * @author Juan Cruz Armentia <juancarmentia@gmail.com>
@@ -13,8 +13,8 @@ export class Gallery{
      * * Creates an instance of Gallery.
      * @param {Object} [properties] Gallery properties:
      * @param {String} [properties.id] Gallery ID.
-     * @param {String} [properties.selected] Image selected.
      * @param {Object} [states] Gallery states:
+     * @param {String} [states.selected] Gallery Image selected status.
      * @param {String} [states.mode] Gallery status mode.
      * @param {Object} [callback] Gallery selected callback.
      * @param {Function} [callback.function] Gallery selected callback function.
@@ -23,9 +23,9 @@ export class Gallery{
      */
     constructor(properties = {
         id: 'gallery-1',
+    }, states = {
         selected: 0,
-    }, states = {},
-    callback = {
+    }, callback = {
         function: function(){ /* console.log('clicked') */ },
         params: {
             //
@@ -42,16 +42,13 @@ export class Gallery{
      * * Set the Gallery properties.
      * @param {Object} [properties] Gallery properties:
      * @param {String} [properties.id] Gallery ID.
-     * @param {String} [properties.selected] Image selected.
      * @memberof Gallery
      */
     setProperties(properties = {
         id: 'gallery-1',
-        selected: 0,
     }){
         this.properties = {};
         this.setIDProperty(properties);
-        this.setSelectedProperty(properties);
     }
 
     /**
@@ -93,8 +90,7 @@ export class Gallery{
             this.properties[property] = value;
         }
         switch (property) {
-            case 'selected':
-                this.getImage().changeProperty('source', this.getButtons(value).getProperties('source'));
+            default:
                 break;
         }
     }
@@ -122,31 +118,6 @@ export class Gallery{
      */
     getIDProperty(){
         return this.properties.id;
-    }
-
-    /**
-     * * Set the Gallery Image selected position.
-     * @param {Object} [properties] Gallery properties:
-     * @param {String} [properties.selected] Image selected.
-     * @memberof Gallery
-     */
-    setSelectedProperty(properties = {
-        selected: 0,
-    }){
-        if (properties.hasOwnProperty('selected')) {
-            this.properties.selected = properties.selected;
-        } else {
-            this.properties.selected = 0;
-        }
-    }
-
-    /**
-     * * Returns the Gallery Image selected position.
-     * @returns {String}
-     * @memberof Gallery
-     */
-    getSelectedProperty(){
-        return this.properties.selected;
     }
 
     /**
@@ -178,10 +149,14 @@ export class Gallery{
     /**
      * * Set the Gallery states.
      * @param {Object} [states] Gallery states:
+     * @param {String} [states.selected] Gallery Image selected status.
      * @memberof Gallery
      */
-    setStates(states = {}){
+    setStates(states = {
+        selected: 0,
+    }){
         this.states = {};
+        this.setSelectedStatus(states);
     }
 
     /**
@@ -214,18 +189,44 @@ export class Gallery{
 
     /**
      * * Change a status value.
-     * @param {String} name Status name.
+     * @param {String} status Status name.
      * @param {*} value Status value.
-     * @memberof Input
+     * @memberof Gallery
      */
-    changeStatus(name = '', value = ''){
-        if (this.hasStates(name)) {
-            this.states[name] = value;
+    changeStatus(status = '', value = ''){
+        if (this.hasStates(status)) {
+            this.states[status] = value;
         }
-        switch (name) {
-            default:
+        switch (status) {
+            case 'selected':
+                this.getImage().changeProperty('source', this.getButtons(value).getProperties('source'));
                 break;
         }
+    }
+
+    /**
+     * * Set the Gallery Image selected status.
+     * @param {Object} [states] Gallery states:
+     * @param {String} [states.selected] Gallery Image selected status.
+     * @memberof Gallery
+     */
+    setSelectedStatus(states = {
+        selected: 0,
+    }){
+        if (states.hasOwnProperty('selected')) {
+            this.states.selected = states.selected;
+        } else {
+            this.states.selected = 0;
+        }
+    }
+
+    /**
+     * * Returns the Gallery Image selected status.
+     * @returns {String}
+     * @memberof Gallery
+     */
+    getSelectedStatus(){
+        return this.states.selected;
     }
 
     /**
@@ -331,7 +332,7 @@ export class Gallery{
             for (const btn of this.getButtons()) {
                 btn.unselect();
                 if (btn.getProperties('id') == id) {
-                    this.changeProperty('selected', key);
+                    this.changeStatus('selected', key);
                     btn.select();
                 }
                 key++;
@@ -359,6 +360,6 @@ export class Gallery{
      * @memberof Gallery
      */
     static click(params){
-        params.gallery.changeProperty('selected', params.key);
+        params.gallery.changeStatus('selected', params.key);
     }
 }

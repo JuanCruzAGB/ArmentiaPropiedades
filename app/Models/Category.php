@@ -24,23 +24,26 @@
         
         /** @var array - Validation messages and rules. */
         public static $validation = [
-            'create' => [
+            'adding' => [
                 'rules' => [
                     'name' => 'required',
                 ], 'messages' => [
                     'es' => [
                         'name.required' => 'El Nombre es obligatorio.',
-                    ],
-                ],
-            ], 'update' => [
+            ],],], 'updating' => [
                 'rules' => [
                     'name' => 'required',
                 ], 'messages' => [
                     'es' => [
                         'name.required' => 'El Nombre es obligatorio.',
-                    ],
-                ],
-            ],
+            ],],], 'deleting' => [
+                'rules' => [
+                    'message' => 'required|regex:/^BORRAR$/',
+                ], 'messages' => [
+                    'es' => [
+                        'message.required' => 'El Mensaje de confirmación es obligatorio.',
+                        'message.regex' => 'El Mensaje no es correcto.',
+            ],],]
         ];
         
         /**

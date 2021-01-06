@@ -1,5 +1,9 @@
 body {
-    --invalid-color: var(--color-uno-alternativo);
+    --invalid-color: var(--color-uno);
+}
+
+.support-box {
+    font-size: .8rem;
 }
 
 /* * MD */

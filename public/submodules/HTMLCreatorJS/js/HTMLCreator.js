@@ -1,4 +1,4 @@
-// ? Local repository
+// ? HTMLCreatorJS repository
 import { Div } from "./Boxes/Div.js";
 import { Figure } from "./Boxes/Figure.js";
 import { Header } from "./Boxes/Header.js";

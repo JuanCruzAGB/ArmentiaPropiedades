@@ -215,7 +215,7 @@ export class Button{
      * @memberof Button
      */
     hasStates(name = ''){
-        if (this.status.hasOwnProperty(name)) {
+        if (this.states.hasOwnProperty(name)) {
             return true;
         } else {
             return false;

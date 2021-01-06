@@ -119,7 +119,6 @@
 
     .footer .top_bar:hover .btn-dos-transparent{
         background-color: var(--color-dos-alternativo);
-        color: var(--color-cuatro);
     }
 
     .footer .contact .personal-data header,

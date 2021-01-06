@@ -7,6 +7,10 @@
 
 .support-box {
     max-width: fit-content;
+    display: block;
+    background: transparent;
+    color: var(--color-uno);
+    font-weight: 500;
 }
 
 .tab-menu .tabs .tab-menu-list .tab .tab-link,
@@ -38,7 +42,7 @@
 
 .table td, .table th {
     border-color: var(--color-dos-alternativo);
-    vertical-align: middle;
+    vertical-align: 1px;
 }
 
 .table tr td:not(:first-child), .table tr th:not(:first-child) {
@@ -48,15 +52,6 @@
 
 .table tr td:last-child, .table tr th:last-child {
     margin-right: 1rem;
-}
-
-#propiedades .table .adding td[class=td-id_property],
-#propiedades .table .adding td[class=td-updated_at],
-#propiedades .table .updating td[class=td-id_property],
-#propiedades .table .updating td[class=td-updated_at],
-#propiedades .table td[class=td-id_category],
-#propiedades .table td[class=td-id_location] {
-    /* vertical-align: top; */
 }
 
 #propiedades .table .adding td[class=td-id_property],
@@ -82,8 +77,11 @@ td.actions {
 td.actions div {
     display: flex;
     justify-content: flex-end;
-    align-items: center;
     height: 100%;
+}
+
+td.actions div .btn {
+    height: fit-content;
 }
 
 table tr {
@@ -153,7 +151,7 @@ textarea.title[disabled]::placeholder {
     color: var(--color-cuatro);
 }
 
-.property .gallery .images button {
+.property .gallery .files button {
     display: inline-block;
     width: calc(100% - .5rem);
     height: 4rem;
@@ -165,11 +163,11 @@ textarea.title[disabled]::placeholder {
     font-size: 1.5rem;
 }
 
-.property .gallery .images .gallery-button {
+.property .gallery .files .gallery-button {
     cursor: pointer;
 }
 
-.property .gallery .images button[disabled] {
+.property .gallery .files button[disabled] {
     display: none;
 }
 
@@ -236,6 +234,11 @@ textarea.description[disabled] {
     position: relative;
 }
 
+.gallery .selected:not(.gallery-button).disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
 .gallery .selected:not(.gallery-button) .buttons {
     position: absolute;
     top: 0;
@@ -250,7 +253,7 @@ textarea.description[disabled] {
     display: none;
 }
 
-.gallery .images .gallery-button:last-of-type {
+.gallery .files .gallery-button:last-of-type {
     margin-bottom: 0 !important;
 }
 
