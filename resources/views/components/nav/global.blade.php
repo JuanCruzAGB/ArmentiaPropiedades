@@ -17,24 +17,19 @@
 
     <div class="nav-row">
         <ul class="nav-menu-list">
-            <li><a href="/" class="nav-link p-0">
+            <li><a href="/inicio" class="nav-link p-0">
                 Inicio
             </a></li>
             <li><a href="/propiedades" class="nav-link p-0">
                 Propiedades
             </a></li>
-            <li><a href="/panel" class="nav-link p-0">
-                Panel
-            </a></li>
             @if (Auth::check())
+                <li><a href="/panel" class="nav-link p-0">
+                    Panel
+                </a></li>
                 <li><a href="/cerrar-sesion" class="nav-link p-0">
                     <i class="link-icon left fas fa-sign-out-alt"></i>
                     <span class="link-text">Cerrar Sesión</span>
-                </a></li>
-            @else
-                <li><a href="/iniciar-sesion" class="nav-link p-0">
-                    <i class="link-icon left fas fa-sign-in-alt"></i>
-                    <span class="link-text">Iniciar Sesión</span>
                 </a></li>
             @endif
         </ul>

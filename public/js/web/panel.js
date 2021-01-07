@@ -1,7 +1,6 @@
 // ? External repositories
 import { URLServiceProvider as URL } from "../../submodules/ProvidersJS/URLServiceProvider.js";
 import { HTMLCreator as HTMLCreatorJS } from "../../submodules/HTMLCreatorJS/js/HTMLCreator.js";
-import { Validation as ValidationJS } from "../../submodules/ValidationJS/js/Validation.js";
 
 // ? Local repository
 import { removeImages, confirmImage, cancelImage, deleteImage, showTrashBtn, hideTrashBtn } from "../gallery.js";
@@ -100,6 +99,17 @@ export function changeSection(params){
         hideAddButton();
     } else {
         showAddButton();
+    }
+}
+
+/**
+ * * Removes the <tr> Validation Messages.
+ * @param {HTMLElement[]} supports
+ */
+function removeValidationMessages(supports){
+    for (const support of supports) {
+        support.innerHTML = '';
+        support.classList.add('hidden');
     }
 }
 
@@ -247,6 +257,7 @@ document.addEventListener('DOMContentLoaded', function(e){
             type: 'table'
         })
         showAddButton();
+        removeValidationMessages(document.querySelectorAll('#propiedades .details-data .support'));
     });
 
     document.querySelector('.details-data .edit-data').addEventListener('click', function(e){
@@ -269,6 +280,7 @@ document.addEventListener('DOMContentLoaded', function(e){
     document.querySelector('.details-data .cancel-data').addEventListener('click', function(e){
         if (document.querySelector('.details-data').classList.contains('adding')) {
             disableAddProperty(view);
+            removeValidationMessages(document.querySelectorAll('#propiedades .details-data .support'));
         } else {
             disableUpdateProperty();
         }
@@ -287,5 +299,11 @@ document.addEventListener('DOMContentLoaded', function(e){
     document.querySelector('.delete-image').addEventListener('click', function(e){
         e.preventDefault();
         deleteImage();
+    });
+
+    document.querySelector('.gallery .selected:not(.gallery-button)').addEventListener('click', function(e){
+        if (this.classList.contains('disabled')) {
+            e.preventDefault();
+        }
     });
 });

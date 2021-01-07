@@ -105,6 +105,6 @@
          * @return [*]
          */
         public function thanks(){
-            return view('web.thanks');
+            return view('mail.thanks');
         }
     }

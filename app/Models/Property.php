@@ -114,7 +114,7 @@
          */
         public static function getByLocation($id_location = null){
             if ($id_location) {
-                return Property::where('id_location', '=', $id_location)->get();
+                return Property::where('id_location', '=', $id_location)->orderBy('updated_at', 'DESC')->limit(4)->get();
             } else {
                 return [];
             }

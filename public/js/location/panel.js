@@ -182,6 +182,7 @@ function disableUpdate(params){
     input.disabled = true;
     input.value = locations[params.key].name.form.getInputs()[0].getDefaultValueProperty();
     hideConfirmBtns(document.querySelector(`#ubicaciones tbody tr#tr-${ params.key } td:last-child div`));
+    removeValidationMessages(document.querySelector(`#categorias tbody tr#tr-${ params.key }`));
 }
 
 /**
@@ -193,6 +194,7 @@ function disableDelete(params){
     document.querySelector(`#ubicaciones tbody tr#tr-${ params.key }`).classList.remove('deleting');
     hideConfirmBtns(document.querySelector(`#ubicaciones tbody tr#tr-${ params.key } td:last-child div`));
     hideConfirmForm(document.querySelector(`#ubicaciones tbody tr#tr-${ params.key } td:last-child div`));
+    removeValidationMessages(document.querySelectorAll(`#ubicaciones tbody tr#tr-${ params.key } .support`));
 }
 
 /**
@@ -242,6 +244,17 @@ function hideAddButton(){
 }
 
 /**
+ * * Removes the <tr> Validation Messages.
+ * @param {HTMLElement[]} supports
+ */
+function removeValidationMessages(supports){
+    for (const support of supports) {
+        support.innerHTML = '';
+        support.classList.add('hidden');
+    }
+}
+
+/**
  * * Just the confirm function callback.
  */
 function confirm(params) {
@@ -252,7 +265,7 @@ function confirm(params) {
         let Validation = new ValidationJS({
             id: form.id,
         }, {}, validation.locations.adding.rules, validation.locations.adding.messages);
-        ValidationJS.validate(Validation.getForm(), Validation.getForm().getInputs('name'));
+        ValidationJS.validate(Validation.getForm());
         if (Validation.getValid()) {
             form.submit();
         }
@@ -261,7 +274,7 @@ function confirm(params) {
         let Validation = new ValidationJS({
             id: form.id,
         }, {}, validation.locations.updating.rules, validation.locations.updating.messages);
-        ValidationJS.validate(Validation.getForm(), Validation.getForm().getInputs('name'));
+        ValidationJS.validate(Validation.getForm());
     } else {
         form = document.querySelector(`#location-confirm-form-${ params.key }`);
         form.nextElementSibling.classList.remove(`location-form-${ params.key }`);
@@ -269,7 +282,7 @@ function confirm(params) {
         let Validation = new ValidationJS({
             id: form.id,
         }, {}, validation.locations.deleting.rules, validation.locations.deleting.messages);
-        ValidationJS.validate(Validation.getForm(), Validation.getForm().getInputs('name'));
+        ValidationJS.validate(Validation.getForm());
         if (Validation.getValid()) {
             form.submit();
         }

@@ -16,7 +16,7 @@
 @section('body')
     <main id="tab-panel" class="tab-menu vertical relative col-12 p-0">
         <section class="tabs background background-one mb-4 mb-md-0">
-            <a href="/" class="tab-header logo">
+            <a href="/inicio" class="tab-header logo">
                 <picture>
                     <source srcset="{{asset('img/resources/logo_regular_white.png')}}"
                         media="(min-width: 768px)"/>

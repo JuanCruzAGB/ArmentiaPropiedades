@@ -177,6 +177,7 @@ export function disableUpdate(){
     }
     document.querySelector(`#propiedades .details-data`).classList.remove('updating');
     hideConfirmBtns(document.querySelector(`#propiedades .details-data .floating-menu.right`));
+    removeValidationMessages(document.querySelectorAll('#propiedades .details-data .support'));
 }
 
 /**
@@ -188,6 +189,7 @@ function disableDelete(params){
     document.querySelector(`#propiedades tbody tr#tr-${ params.key }`).classList.remove('deleting');
     hideConfirmBtns(document.querySelector(`#propiedades tbody tr#tr-${ params.key } td:last-child div`));
     hideConfirmForm(document.querySelector(`#propiedades tbody tr#tr-${ params.key } td:last-child div`));
+    removeValidationMessages(document.querySelectorAll(`#propiedades tbody tr#tr-${ params.key } .support`));
 }
 
 /**
@@ -237,6 +239,17 @@ function hideAddButton(){
 }
 
 /**
+ * * Removes the <tr> Validation Messages.
+ * @param {HTMLElement[]} supports
+ */
+function removeValidationMessages(supports){
+    for (const support of supports) {
+        support.innerHTML = '';
+        support.classList.add('hidden');
+    }
+}
+
+/**
  * * Just the confirm function callback.
  */
 export function confirm(params) {
@@ -251,11 +264,7 @@ export function confirm(params) {
             Validation = new ValidationJS({
                 id: form.id,
             }, {}, validation.properties.updating.rules, validation.properties.updating.messages);
-            ValidationJS.validate(Validation.getForm(), Validation.getForm().getInputs('name'));
-            ValidationJS.validate(Validation.getForm(), Validation.getForm().getInputs('description'));
-            ValidationJS.validate(Validation.getForm(), Validation.getForm().getInputs('id_category'));
-            ValidationJS.validate(Validation.getForm(), Validation.getForm().getInputs('id_location'));
-            ValidationJS.validate(Validation.getForm(), Validation.getForm().getInputs('files'));
+            ValidationJS.validate(Validation.getForm());
             if (Validation.getValid()) {
                 form.submit();
             }
@@ -267,7 +276,7 @@ export function confirm(params) {
             Validation = new ValidationJS({
                 id: form.id,
             }, {}, validation.properties.deleting.rules, validation.properties.deleting.messages);
-            ValidationJS.validate(Validation.getForm(), Validation.getForm().getInputs('name'));
+            ValidationJS.validate(Validation.getForm());
             if (Validation.getValid()) {
                 form.submit();
             }
@@ -280,11 +289,7 @@ export function confirm(params) {
             Validation = new ValidationJS({
                 id: form.id,
             }, {}, validation.properties.adding.rules, validation.properties.adding.messages);
-            ValidationJS.validate(Validation.getForm(), Validation.getForm().getInputs('name'));
-            ValidationJS.validate(Validation.getForm(), Validation.getForm().getInputs('description'));
-            ValidationJS.validate(Validation.getForm(), Validation.getForm().getInputs('id_category'));
-            ValidationJS.validate(Validation.getForm(), Validation.getForm().getInputs('id_location'));
-            ValidationJS.validate(Validation.getForm(), Validation.getForm().getInputs('files'));
+            ValidationJS.validate(Validation.getForm());
             if (Validation.getValid()) {
                 form.submit();
             }

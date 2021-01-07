@@ -235,8 +235,8 @@ textarea.description[disabled] {
 }
 
 .gallery .selected:not(.gallery-button).disabled {
-    pointer-events: none;
     cursor: not-allowed;
+    pointer-events: all !important;
 }
 
 .gallery .selected:not(.gallery-button) .buttons {
