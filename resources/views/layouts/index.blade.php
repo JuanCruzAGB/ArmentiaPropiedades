@@ -15,7 +15,7 @@
         <link href={{ asset('submodules/FloatingMenuJS/css/styles.css') }} rel="stylesheet">
         <link href={{ asset('submodules/DropdownJS/css/styles.css') }} rel="stylesheet">
         <link href={{ asset('submodules/SidebarJS/css/styles.css') }} rel="stylesheet">
-        <link href={{ asset('submodules/NavmenuJS/css/styles.css') }} rel="stylesheet">
+        <link href={{ asset('submodules/NavMenuJS/css/styles.css') }} rel="stylesheet">
         <link href={{ asset('submodules/NotificationJS/css/styles.css') }} rel="stylesheet">
         <link href={{ asset('submodules/ValidationJS/css/styles.css') }} rel="stylesheet">
         <link href={{ asset('submodules/GalleryJS/css/styles.css') }} rel="stylesheet">
