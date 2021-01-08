@@ -12,12 +12,8 @@
             $locations = Location::get();
             if ( count( $locations ) ) {
                 foreach ($locations as $location) {
-                    $location->update(['favorite' => true]);
+                    //
                 }
-                Location::create( [
-                    'name' => 'Buenos Aires',
-                    'slug' => 'buenos-aires',
-                ] );
             } else {
                 Location::create( [
                     'name' => 'Mar del Plata',
