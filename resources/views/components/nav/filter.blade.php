@@ -4,7 +4,7 @@
             <i class="sidebar-icon fas fa-bars"></i>
         </a>
         
-        <a href="/" class="nav-title logo">
+        <a href="/inicio" class="nav-title logo">
             <picture>
                 <source srcset="{{asset('img/resources/logo_regular.png')}}"
                     media="(min-width: 768px)"/>
@@ -21,7 +21,7 @@
 
     <div class="nav-row">
         <ul class="nav-menu-list">
-            <li><a href="/" class="nav-link p-0">
+            <li><a href="/inicio" class="nav-link p-0">
                 Inicio
             </a></li>
             <li><a href="/propiedades" class="nav-link p-0">

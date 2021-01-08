@@ -3,7 +3,7 @@
 @import '../components/property/info.css';
 
 .main{
-    min-height: 0;
+    min-height: calc(100vh - 9.2rem);
 }
 
 /* * MD */

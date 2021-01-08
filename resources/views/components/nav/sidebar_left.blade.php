@@ -11,7 +11,7 @@
 
     <div class="sidebar-content">
         <ul class="sidebar-menu-list">
-            <li><a href="/" class="sidebar-link nav-link p-0">
+            <li><a href="/inicio" class="sidebar-link nav-link p-0">
                 Inicio
             </a></li>
             <li><a href="/propiedades" class="sidebar-link nav-link p-0">
