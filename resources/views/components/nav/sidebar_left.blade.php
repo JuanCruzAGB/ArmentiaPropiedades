@@ -21,7 +21,7 @@
                 <li><a href="/panel" class="sidebar-link nav-link p-0">
                     Panel
                 </a></li>
-                <li><a href="/cerrar-sesion" class="nav-link p-0">
+                <li><a href="/cerrar-sesion" class="sidebar-link nav-link p-0">
                     <i class="link-icon left fas fa-sign-out-alt"></i>
                     <span class="link-text">Cerrar Sesión</span>
                 </a></li>

@@ -1,7 +1,7 @@
 @extends('layouts.web')
 
 @section('title')
-    Armentia Propiedades - En los negocios no se consigue lo que se merece, se consigue lo que se negocia
+    Armentia Propiedades - En los negocios no se consigue lo que se merece, se consigue lo que se negocia. Negocie con nosotros.
 @endsection
 
 @section('css')
@@ -21,7 +21,7 @@
                 <h2 class="MontereyFLF mb-0">¿Qué buscas?</h2>
             </header>
             <main class="banner-content col-12">
-                <p class="Work-Sans mb-0 text-center">En los negocios no se consigue lo que se merece, se consigue lo que se negocia</p>
+                <p class="Work-Sans mb-0 text-center">En los negocios no se consigue lo que se merece, se consigue lo que se negocia. Negocie con nosotros.</p>
             </main>
         </div>
     </section>
@@ -30,7 +30,7 @@
             <main class="col-12 py-5">
                 @foreach ($favorites as $favorite)
                     <header class="title col-12 mb-3">
-                        <a href="/properties?location={{ $favorite->location->slug }}" class="">
+                        <a href="/propiedades?ubicaciones={{ $favorite->location->slug }}" class="">
                             <i class="icon fas fa-angle-right"></i>
                             <h3 class="MontereyFLF mb-0 mt-4">{{ $favorite->location->name }}</h3>
                         </a>

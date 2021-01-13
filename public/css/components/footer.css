@@ -9,6 +9,10 @@
     text-align: center;
 }
 
+.footer .top_bar h2 {
+    width: 100%;
+}
+
 .footer .contact{
     background: url(/img/resources/contact.jpg) no-repeat center left;
     background-size: cover;

@@ -1,5 +1,6 @@
 // ? External repositories
 import { URLServiceProvider as URL } from "../../submodules/ProvidersJS/URLServiceProvider.js";
+import { TabMenu as TabMenuJS } from "../../submodules/TabMenuJS/js/TabMenu.js";
 import { HTMLCreator as HTMLCreatorJS } from "../../submodules/HTMLCreatorJS/js/HTMLCreator.js";
 
 // ? Local repository
@@ -114,6 +115,34 @@ function removeValidationMessages(supports){
 }
 
 document.addEventListener('DOMContentLoaded', function(e){
+    if(document.querySelectorAll('.tab-menu').length){
+        let tabmenus = [];
+        for (const html of document.querySelectorAll('.tab-menu')) {
+            let tabmenu = new TabMenuJS({
+                id: html.id,
+            }, {
+                open: false,
+                active: false,
+            }, {
+                function: changeSection,
+                params: {
+                    //
+            }});
+            if (URL.findHashParameter()) {
+                let opened = [URL.findHashParameter()];
+                tabmenu.open(opened);
+            } else if (document.querySelectorAll('.tab-menu .opened').length) {
+                let opened = [];
+                for (const content of document.querySelectorAll('.tab-menu .opened')) {
+                    opened.push(content.id);
+                }
+
+                tabmenu.open(opened);
+            }
+            tabmenus.push(tabmenu);
+        }
+    }
+
     for (const html of document.querySelectorAll('table')) {
         let element = tables[html.id.split('-table').shift()];
         element.table = new HTMLCreatorJS('table', {
