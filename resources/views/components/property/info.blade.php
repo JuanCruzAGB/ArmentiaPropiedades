@@ -7,7 +7,7 @@
         @endif
             <a href="/propiedad/{{ $property->slug }}/detalles" class="card-body row p-0">
                 <figure class="card-image col-12 mb-0 p-0">
-                    <img src="{{asset('storage/property/1/01.jpg')}}" alt="{{ $property->name }}">
+                    <img src="{{ asset('storage/' . $property->files()[0]) }}" alt="{{ $property->name }}">
                 </figure>
                 <header class="card-title col-12 m-0 p-0">
                     <h3 class="h6 text-center mb-0 p-3">{{ $property->name }}</h3>

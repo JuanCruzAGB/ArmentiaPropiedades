@@ -131,7 +131,7 @@
         margin-bottom: 0;
     }
 
-    .cards .property:nth-child(4n+1):not(:last-child):not(:nth-last-child(2)):not(:nth-last-child(3)) .card-body{
+    .cards .property:nth-child(4n+1):not(:nth-last-child(2)):not(:nth-last-child(3)) .card-body{
         margin: 0 .5rem;
         margin-left: 1rem;
     }

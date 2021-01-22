@@ -4,6 +4,9 @@ body {
 
 .support-box {
     font-size: .8rem;
+    color: var(--invalid-color);
+    background-color: transparent;
+    font-weight: 400;
 }
 
 /* * MD */
