@@ -1,9 +1,9 @@
 @if (count($properties))
     @foreach ($properties as $property)
         @if(Route::current()->getName() === 'web.home')
-            <li class="property card col-7 col-md-5 col-xl-3 col-md-3">
+            <li class="property card col-7 col-md-5 col-xl-3 col-md-3 mt-lg-0">
         @else
-            <li class="property card col-11 col-md-5 col-xl-3 col-md-3">
+            <li class="property card col-11 col-md-5 col-xl-3 col-md-3 mt-lg-0">
         @endif
             <a href="/propiedad/{{ $property->slug }}/detalles" class="card-body row p-0">
                 <figure class="card-image col-12 mb-0 p-0">
