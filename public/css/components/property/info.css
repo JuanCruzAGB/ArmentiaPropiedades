@@ -64,6 +64,7 @@
 }
 
 .property .card-title{
+    height: 4.5rem;
     background-color: var(--color-uno);
     color: var(--color-tres);
     transition: 300ms;
