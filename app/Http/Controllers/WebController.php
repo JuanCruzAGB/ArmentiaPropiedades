@@ -29,16 +29,18 @@
         public function home(){
             $locations = Location::getFavorites();
             $favorites = collect([]);
+            $properties = Property::getByLocation($location->id_location);
+
+            foreach ($properties as $property) {
+                $property->files();
+            }
+            
             foreach (Location::getFavorites() as $location) {
                 $object = (object)[
                     'location' => $location,
-                    'properties' => Property::getByLocation($location->id_location),
+                    'properties' => $properties,
                 ];
                 $favorites->push($object);
-            }
-
-            foreach ($object['properties'] as $property) {
-                $property->files();
             }
 
             return view('web.home', [
