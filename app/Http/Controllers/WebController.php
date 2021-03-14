@@ -37,7 +37,7 @@
                 $favorites->push($object);
             }
 
-            foreach ($properties as $property) {
+            foreach ($object['properties'] as $property) {
                 $property->files();
             }
 
