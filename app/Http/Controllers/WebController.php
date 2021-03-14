@@ -29,13 +29,14 @@
         public function home(){
             $locations = Location::getFavorites();
             $favorites = collect([]);
-            $properties = Property::getByLocation($location->id_location);
-
-            foreach ($properties as $property) {
-                $property->files();
-            }
             
             foreach (Location::getFavorites() as $location) {
+                $properties = Property::getByLocation($location->id_location);
+    
+                foreach ($properties as $property) {
+                    $property->files();
+                }
+                
                 $object = (object)[
                     'location' => $location,
                     'properties' => $properties,
