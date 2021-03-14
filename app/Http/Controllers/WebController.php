@@ -37,6 +37,10 @@
                 $favorites->push($object);
             }
 
+            foreach ($properties as $property) {
+                $property->files();
+            }
+
             return view('web.home', [
                 'favorites' => $favorites,
                 'validation' => (object) [
