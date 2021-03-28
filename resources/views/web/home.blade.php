@@ -51,6 +51,7 @@
 @endsection
 
 @section('js')
+    {!! NoCaptcha::renderJs() !!}
     <script>
         const validation = @json($validation);
     </script>

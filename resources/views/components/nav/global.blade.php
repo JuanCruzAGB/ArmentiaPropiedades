@@ -23,6 +23,9 @@
             <li><a href="/propiedades" class="nav-link p-0">
                 Propiedades
             </a></li>
+            <li><a href="#contact" class="nav-link p-0">
+                Contacto
+            </a></li>
             @if (Auth::check())
                 <li><a href="/panel" class="nav-link p-0">
                     Panel

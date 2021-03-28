@@ -4,5 +4,7 @@ import { Validation as ValidationJS } from "../../submodules/ValidationJS/js/Val
 document.addEventListener('DOMContentLoaded', function(e){
     let Validation = new ValidationJS({
         id: 'contact-form',
-    }, {}, validation.rules, validation.messages);
+    }, {
+        ignore: ['g-recaptcha-response']
+    }, validation.rules, validation.messages);
 });

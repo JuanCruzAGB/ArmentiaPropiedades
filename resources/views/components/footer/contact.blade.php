@@ -1,4 +1,4 @@
-<section class="contact col-12">
+<section id="contact" class="contact col-12">
     <div class="row">
         <div class="form col-12 col-md-5 col-xl-6 p-5">
             <header class="pb-3 pt-md-3">

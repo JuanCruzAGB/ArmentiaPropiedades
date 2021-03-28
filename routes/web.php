@@ -2,7 +2,7 @@
     use Illuminate\Support\Facades\Route;
     
 // * WebController - Controls the web in general.
-    Route::get('/', 'WebController@comingSoon')->name('web.index');
+    Route::get('/', 'Controller@index')->name('web.index');
     Route::get('/inicio', 'WebController@home')->name('web.home');
     Route::get('/proximamente', 'WebController@comingSoon')->name('web.coming_soon');
     Route::get('/dashboard', 'WebController@dashboard')->name('web.dashboard');

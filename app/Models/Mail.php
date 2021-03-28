@@ -12,12 +12,14 @@
                     'name' => 'nullable|min:2',
                     'email' => 'required|email',
                     'phone' => 'required',
+                    'g-recaptcha-response' => 'required',
                 ], 'messages' => [
                     'es' => [
                         'name.min' => 'El nombre no puede tener menos de :min caracteres', 
                         'email.required' => 'El correo es obligatorio',
                         'email.required' => 'El correo debe ser formato mail (ejemplo@corro.com)', 
                         'phone.required' => 'El teléfono es obligatorio',
+                        'g-recaptcha-response.required' => 'Verifica que eres un humano.',
                     ],
                 ],
             ], 'query' => [

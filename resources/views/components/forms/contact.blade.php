@@ -37,7 +37,12 @@
                 <span class="Work-Sans support support-box support-message hidden"></span>
             @endif
         </div>
-        {!! NoCaptcha::display() !!}
+        {!! app('captcha')->display() !!}
+        @if($errors->has('g-recaptcha-response'))
+            <span class="Work-Sans support support-box support-message hidden">{{$errors->first('g-recaptcha-response')}}</span>
+        @else
+            <span class="Work-Sans support support-box support-message hidden"></span>
+        @endif
         <div class="text-right col-12 mb-3 p-0">
             <button type="submit" class="form-submit contact-form btn btn-uno mx-0">Enviar</button>
         </div>

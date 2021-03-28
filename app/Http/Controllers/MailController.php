@@ -31,7 +31,7 @@
             $objDemo->phone = $input['phone'];
             $objDemo->message = ((isset($input['message']) && $input['message']) ? $input['message'] : 'No ha dejado un mensaje...');
 
-            Mail::to('example@mail.com')->send(new Contact($objDemo));
+            Mail::to('example@gmail.com')->send(new Contact($objDemo));
 
             return redirect()->route('web.thanks')->with('status', [
                 'code' => 200, 
